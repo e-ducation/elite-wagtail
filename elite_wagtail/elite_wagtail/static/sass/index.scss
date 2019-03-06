@@ -1,0 +1,386 @@
+@import './variables.scss';
+@import './header.scss'; 
+@import './footer.scss';
+
+// 底色蓝，字体白按钮
+%btn-my-primary{
+  box-sizing: border-box;
+  display: inline-block;
+  width: auto;
+  padding: 0 20px !important;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  height: 36px;
+  line-height: 34px !important;
+  border-radius: 3px;
+  font-weight: normal;
+  cursor: pointer;
+  border: none;
+  background: $primary;
+  border: 1px solid $primary;
+  color: #fff;
+  text-shadow: none;
+  box-shadow: none;
+  font-family: $font-family;
+  outline: none;
+
+  &:hover,&:focus, &:active, &:visited, &:hover:not(:disabled), &:active:not(:disabled), &:focus:not(:disabled){
+    background: $primary;
+    background-image: none;
+    text-decoration: none;
+    opacity: 0.95;
+    box-shadow: none;
+    color: #fff;
+    border: 1px solid $primary;
+  }
+}
+// 底色白，字体蓝
+%btn-my-white{
+  box-sizing: border-box;
+  display: inline-block;
+  width: auto;
+  padding: 0 20px !important;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  height: 36px;
+  line-height: 34px !important;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #fff;
+  color: $primary;
+  border: 1px solid $primary;
+  text-shadow: none;
+  font-family: $font-family;
+  outline: none;
+  box-shadow: none;
+
+  &:hover, &:focus, &:active, &:visited, &:hover:not(:disabled), &:active:not(:disabled), &:focus:not(:disabled){
+    background: #f7fbfe;
+    background-image: none;
+    color: $primary;
+    text-decoration: none;
+    border: 1px solid $primary;
+    box-shadow: none;
+  }
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: $font-family;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+
+.tag{
+  // height: 46px;
+  line-height: 46px;
+  background: $border;
+  >div{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  a{
+    color: $font;
+    text-decoration: none;
+    padding-right: 60px;
+  }
+}
+
+.section{
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  h1{
+    font-size: 16px;
+    color: $title;
+    padding: 40px 0 30px;
+    text-align: center;
+  }
+  h2{
+    font-size: 14px;
+    color: $title;
+    margin-bottom: 7px;
+  }
+  p{
+    color: $font;
+    line-height: 1.5;
+  }
+}
+
+.row{
+  display: flex;
+  flex-flow: row wrap;
+
+  > div{
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 3px;
+    background: #fff;
+  }
+  .col-3{
+    flex: 0 0 33.3%;
+  }
+  .col-4{
+    flex: 0 0 25%;
+  }
+  .col-2{
+    flex: 0 0 50%;
+  }
+  .col{
+    flex: 1;
+    display: flex;
+    border: none;
+    flex-flow: row wrap;
+  }
+  .text{
+    padding: 20px;
+  }
+  img{
+    width: 100%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+}
+
+.section-professor{
+  .col-4{
+    height: 414px;
+  }
+
+  .col-2{
+    position: relative;
+    padding: 20px;
+    height: 207px;
+    img{
+      position: absolute;
+      width: 60px;
+      top: 20px;
+      left: 20px;
+      border-radius: 30px;
+    }
+    .brife{
+      margin-left: 80px;
+      min-height: 80px;
+    }
+    .desc{
+      border-top: 1px dotted rgb(233, 233, 233);
+      padding-top: 20px;
+    }
+  }
+}
+.tag-cotent{
+  display: flex;
+  justify-content: space-around;
+}
+.tag-title{
+  
+}
+.tag-list{
+  a{
+    display: inline-block;
+    min-width: 57px;
+  }
+}
+
+
+
+// header 
+//头部
+.window-wrap .global-header{
+  border-bottom: none;
+  overflow: inherit;
+  z-index: 100;
+  height: 60px;
+  padding: 0 20px;
+
+  .main-header{
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  .header-logo a{ 
+    margin-left: 0px;
+  }
+  .header-logo a .logo{
+    height: 34px;
+    width: auto;
+  }
+  .header-logo .course-header{
+    margin: 14px 0 0 20px;
+    .course-name{
+      max-width: 180px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      height: 16px;
+    }
+  }
+  a.help-link{
+    display: none;
+  }
+}
+
+.window-wrap .global-header .nav-links .secondary{
+  position: relative; 
+
+  a.sign-in-btn, .nav-item a.shopping-cart{
+    @extend %btn-my-primary;
+    margin-top: 3px;
+  }
+  a.register-btn{
+    @extend %btn-my-white;
+    margin-top: 3px;
+  }
+  .username{
+    max-width: 200px;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: top;
+  }
+}
+
+@media screen and (max-width: 1150px){
+  .window-wrap .global-header .header-logo .course-header{
+    display: none;
+  }
+}
+@media screen and (max-width:992px){ 
+  .window-wrap .global-header{
+    padding: 0;
+  }
+  .global-header .hamburger-menu{ 
+    left: 5%;
+  }
+  .window-wrap .global-header .header-logo a{ 
+    position: relative;
+    left: 50%;
+  }
+  .global-header .nav-links .secondary .dropdown-user-menu{
+    border: 1px solid #eeeeee;
+  }
+  .global-header .hamburger-menu{
+    outline: none;
+    .line{
+      height: 3px;
+    }
+  } 
+  
+  .mobile-menu{ 
+    margin-top: 21px;
+    .mobile-nav-link{  
+      outline: none;
+      a{  
+        padding:8px 20px;
+        font-size: 0.875rem;
+        box-sizing: border-box;
+        &:hover{  
+          background-color:$primary;
+          color: #fff !important;
+        }
+      }
+    }
+  } 
+  
+   
+}
+
+
+@media screen and (min-width: 992px){ 
+  .window-wrap .global-header .nav-links .secondary{ 
+    margin: 0;
+
+    .user-image-frame{
+      border: none;
+    }
+    .nav-item{
+      padding: 5px 0 0 0;
+      margin: 4px 0 0 5px;
+    }
+    
+  } 
+
+  .global-header .nav-links .main .nav-tab{
+    a{
+      padding: 0 25px;
+      border: none;
+    }
+    a:active, a:hover, a.active{
+      border-bottom: none;
+      color: $primary;
+    }
+  } 
+  .global-header .nav-links .secondary .dropdown-user-menu{
+    border: 1px solid #e7e7e7;
+  }
+  .wrapper-messages-primary .message.message-upsell .action-upgrade{
+    background: $green;
+    box-shadow: none;
+  }
+
+  .global-header .nav-links .secondary .toggle-user-dropdown{
+    outline: none;
+  }
+
+}
+
+@media screen and (max-width: 576px){
+  .window-wrap .global-header .header-logo{
+    display: block;
+    text-align: center;
+    a{
+      left: inherit;
+      display: inline-block;
+      float: none;
+      margin: 0 auto;
+      padding-top: 13px;
+      position: static;
+    }
+    a img{
+      vertical-align: middle;
+      margin-left: 0;
+    }
+  }
+}
+.mobile-menu.hidden{
+  display: none !important;
+}
+
+
+//头像样式
+@media screen and (min-width: 768px){ 
+  .global-header .nav-links .secondary .dropdown-user-menu{ 
+    right:8px;
+    top: 49px;
+  }
+  
+}
+
+
+.home>header .title .course-search .search-button{  
+  box-sizing: border-box;
+}
+.window-wrap {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+.window-wrap .content-wrapper {
+  margin: 0 auto;
+  max-width: none;
+  width: 100%;
+  flex: 1 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: linear-gradient(to bottom, #fff 0%, #fff 45%, #f2f9ff 100%);
+  font-size: 14px;
+  padding: 0 0 40px;
+  position: relative;
+}

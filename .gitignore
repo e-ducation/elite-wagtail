@@ -120,3 +120,6 @@ dmypy.json
 
 # wagtail
 */media/
+
+.sass-cache
+*.css.map
