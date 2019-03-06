@@ -11,6 +11,16 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 
 
+class CourseBlock(blocks.StructBlock):
+    course_photo = ImageChooserBlock()
+    title = blocks.CharBlock(classname="course title")
+    description = blocks.CharBlock(classname="course desc")
+
+    class Meta:
+        template = 'home/blocks/course.html'
+        icon = 'user'
+
+
 class HomePage(Page):
 
     body = StreamField([
@@ -35,8 +45,15 @@ class HomePage(Page):
         ('DocumentChooserBlock', DocumentChooserBlock()),
 
         ('EmbedBlock', EmbedBlock()),
+        ('RecommendCourse', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('courses', blocks.ListBlock(
+                CourseBlock(classname='course-item'),
+                template='home/blocks/course_list.html'
+            ))
+        ], template='home/blocks/recommend_courses.html')),
     ])
 
-    content_panels = Page.content_panels + [
+    content_panels = [
         StreamFieldPanel('body'),
     ]
