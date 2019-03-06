@@ -15,6 +15,7 @@ class CourseBlock(blocks.StructBlock):
     course_photo = ImageChooserBlock()
     title = blocks.CharBlock()
     description = blocks.CharBlock()
+    link = blocks.URLBlock()
 
     class Meta:
         template = 'home/blocks/course.html'
@@ -25,6 +26,7 @@ class SeriesBlock(blocks.StructBlock):
     course_photo = ImageChooserBlock()
     title = blocks.CharBlock()
     description = blocks.CharBlock()
+    link = blocks.URLBlock()
 
     class Meta:
         icon = 'user'
