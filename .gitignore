@@ -115,5 +115,11 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# vscode
+.vscode/
+
+# wagtail
+*/media/
+
 .sass-cache
 *.css.map
