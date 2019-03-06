@@ -3,13 +3,13 @@
     <h1>{{ value.title }}</h1>
     <div class="row">
         {% for block in value.series %} 
-            <div class="col-4">
+            <a class="col-4" href="{{ block.link }}" target="_blank">
                 {% image block.course_photo width-400 %}
                 <div class="text">
                     <h2>{{ block.title }}</h2>
                     <p> {{ block.description }} </p>
                 </div>
-            </div>
+            </a>
         {% endfor %} 
     </div>
 </div>
