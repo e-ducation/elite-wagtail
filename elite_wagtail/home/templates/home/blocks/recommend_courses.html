@@ -4,7 +4,7 @@
     <div class="row">
         {% for block in value.courses %} 
             <a class="col-3" href="{{ block.link }}" target="_blank">
-                {% image block.course_photo width-400 %}
+                {% image block.image width-400 %}
                 <div class="text">
                     <h2>{{ block.title }}</h2>
                     <p> {{ block.description }} </p>
