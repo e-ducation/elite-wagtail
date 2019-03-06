@@ -1,6 +1,7 @@
 @import './variables.scss';
 @import './header.scss'; 
 @import './footer.scss';
+@import './component.scss';
 
 // 底色蓝，字体白按钮
 %btn-my-primary{
@@ -75,116 +76,6 @@ body{
   margin: 0;
 }
 
-
-.tag{
-  // height: 46px;
-  line-height: 46px;
-  background: $border;
-  >div{
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  a{
-    color: $font;
-    text-decoration: none;
-    padding-right: 60px;
-  }
-}
-
-.section{
-  max-width: 1200px;
-  margin: 0 auto;
-  
-  h1{
-    font-size: 16px;
-    color: $title;
-    padding: 40px 0 30px;
-    text-align: center;
-  }
-  h2{
-    font-size: 14px;
-    color: $title;
-    margin-bottom: 7px;
-  }
-  p{
-    color: $font;
-    line-height: 1.5;
-  }
-}
-
-.row{
-  display: flex;
-  flex-flow: row wrap;
-
-  > div{
-    border: 1px solid rgb(233, 233, 233);
-    border-radius: 3px;
-    background: #fff;
-  }
-  .col-3{
-    flex: 0 0 33.3%;
-  }
-  .col-4{
-    flex: 0 0 25%;
-  }
-  .col-2{
-    flex: 0 0 50%;
-  }
-  .col{
-    flex: 1;
-    display: flex;
-    border: none;
-    flex-flow: row wrap;
-  }
-  .text{
-    padding: 20px;
-  }
-  img{
-    width: 100%;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-  }
-}
-
-.section-professor{
-  .col-4{
-    height: 414px;
-  }
-
-  .col-2{
-    position: relative;
-    padding: 20px;
-    height: 207px;
-    img{
-      position: absolute;
-      width: 60px;
-      top: 20px;
-      left: 20px;
-      border-radius: 30px;
-    }
-    .brife{
-      margin-left: 80px;
-      min-height: 80px;
-    }
-    .desc{
-      border-top: 1px dotted rgb(233, 233, 233);
-      padding-top: 20px;
-    }
-  }
-}
-.tag-cotent{
-  display: flex;
-  justify-content: space-around;
-}
-.tag-title{
-  
-}
-.tag-list{
-  a{
-    display: inline-block;
-    min-width: 57px;
-  }
-}
 
 
 
