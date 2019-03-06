@@ -1,0 +1,220 @@
+// my-footer
+$border:#b6dcfe;
+.my-footer{
+    width: 100%;
+    color: $font;
+    font-size: 14px;
+    box-shadow: 0 2px 2px 2px $border;
+    line-height: 1.8;
+    padding: 14px 0;
+    box-sizing: border-box;
+    border-top: 1px solid $border;
+    // 1. 布局
+    .footer-content{
+      width: 96%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+  
+    .footer-app{
+      display: inline-block;
+      width: 20%;
+      margin-right: 5%;
+      vertical-align: text-top;
+      height: 138px;
+      border-right: 1px dashed $border;
+      padding-top: 22px;
+    }
+  
+    .footer-wechat{
+      text-align: center;
+      display: inline-block;
+      width: 13%;
+      vertical-align: text-top;
+      border-left: 1px dashed $border;
+      padding-top: 22px;
+      h3{ 
+        text-align: center;
+      }
+    }
+  
+    // 2. 中间链接
+    .footer-links{
+      display: inline-block;
+      width: 60%;
+    }
+    .footer-list{
+      display: inline-block;
+      width: 24.5%;
+      vertical-align: text-top;
+      padding-top: 22px;
+    }
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 15px 0 0 0;
+    }
+    li{
+      line-height: 2;
+      a{
+        cursor: pointer;
+      }
+    }
+    a,a:not(.btn){
+      color: $font;
+      text-decoration: none;
+    }
+    a:hover,a:not(.btn):hover{
+      text-decoration: none;
+      color: $primary;
+    }
+    h3{
+      font-size: 14px;
+      color: $title;
+      padding: 1px 0 20px;
+      margin: 0;
+    }
+    .footer-line{
+      width: 65.5%;
+      height: 1px;
+      border-bottom: 1px dashed $border;
+      position: absolute;
+      left: 20%;
+      top: 58px;
+    }
+  
+    // 3. 左侧app按钮
+    .logo{
+      height: 30px;
+    }
+    .slogan{
+      margin: 6px 0 25px 34px;
+    }
+    .footer-btn{
+      display: inline-block;
+      border: 1px solid $primary;
+      color: $primary;
+      border-radius: 4px;
+      margin-right: 5px;
+      padding: 4px 10px 2px;
+      cursor: pointer;
+      background: #f7fbfe;
+      position: relative;
+  
+      .footer-qr-block{
+        position: absolute;
+        bottom: 42px;
+        left: -20px;
+        box-shadow: 0px 1px 4px 0px $border;
+        padding: 5px;
+        display: none;
+        background: #fff;
+        width: 100px;
+        box-sizing: content-box;
+        img{
+          width: 90px;
+          padding: 5px;
+          box-sizing: content-box;
+        }
+      }
+      .qrcode-icon{
+        position: absolute;
+        bottom: -10px;
+        left: 50px;
+      }
+      &:hover{
+        color: #fff;
+        background: $primary;
+        .footer-icon svg{
+          fill: #fff;
+        }
+        & > .footer-qr-block{
+          display: block;
+        }
+      }
+  
+    }
+    .footer-icon{
+      font-size: 16px;
+      vertical-align: middle;
+    }
+    .footer-icon svg{
+      fill: $primary;
+      vertical-align: initial;
+    }
+  
+    // Wechat
+    .footer-qrcode{
+      width: 60px;
+      margin: 10px 0;
+      border: 1px solid $border;
+    }
+    .footer-wechat div{
+      font-size: 12px;
+    }
+  
+    .footer-wechat h3{
+      border-bottom: none;
+      padding: 0;
+    }
+    // 备案信息
+    .footer-text{
+      text-align: center;
+      margin-top: 22px; 
+      padding: 0 20px;
+    }
+  }
+  
+  @media screen and (max-width: 992px){
+    .my-footer{
+      padding: 40px 30px;
+      h3{
+        padding: 0;
+      }
+      .footer-app, .footer-wechat{
+        display: none;
+      }
+      .footer-links{
+        width: 100%;
+        padding: 0 0 0 20px;
+        box-sizing: border-box;
+      }
+      .footer-list{
+        min-width: 160px;
+        padding-top: 0;
+      }
+      .footer-line{
+        display: none;
+      }
+    }
+    
+  }
+  
+  @media screen and (max-width:768px){
+    .my-footer{
+      border-top: 1px solid $border;
+      box-shadow: none;
+      padding: 40px 0 20px 0;
+  
+      .footer-list{
+        width: 49%;
+        margin-bottom: 30px;
+        min-width: 0;
+      }
+      ul{
+        margin: 10px 0 0 0;
+      }
+      .footer-text{
+        margin-top: 0;
+      }
+      h3{
+        padding: 0;
+      }
+    }
+  }
+  
+  //尾部
+  .wrapper-footer footer#footer-openedx{  
+    max-width: 1200px;
+  }
