@@ -21,6 +21,15 @@ class CourseBlock(blocks.StructBlock):
         icon = 'user'
 
 
+class SeriesBlock(blocks.StructBlock):
+    course_photo = ImageChooserBlock()
+    title = blocks.CharBlock(classname="course title")
+    description = blocks.CharBlock(classname="course desc")
+
+    class Meta:
+        icon = 'user'
+
+
 class HomePage(Page):
 
     body = StreamField([
@@ -47,11 +56,12 @@ class HomePage(Page):
         ('EmbedBlock', EmbedBlock()),
         ('RecommendCourse', blocks.StructBlock([
             ('title', blocks.CharBlock()),
-            ('courses', blocks.ListBlock(
-                CourseBlock(classname='course-item'),
-                template='home/blocks/course_list.html'
-            ))
+            ('courses', blocks.ListBlock(CourseBlock()))
         ], template='home/blocks/recommend_courses.html')),
+        ('SeriesCourse', blocks.StructBlock([
+            ('title', blocks.CharBlock()),
+            ('series', blocks.ListBlock(SeriesBlock()))
+        ], template='home/blocks/series_list.html')),
     ])
 
     content_panels = [
