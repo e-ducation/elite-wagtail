@@ -1,8 +1,9 @@
 {% load wagtailimages_tags %}
 <div class="section">
+    <h1>{{ value.title }}</h1>
     <div class="row">
-        {% for block in self %} 
-            <div class="col-3">
+        {% for block in value.series %} 
+            <div class="col-4">
                 {% image block.course_photo width-400 %}
                 <div class="text">
                     <h2>{{ block.title }}</h2>
