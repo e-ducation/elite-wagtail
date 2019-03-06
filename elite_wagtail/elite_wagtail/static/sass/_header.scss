@@ -1,0 +1,164 @@
+.global-header {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #0075b4;
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,0.1);
+    background: #fff;
+    line-height: 1.5;
+}
+.global-header .header-logo a {
+    float: left;
+    margin: 15px 0 0 40px;
+    display: block;
+}
+@media (min-width: 992px) {
+    .global-header .nav-links .main {
+        float: left;
+        margin: 20px 0 0 20px;
+        padding: 0;
+    }
+    .global-header .nav-links .main .nav-tab {
+        text-transform: none;
+        padding: 0;
+        cursor: pointer;
+        margin: 0;
+    }
+    .global-header .nav-links .main .nav-item {
+        float: left;
+        text-transform: none;
+        padding: 0;
+        cursor: pointer;
+        margin: 0;
+        font-size: 16px;
+    }
+    .global-header .nav-links .main .nav-tab a {
+        color: #313131;
+        padding: 7px 25px 19px;
+        font-weight: 400;
+        display: inline-block;
+        margin-bottom: -10px;
+        border-bottom: 4px solid transparent;
+        cursor: pointer;
+        padding: 0 25px;
+        border: none;
+        text-decoration: none;
+    }
+    .global-header .nav-links .secondary {
+        float: right;
+        margin: 0;
+        position: relative;
+    }
+    .global-header .nav-links .secondary .nav-item {
+        font-size: 1rem;
+        display: inline-block;
+        padding: 5px 0 0 0;
+        margin: 4px 0 0 5px;
+        a{
+            text-decoration: none;
+        }
+    }
+}
+@media (max-width: 991px){
+
+    .global-header .hamburger-menu {
+        left: 20px;
+        position: absolute;
+        top: 18px;
+        width: 30px;
+        height: 20px;
+        padding-bottom: 5px;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: 0.5s ease-in-out;
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+        outline: none;
+    }
+    .global-header .hamburger-menu .line {
+        display: block;
+        position: absolute;
+        height: 5px;
+        width: 100%;
+        background: #767676;
+        opacity: 1;
+        left: 0;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: 0.25s ease-in-out;
+        transition: 0.25s ease-in-out;
+    }
+    .global-header .hamburger-menu .line:nth-child(2), .global-header .hamburger-menu .line:nth-child(3) {
+        top: 10px;
+    }
+    .global-header .hamburger-menu .line:nth-child(4) {
+        top: 20px;
+    }
+    .global-header .hamburger-menu.open .line:nth-child(1) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+    }
+    .global-header .hamburger-menu.open .line:nth-child(2) {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .global-header .hamburger-menu.open .line:nth-child(3) {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    .global-header .hamburger-menu.open .line:nth-child(4) {
+        top: 18px;
+        width: 0%;
+        left: 50%;
+    }
+    .global-header .main-header {
+        height: 40px;
+        position: inherit;
+    }
+    .hidden-mobile:not(.mobile-nav-link) {
+        display: none;
+    }
+    .global-header .header-logo a .logo {
+        margin-left: -50%;
+    }
+    .mobile-menu {
+        margin-top: 21px;
+        border-top: 1px solid #0075b4;
+        margin: 25px 0 -10px;
+    }
+    .mobile-menu .mobile-nav-link {
+        position: static;
+        transform: none;
+        overflow: hidden;
+        padding: 0;
+    }
+    .mobile-menu .mobile-nav-link a {
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        outline: none;
+        display: block;
+        background-color: #fff;
+        border-radius: 0;
+        width: 100%;
+        padding: 12px 20px;
+        border-bottom: 1px solid #e7e7e7;
+        text-align: left;
+        cursor: pointer;
+        padding: 8px 20px;
+        font-size: 0.875rem;
+        box-sizing: border-box;
+    }
+    .global-header{
+
+        a:not(.btn), a:visited:not(.btn) {
+            color: #0075b4;
+            font: inherit;
+            text-decoration: none;
+            transition: all 0.1s linear 0s;
+        }
+    }
+}
