@@ -13,8 +13,8 @@ from wagtail.embeds.blocks import EmbedBlock
 
 class CourseBlock(blocks.StructBlock):
     course_photo = ImageChooserBlock()
-    title = blocks.CharBlock(classname="course title")
-    description = blocks.CharBlock(classname="course desc")
+    title = blocks.CharBlock()
+    description = blocks.CharBlock()
 
     class Meta:
         template = 'home/blocks/course.html'
@@ -23,8 +23,8 @@ class CourseBlock(blocks.StructBlock):
 
 class SeriesBlock(blocks.StructBlock):
     course_photo = ImageChooserBlock()
-    title = blocks.CharBlock(classname="course title")
-    description = blocks.CharBlock(classname="course desc")
+    title = blocks.CharBlock()
+    description = blocks.CharBlock()
 
     class Meta:
         icon = 'user'
