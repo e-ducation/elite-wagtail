@@ -2,39 +2,41 @@
 <div class="section section-story">
     <h1>{{value.title}}</h1>
     <div class="row">
-        {% for item in value.story %}
-            {% if item.photo_location == 'left' %}
-                <div class="left">
-            {% for sub_item in item.story_photo %}
-                {% image sub_item width-400 %}
-            {% endfor %}
-            <a class="col-3" href="{{ item.story_link }}" target="_blank">
-                <h2>{{ item.story_title }}</h2>
-            </a>
-            <p>{{ item.story_content }}</p>
-        </div>
-            {% endif %}
-        {% endfor %}
-        <div class="center">
+        <div class="left">
             {% for item in value.story %}
-                {% if item.photo_location == 'center' %}
-                    <div>
-                {% for sub_item in item.story_photo %}
-                    {% image sub_item width-400 %}
-                {% endfor %}
-                <a class="col-3" href="{{ item.story_link }}" target="_blank">
-                    <h2>{{ item.story_title }}</h2>
-                </a>
-                <p>{{ item.story_content }}</p>
-            </div>
+                {% if item.photo_location == 'left' %}
+                    <div class="first">
+                        {% for sub_item in item.story_photo %}
+                            {% image sub_item width-400 as tmp_photo %}
+                            <img src="{{ tmp_photo.url }}" />
+                        {% endfor %}
+                        <h2>
+                            <a href="{{ item.story_link }}" target="_blank">{{ item.story_title }}</a>
+                        </h2>
+                    </div>
                 {% endif %}
             {% endfor %}
+            <div class="second">
+                {% for item in value.story %}
+                    {% if item.photo_location == 'center' %}
+                        <div>
+                            {% for sub_item in item.story_photo %}
+                                {% image sub_item width-400 as tmp_photo %}
+                                <img src="{{ tmp_photo.url }}" />
+                            {% endfor %}
+
+
+                                <h2></h2>
+                            <h2><a href="{{ item.story_link }}" target="_blank">{{ item.story_title }}</a></h2>
+                            <p>{{ item.story_content }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
-        <div class="right">
-            <a class="col-3" href="{{ value.propaganda_link }}" target="_blank">
-                {% image value.propaganda_image width-400 %}
-            </a>
-        </div>
+        <a href="{{ value.propaganda_link }}" target="_blank" class="right">
+            {% image value.propaganda_image width-400 as tmp_photo %}
+                <img src="{{ tmp_photo.url }}" />
         </a>
     </div>
-</div>    
+</div>
