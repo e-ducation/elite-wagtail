@@ -11,11 +11,25 @@ $font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,"Helvetica N
   padding: 0;
   box-sizing: border-box;
 }
+
 body{
   font-family: $font-family;
   font-size: 14px;
   padding: 0;
   margin: 0;
+}
+a, h1, h2, p{
+  text-decoration: none;
+  &:hover, &:active, &:link, &:visited{
+    color: inherit;
+  }
+}
+
+@mixin text-overflow($line){
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
 }
 
 
@@ -37,8 +51,8 @@ body{
 .section{
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
-  
+  padding: 0 10px;
+
   h1{
     font-size: 16px;
     color: $title;
@@ -51,6 +65,7 @@ body{
     color: $title;
     margin-bottom: 5px;
     font-weight: normal;
+    cursor: pointer;
   }
   p{
     color: $font;
@@ -62,9 +77,8 @@ body{
 .row{
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
 
-  > div{
+  > a{
     border: 1px solid $border;
     border-radius: 3px;
     background: #fff;
@@ -72,12 +86,15 @@ body{
   }
   .col-4{
     flex: 0 0 32.2%;
+    margin-right: 1.1%;
   }
   .col-3{
     flex: 0 0 23.75%;
+    margin-right: 1.25%;
   }
   .col-6{
     flex: 0 0 48.88%;
+    margin-right: 1.12%;
   }
   .col-9{
     flex: 0 0 74.58%;
@@ -94,14 +111,29 @@ body{
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
   }
+  @media screen and (max-width: 576px){
+    .col-4, .col-3{
+      flex: 0 0 100%;
+    }
+  }
 }
 
 // 推荐教授
 .section-professor{
-  .col-3{
+  >div{
+    position: relative;
+    padding-left: 220px;
     height: 434px;
   }
-
+  
+  .left{
+    height: 434px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid $border;
+    border-radius: 3px;
+  }
   .col-6{
     position: relative;
     padding: 20px;
@@ -110,6 +142,10 @@ body{
     border: 1px solid $border;
     overflow: auto;
     margin-bottom: 20px;
+
+    &:nth-child(3), &:nth-child(4){
+      margin-bottom: 0;
+    }
     img{
       position: absolute;
       width: 60px;
@@ -117,6 +153,7 @@ body{
       left: 30px;
       border-radius: 30px;
       border: 2px solid $blue;
+      cursor: pointer;
     }
     .brife{
       margin-left: 90px;
@@ -133,54 +170,82 @@ body{
 // 用户故事
 .section-story{
   .left{
-    flex: 0 0 29%;
-    
-    p{
-      padding: 20px;
+    flex: 1;
+    display: flex;
+    border: none;
+
+    .first{
+      flex: 0 0 35%;
+      margin-right: 2%;
+      border: 1px solid $border;
+
+      img{
+        border-radius: 0;
+      }
+      img:first-child{
+        width: 100%;
+        margin-bottom: 4px;
+      }
+      img:nth-child(2){
+        width: 49.3%;
+        display: inline-block;
+      }
+      img:nth-child(3){
+        width: 49.3%;
+        display: inline-block;
+        float: right;
+      }
+  
+      p{
+        margin: 20px;
+        @include text-overflow(2)
+      }
+    }
+
+    .second{
+      flex: 0 0 63%;
+      border: none;
+      
+      > div{
+        position: relative;
+        height: 180px;
+        border: 1px solid $border;
+        overflow: hidden;
+        
+        img{
+          height: 100%;
+          width: auto;
+          position: absolute;
+          top: 0;
+        }
+        &:first-child{
+          padding: 20px 20px 20px 340px;
+          margin-bottom: 20px;
+          img{
+            left: 0;
+          }
+        }
+        &:last-child{
+          padding: 20px 320px 20px 20px;
+          img{
+            right: 0;
+          }
+        }
+        p{
+          @include text-overflow(5)
+        }
+      }   
     }
   }
-  .center{
-    flex: 0 0 55%;
-    border: none;
-    
-    > div{
-      position: relative;
-      height: 165px;
-      border: 1px solid $border;
-      overflow: hidden;
-      
-      img{
-        height: 165px;
-        width: auto;
-        position: absolute;
-        top: 0;
-      }
-      &:first-child{
-        padding: 20px 20px 20px 320px;
-        margin-bottom: 20px;
-        img{
-          left: 0;
-        }
-      }
-      &:last-child{
-        padding: 20px 320px 20px 20px;
-        img{
-          right: 0;
-        }
-      }
-      
-    }   
-  }
+  
   .right{
-    flex: 0 0 13%;
+    flex: 0 0 200px;
+    margin: 0 0 0 20px;
   }
 }
 
 // 单图
-.pic{
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+.section-pic{
   img{
     width: 100%;
   }
@@ -202,7 +267,7 @@ body{
   position: relative;
   overflow: hidden;
 
-  .slider-item{
+  ul li{
     position: absolute;
     top: 0;
     left: 0;
@@ -269,13 +334,50 @@ body{
   display: none;
 }
 
+@media screen and (max-width: 1000px){
+  .section-professor{
+    >div{
+      padding: 0;
+    }
+    .left{
+      display: none;
+    }
+  }
+  .section-story{
+    .right{
+      display: none;
+    }
+  }
+}
 @media screen and (max-width:576px){
-  .slider-pc,
-  .prev,
-  .next{
-    display: none;
+  .row{
+    .col-3, .col-4, .col-6{
+      flex: 0 0 100%;
+      height: auto;
+    }
   }
-  .slider-mobile{
-    display: block;
+  .slider{
+    .slider-pc,
+    .prev,
+    .next{
+      display: none;
+    }
+    .slider-mobile{
+      display: block;
+    }
   }
+  
+
+  .section-story{
+    .left{
+      display: block;
+      width: 100%;
+      .first, .second{
+        flex: 0 0 100%;
+        margin: 0 0 20px 0;
+      }
+    }
+    
+  }
+
 }
