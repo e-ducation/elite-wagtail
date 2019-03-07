@@ -1,3 +1,4 @@
+/*
 html {
     box-sizing: border-box;
 }
@@ -9,10 +10,8 @@ html {
 }
 
 body {
-    /* max-width: 960px; */
     min-height: 100vh;
     margin: 0 auto;
-    /* padding: 0 15px; */
     color: #231f20;
     font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
     line-height: 1.25;
@@ -41,7 +40,7 @@ ul {
 }
 
 main {
-    display: block; /* For IE11 support */
+    display: block; 
 }
 
 svg:not(:root) {
@@ -171,7 +170,7 @@ svg:not(:root) {
 
 @media (max-width: 996px) {
     body {
-        /* max-width: 780px; */
+        // max-width: 780px;
     }
 }
 
@@ -202,3 +201,4 @@ svg:not(:root) {
         max-width: 100px;
     }
 }
+*/

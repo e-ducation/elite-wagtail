@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
@@ -20,6 +21,28 @@ class CourseBlock(blocks.StructBlock):
     class Meta:
         template = 'home/blocks/course.html'
         icon = 'user'
+
+class StoryBlock(blocks.StructBlock):
+
+    title = blocks.CharBlock(label=_('模块标题'))
+    propaganda_image = ImageChooserBlock(label=_('宣传图片'))
+
+    story = blocks.ListBlock(blocks.StructBlock([
+        ('story_photo', blocks.ListBlock(ImageChooserBlock(required=False), label=_('故事图片'))),
+        ('story_title', blocks.CharBlock(required=False, label=_('故事标题'))),
+        ('story_content', blocks.CharBlock(required=False, label=_('故事内容'))),
+        ('photo_location', blocks.ChoiceBlock(choices=[
+            ('left', 'left'),
+            ('center', 'center'),
+        ], icon='cup', label=_('图片位置'))),
+        ('story_link', blocks.URLBlock(label=_('故事链接'))),
+    ]), label=_('用户故事'))
+
+    propaganda_link = blocks.URLBlock(label=_('宣传链接'))
+ 
+    class Meta:
+        icon = 'user'
+        template = 'home/blocks/story.html'
 
 
 class SeriesBlock(blocks.StructBlock):
@@ -64,6 +87,7 @@ class HomePage(Page):
             ('title', blocks.CharBlock()),
             ('series', blocks.ListBlock(SeriesBlock()))
         ], template='home/blocks/series_list.html')),
+        ('StoryBlock',StoryBlock()), 
     ])
 
     content_panels = Page.content_panels + [
