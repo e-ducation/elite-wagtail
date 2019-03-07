@@ -30,7 +30,10 @@
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
-
+        <!-- 回到顶部 -->
+        <div class="return-top">
+            <img src="{% static 'images/u229.png' %}">
+        </div>
         {# Global javascript #}
         <script src="https://cdn.bootcss.com/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'js/elite_wagtail.js' %}"></script>
@@ -40,4 +43,5 @@
             {# Override this in templates to add extra javascript #}
         {% endblock %}
     </body>
+    
 </html>

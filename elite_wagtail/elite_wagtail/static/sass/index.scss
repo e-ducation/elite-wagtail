@@ -276,3 +276,11 @@ body{
   padding: 0 10px 40px;
   position: relative;
 }
+.window-wrap .block-image{
+  max-width: 1200px;
+  margin: 0 auto;
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
