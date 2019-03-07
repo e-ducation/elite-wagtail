@@ -24,10 +24,9 @@
                                 {% image sub_item width-400 as tmp_photo %}
                                 <img src="{{ tmp_photo.url }}" />
                             {% endfor %}
-
-
-                                <h2></h2>
-                            <h2><a href="{{ item.story_link }}" target="_blank">{{ item.story_title }}</a></h2>
+                            <h2>
+                                <a href="{{ item.story_link }}" target="_blank">{{ item.story_title }}</a>
+                            </h2>
                             <p>{{ item.story_content }}</p>
                         </div>
                     {% endif %}
