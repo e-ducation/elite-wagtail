@@ -50,18 +50,19 @@ a, h1, h2, p{
 
 .section{
   max-width: 1200px;
+  // min-width: 960px;
   margin: 0 auto;
   padding: 0 10px;
 
   h1{
-    font-size: 16px;
+    font-size: 18px;
     color: $title;
     padding: 40px 0 30px;
     text-align: center;
     font-weight: normal;
   }
   h2{
-    font-size: 14px;
+    font-size: 16px;
     color: $title;
     margin-bottom: 5px;
     font-weight: normal;
@@ -70,6 +71,14 @@ a, h1, h2, p{
   p{
     color: $font;
     line-height: 1.5;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // min-width: 250px;
+    // max-width: 300px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
   }
 }
 
@@ -78,11 +87,14 @@ a, h1, h2, p{
   display: flex;
   flex-flow: row wrap;
 
-  > a{
+  > div, >a{
     border: 1px solid $border;
     border-radius: 3px;
     background: #fff;
     margin-bottom: 20px;
+  }
+  a{
+    text-decoration: none;
   }
   .col-4{
     flex: 0 0 32.2%;
@@ -110,6 +122,7 @@ a, h1, h2, p{
     width: 100%;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+    height: auto;
   }
   @media screen and (max-width: 576px){
     .col-4, .col-3{
@@ -346,6 +359,13 @@ a, h1, h2, p{
   .section-story{
     .right{
       display: none;
+    }
+  }
+}
+@media screen and (max-width:768px){
+  .row{
+    .col-3{
+      flex: 0 0  47.5%;
     }
   }
 }
