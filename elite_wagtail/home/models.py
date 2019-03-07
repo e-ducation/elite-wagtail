@@ -21,6 +21,28 @@ class CourseBlock(blocks.StructBlock):
         template = 'home/blocks/course.html'
         icon = 'user'
 
+class StoryBlock(blocks.StructBlock):
+
+    title = blocks.CharBlock()
+    propaganda_image = ImageChooserBlock()
+
+    story = blocks.ListBlock(blocks.StructBlock([
+        ('story_photo', blocks.ListBlock(ImageChooserBlock(required=False))),
+        ('story_title', blocks.CharBlock(required=False)),
+        ('story_content', blocks.CharBlock(required=False)),
+        ('photo_location', blocks.ChoiceBlock(choices=[
+            ('left', 'left'),
+            ('center', 'center'),
+        ], icon='cup')),
+        ('story_link', blocks.URLBlock()),
+    ]))
+
+    propaganda_link = blocks.URLBlock()
+ 
+    class Meta:
+        icon = 'user'
+        template = 'home/blocks/story.html'
+
 
 class SeriesBlock(blocks.StructBlock):
     course_photo = ImageChooserBlock()
@@ -64,8 +86,9 @@ class HomePage(Page):
             ('title', blocks.CharBlock()),
             ('series', blocks.ListBlock(SeriesBlock()))
         ], template='home/blocks/series_list.html')),
+        ('StoryBlock',StoryBlock()), 
     ])
 
-    content_panels = [
+    content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
     ]
