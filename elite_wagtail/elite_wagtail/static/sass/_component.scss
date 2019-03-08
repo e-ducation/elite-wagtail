@@ -34,17 +34,27 @@ a, h1, h2, p{
 
 
 .tag{
-  height: 46px;
-  line-height: 46px;
+  line-height: 50px;
   background: $border;
-  >div{
+  > div{
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    padding: 0 10px 0 100px;
+  }
+  h3{
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: $font;
   }
   a{
     color: $font;
     text-decoration: none;
-    padding-right: 60px;
+    padding: 0 30px;
+    display: inline-block;
   }
 }
 
@@ -146,6 +156,10 @@ a, h1, h2, p{
     left: 0;
     border: 1px solid $border;
     border-radius: 3px;
+    width: 200px;
+    img{
+      width: 100%;
+    }
   }
   .col-6{
     position: relative;
@@ -186,6 +200,7 @@ a, h1, h2, p{
     flex: 1;
     display: flex;
     border: none;
+    height: 380px;
 
     .first{
       flex: 0 0 35%;
@@ -202,14 +217,16 @@ a, h1, h2, p{
       img:nth-child(2){
         width: 49.3%;
         display: inline-block;
+        height: auto;
       }
       img:nth-child(3){
         width: 49.3%;
         display: inline-block;
         float: right;
+        height: auto
       }
   
-      p{
+      h2{
         margin: 20px;
         @include text-overflow(2)
       }
@@ -254,6 +271,10 @@ a, h1, h2, p{
   .right{
     flex: 0 0 200px;
     margin: 0 0 0 20px;
+    border: none;
+    img{
+      height: 380px;
+    }
   }
 }
 
@@ -392,12 +413,17 @@ a, h1, h2, p{
     .left{
       display: block;
       width: 100%;
+      height: auto;
       .first, .second{
         flex: 0 0 100%;
         margin: 0 0 20px 0;
       }
     }
-    
   }
 
+  .section-professor{
+    >div{
+      height: auto;
+    }
+  }
 }
