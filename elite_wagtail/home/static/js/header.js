@@ -174,3 +174,7 @@ $('.mobile-menu, .global-header').on('keydown', function(e) {
         nextLink.focus();
     }
 });
+$('.return-top').click(function(){
+    console.log(123);
+    $('html ,body').animate({scrollTop: 0}, 300);
+})
