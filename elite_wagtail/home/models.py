@@ -64,9 +64,8 @@ class ProfessorBlock(blocks.StructBlock):
     professor = blocks.ListBlock(blocks.StructBlock([
         ('name', blocks.CharBlock(required=False, label=_('教授名称'))),
         ('professor_pic', ImageChooserBlock(required=False, label=_('教授头像'))),
-        ('professor_pic_link', blocks.URLBlock(required=False, label=_('教授头像链接'))),
-        ('professor_degree', blocks.ListBlock(blocks.CharBlock(required=False), label=_('教授学历'))),
-        ('professor_degree_link', blocks.URLBlock(required=False, label=_('教授学历链接'))),
+        ('professor_link', blocks.URLBlock(required=False, label=_('链接'))),
+        ('professor_degree', blocks.ListBlock(blocks.TextBlock(required=False), label=_('教授学历'))),
         ('content', blocks.CharBlock(required=False, label=_('内容'))),
     ]), label=_('教授'))
 
