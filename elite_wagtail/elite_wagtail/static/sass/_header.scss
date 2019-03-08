@@ -162,3 +162,10 @@
         }
     }
 }
+
+
+@media (min-width: 992px){
+    .mobile-menu {
+        display: none !important;
+    }
+}

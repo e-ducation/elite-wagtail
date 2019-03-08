@@ -7,10 +7,17 @@
 {% endblock extra_css %}
 
 {% block content %}
+<div class="window-wrap">
+{% include 'home/header.html' %}
+<main class="main content-wrapper">
+        {{ page.body }}
+</main>
+{% include 'home/footer.html' %}
 
+</div>
 {% comment %}
 {% endcomment %}
 
-    {{ page.body }}
+   
 
 {% endblock content %}
