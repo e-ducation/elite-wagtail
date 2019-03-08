@@ -22,8 +22,19 @@ class CourseBlock(blocks.StructBlock):
         template = 'home/blocks/course.html'
         icon = 'user'
 
-class StoryBlock(blocks.StructBlock):
 
+class CategoriesListBlock(blocks.StructBlock):
+    categorieslist = blocks.ListBlock(blocks.StructBlock([
+        ('categories_name', blocks.CharBlock(required=True, label=_('分类名称'))),
+        ('categories_link', blocks.URLBlock(required=True, label=_('分类链接'))),
+    ]), label=_('课程分类'))
+
+    class Meta:
+        template = 'home/blocks/categorieslist.html'
+        icon = 'user'
+
+
+class StoryBlock(blocks.StructBlock):
     title = blocks.CharBlock(label=_('模块标题'))
     propaganda_image = ImageChooserBlock(label=_('宣传图片'))
 
@@ -39,7 +50,7 @@ class StoryBlock(blocks.StructBlock):
     ]), label=_('用户故事'))
 
     propaganda_link = blocks.URLBlock(label=_('宣传链接'))
- 
+
     class Meta:
         label = "故事模块"
         icon = 'user'
@@ -53,9 +64,8 @@ class ProfessorBlock(blocks.StructBlock):
     professor = blocks.ListBlock(blocks.StructBlock([
         ('name', blocks.CharBlock(required=False, label=_('教授名称'))),
         ('professor_pic', ImageChooserBlock(required=False, label=_('教授头像'))),
-        ('professor_pic_link', blocks.URLBlock(required=False, label=_('教授头像链接'))),
-        ('professor_degree', blocks.ListBlock(blocks.CharBlock(required=False), label=_('教授学历'))),
-        ('professor_degree_link', blocks.URLBlock(required=False, label=_('教授学历链接'))),
+        ('professor_link', blocks.URLBlock(required=False, label=_('链接'))),
+        ('professor_degree', blocks.ListBlock(blocks.TextBlock(required=False), label=_('教授学历'))),
         ('content', blocks.CharBlock(required=False, label=_('内容'))),
     ]), label=_('教授'))
 
@@ -78,7 +88,6 @@ class SeriesBlock(blocks.StructBlock):
 
 
 class HomePage(Page):
-
     body = StreamField([
         ('Paragraph', blocks.RichTextBlock()),
         ('Image', ImageChooserBlock()),
@@ -109,8 +118,9 @@ class HomePage(Page):
             ('title', blocks.CharBlock()),
             ('series', blocks.ListBlock(SeriesBlock()))
         ], template='home/blocks/series_list.html')),
-        ('StoryBlock',StoryBlock()), 
+        ('StoryBlock', StoryBlock()),
         ('ProfessorBlock', ProfessorBlock()),
+        ('CategoriesListBlock', CategoriesListBlock()),
     ])
 
     content_panels = Page.content_panels + [
