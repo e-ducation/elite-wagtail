@@ -41,8 +41,30 @@ class StoryBlock(blocks.StructBlock):
     propaganda_link = blocks.URLBlock(label=_('宣传链接'))
  
     class Meta:
+        label = "故事模块"
         icon = 'user'
         template = 'home/blocks/story.html'
+
+
+class ProfessorBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label=_('模块标题'))
+    professor_image = ImageChooserBlock(label=_('宣传图片'))
+
+    professor = blocks.ListBlock(blocks.StructBlock([
+        ('name', blocks.CharBlock(required=False, label=_('教授名称'))),
+        ('professor_pic', ImageChooserBlock(required=False, label=_('教授头像'))),
+        ('professor_pic_link', blocks.URLBlock(required=False, label=_('教授头像链接'))),
+        ('professor_degree', blocks.ListBlock(blocks.CharBlock(required=False), label=_('教授学历'))),
+        ('professor_degree_link', blocks.URLBlock(required=False, label=_('教授学历链接'))),
+        ('content', blocks.CharBlock(required=False, label=_('内容'))),
+    ]), label=_('教授'))
+
+    professor_link = blocks.URLBlock(label=_('宣传链接'))
+
+    class Meta:
+        label = "教授模块"
+        icon = 'user'
+        template = 'home/blocks/professor.html'
 
 
 class SeriesBlock(blocks.StructBlock):
@@ -88,6 +110,7 @@ class HomePage(Page):
             ('series', blocks.ListBlock(SeriesBlock()))
         ], template='home/blocks/series_list.html')),
         ('StoryBlock',StoryBlock()), 
+        ('ProfessorBlock', ProfessorBlock()),
     ])
 
     content_panels = Page.content_panels + [

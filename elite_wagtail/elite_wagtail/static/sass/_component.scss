@@ -34,34 +34,45 @@ a, h1, h2, p{
 
 
 .tag{
-  height: 46px;
-  line-height: 46px;
+  line-height: 50px;
   background: $border;
-  >div{
+  > div{
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    padding: 0 10px 0 100px;
+  }
+  h3{
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: $font;
   }
   a{
     color: $font;
     text-decoration: none;
-    padding-right: 60px;
+    padding: 0 30px;
+    display: inline-block;
   }
 }
 
 .section{
   max-width: 1200px;
+  // min-width: 960px;
   margin: 0 auto;
   padding: 0 10px;
 
   h1{
-    font-size: 16px;
+    font-size: 18px;
     color: $title;
     padding: 40px 0 30px;
     text-align: center;
     font-weight: normal;
   }
   h2{
-    font-size: 14px;
+    font-size: 16px;
     color: $title;
     margin-bottom: 5px;
     font-weight: normal;
@@ -70,6 +81,14 @@ a, h1, h2, p{
   p{
     color: $font;
     line-height: 1.5;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // min-width: 250px;
+    // max-width: 300px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
   }
 }
 
@@ -78,11 +97,14 @@ a, h1, h2, p{
   display: flex;
   flex-flow: row wrap;
 
-  > a{
+  > div, >a{
     border: 1px solid $border;
     border-radius: 3px;
     background: #fff;
     margin-bottom: 20px;
+  }
+  a{
+    text-decoration: none;
   }
   .col-4{
     flex: 0 0 32.2%;
@@ -110,6 +132,7 @@ a, h1, h2, p{
     width: 100%;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+    height: auto;
   }
   @media screen and (max-width: 576px){
     .col-4, .col-3{
@@ -133,6 +156,10 @@ a, h1, h2, p{
     left: 0;
     border: 1px solid $border;
     border-radius: 3px;
+    width: 200px;
+    img{
+      width: 100%;
+    }
   }
   .col-6{
     position: relative;
@@ -173,6 +200,7 @@ a, h1, h2, p{
     flex: 1;
     display: flex;
     border: none;
+    height: 380px;
 
     .first{
       flex: 0 0 35%;
@@ -189,14 +217,16 @@ a, h1, h2, p{
       img:nth-child(2){
         width: 49.3%;
         display: inline-block;
+        height: auto;
       }
       img:nth-child(3){
         width: 49.3%;
         display: inline-block;
         float: right;
+        height: auto
       }
   
-      p{
+      h2{
         margin: 20px;
         @include text-overflow(2)
       }
@@ -241,6 +271,10 @@ a, h1, h2, p{
   .right{
     flex: 0 0 200px;
     margin: 0 0 0 20px;
+    border: none;
+    img{
+      height: 380px;
+    }
   }
 }
 
@@ -349,6 +383,13 @@ a, h1, h2, p{
     }
   }
 }
+@media screen and (max-width:768px){
+  .row{
+    .col-3{
+      flex: 0 0  47.5%;
+    }
+  }
+}
 @media screen and (max-width:576px){
   .row{
     .col-3, .col-4, .col-6{
@@ -372,12 +413,17 @@ a, h1, h2, p{
     .left{
       display: block;
       width: 100%;
+      height: auto;
       .first, .second{
         flex: 0 0 100%;
         margin: 0 0 20px 0;
       }
     }
-    
   }
 
+  .section-professor{
+    >div{
+      height: auto;
+    }
+  }
 }
