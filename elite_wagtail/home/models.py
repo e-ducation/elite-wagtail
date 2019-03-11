@@ -79,7 +79,6 @@ class ProfessorBlock(blocks.StructBlock):
 
 
 class VipBlock(blocks.StructBlock):
-
     background_image = ImageChooserBlock(label=_('背景图片'))
     background_cotent = blocks.CharBlock(required=False, label=_('背景内容'))
     title = blocks.CharBlock(label=_('标题'))
@@ -89,6 +88,22 @@ class VipBlock(blocks.StructBlock):
         label = "加入会员"
         icon = 'user'
         template = 'home/blocks/vip.html'
+
+
+class SeriesProcessBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label=_('模块标题'))
+    has_update_or_nor = blocks.BooleanBlock(label=_('是否有敬请期待'),required=False)
+    series = blocks.ListBlock(blocks.StructBlock([
+        ('course_photo', ImageChooserBlock(required=True, label=_('课程图片'))),
+        ('title', blocks.CharBlock(required=True, label=_('课程标题'))),
+        ('description', blocks.CharBlock(required=True, label=_('课程描述'))),
+        ('link', blocks.URLBlock(required=True, label=_('课程链接'))),
+    ]), label=_('课程路径'))
+
+    class Meta:
+        icon = 'user'
+        label = "系列课程流程列表"
+        template = 'home/blocks/series_process_list.html'
 
 
 class SeriesBlock(blocks.StructBlock):
@@ -136,6 +151,7 @@ class HomePage(Page):
         ('ProfessorBlock', ProfessorBlock()),
         ('CategoriesListBlock', CategoriesListBlock()),
         ('VipBlock', VipBlock()),
+        ('SeriesProcessBlock', SeriesProcessBlock()),
     ])
 
     content_panels = Page.content_panels + [
