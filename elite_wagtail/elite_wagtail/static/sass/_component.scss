@@ -440,11 +440,16 @@ p {
     width: 355px;
     position: relative;
     &:after {
-      content: '替换->';
+      content: '';
+      width: 33px;
+      height: 22.5px;
       display: block;
       position: absolute;
-      right: 15px;
+      right: 30px;
       top: 50%;
+      background: url('../images/row.png') no-repeat;
+      transform: translateY(-50%);
+      background-size: 100%;
     }
     &.no-next:after {
       display: none;
