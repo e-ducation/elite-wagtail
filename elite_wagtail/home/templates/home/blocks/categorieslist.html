@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+
+<!-- 课程分类 -->
+<div class="tag">
+    <div>
+        <h3>课程分类: </h3>
+        {% for item in value.categorieslist %}
+            <a href="{{ item.categories_link }}">{{ item.categories_name }}</a>
+        {% endfor %}
+    </div>
+</div>
