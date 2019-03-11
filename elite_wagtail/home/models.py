@@ -31,7 +31,8 @@ class CategoriesListBlock(blocks.StructBlock):
 
     class Meta:
         template = 'home/blocks/categorieslist.html'
-        icon = 'user'
+        label = "课程分类"
+        icon = 'grip'
 
 
 class StoryBlock(blocks.StructBlock):
