@@ -31,13 +31,44 @@
                     </a>
                 </div>
             </div>
-            <div class="secondary">
+            <div style="display:none;" class="secondary logout">
                 <div>
                     <div class="mobile-nav-item hidden-mobile nav-item">
                         <a class="register-btn btn" href="/register?next=%2F">注册</a>
                     </div>
                     <div class="mobile-nav-item hidden-mobile nav-item">
                         <a class="sign-in-btn btn" href="/login?next=%2F">登录</a>
+                    </div>
+                </div>
+            </div>
+            <div style="display:none;" class="secondary login">
+                <div class="mobile-nav-item hidden-mobile nav-item">
+                    <a class="help-link" href="https://www.elitemba.cn/contact" target="_blank">帮助</a>
+                </div>
+                <div class="nav-item hidden-mobile">
+                    <a href="/dashboard" class="menu-title">
+                        <img class="user-image-frame"
+                            src="https://www.elitemba.cn/static/normal-theme/images/profiles/default_50.29c934973e9e.png" alt="">
+                        <!-- <span class="sr-only">课程面板：</span> -->
+                        <span class="username"></span>
+                    </a>
+                </div>
+                <div class="nav-item hidden-mobile nav-item-dropdown" tabindex="-1">
+                    <div class="toggle-user-dropdown open" role="button" aria-label="选项栏" aria-expanded="true"
+                        tabindex="0" aria-controls="user-menu">
+                        <span class="fa fa-caret-down" aria-hidden="true"></span>
+                    </div>
+                    <div class="dropdown-user-menu hidden" aria-label="更多选项" role="menu" id="user-menu" tabindex="-1">
+                        <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="/dashboard"
+                                role="menuitem">课程面板</a></div>
+                        <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="/u/crewss"
+                                role="menuitem">用户资料</a></div>
+                        <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="/account/settings"
+                                role="menuitem">账号</a></div>
+                        <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="/vip/card"
+                                role="menuitem">会员中心</a></div>
+                        <div class="mobile-nav-item dropdown-item dropdown-nav-item"><a href="/logout"
+                                role="menuitem">退出</a></div>
                     </div>
                 </div>
             </div>
