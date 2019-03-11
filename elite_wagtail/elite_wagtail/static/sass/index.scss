@@ -282,5 +282,35 @@ body{
   img{
     width: 100%;
     height: auto;
+    display: block;
   }
+}
+.propaganda-block{
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  img{
+    width: 100%;
+    height: auto;
+  }
+  .propaganda-content{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    text-align: center;
+    h1{
+      font-size: 28px;
+      font-weight: 400;
+      color: #333;
+      // position: absolute;
+      // top: 30px;
+    }
+    .vip-btn{
+      @extend %btn-my-primary;
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+  }
+  
 }
