@@ -81,7 +81,7 @@ class ProfessorBlock(blocks.StructBlock):
 class VipBlock(blocks.StructBlock):
 
     background_image = ImageChooserBlock(label=_('背景图片'))
-    background_cotent = blocks.CharBlock(label=_('背景内容'))
+    background_cotent = blocks.CharBlock(required=False, label=_('背景内容'))
     title = blocks.CharBlock(label=_('标题'))
     background_link = blocks.URLBlock(label=_('链接'))
 
