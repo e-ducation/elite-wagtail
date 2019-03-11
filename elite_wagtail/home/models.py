@@ -78,6 +78,19 @@ class ProfessorBlock(blocks.StructBlock):
         template = 'home/blocks/professor.html'
 
 
+class VipBlock(blocks.StructBlock):
+
+    background_image = ImageChooserBlock(label=_('背景图片'))
+    background_cotent = blocks.CharBlock(required=False, label=_('背景内容'))
+    title = blocks.CharBlock(label=_('标题'))
+    background_link = blocks.URLBlock(label=_('链接'))
+
+    class Meta:
+        label = "加入会员"
+        icon = 'user'
+        template = 'home/blocks/vip.html'
+
+
 class SeriesBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.CharBlock()
@@ -122,6 +135,7 @@ class HomePage(Page):
         ('StoryBlock', StoryBlock()),
         ('ProfessorBlock', ProfessorBlock()),
         ('CategoriesListBlock', CategoriesListBlock()),
+        ('VipBlock', VipBlock()),
     ])
 
     content_panels = Page.content_panels + [
