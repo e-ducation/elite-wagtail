@@ -189,6 +189,8 @@ $(document).ready(function(){
         $('.secondary.logout').hide();
         $('.nav-item .username').html(info.username) // set name
         $('.user-url').attr('href', '/u/'+info.username)
+        $('.user-image-frame').attr('src', info.profile_image_url)
+
     } else{
         $('.secondary.login').hide();
         $('.secondary.logout').show();
