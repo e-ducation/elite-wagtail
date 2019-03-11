@@ -1,7 +1,7 @@
 {% load wagtailimages_tags %}
 <div class="section">
 
-    <h1 style="text-align: left">必选课程</h1>
+    <h1 style="text-align: left">必学课程</h1>
     {% for block in value.required_course %}
         <div class="row">
           <a class="col-3" href="{{ block.link }}" target="_blank">
@@ -17,7 +17,7 @@
 
     {% if value.optional_course %}
     <div class="section">
-        <h1 style="text-align: left">可选课程</h1>
+        <h1 style="text-align: left">选学课程</h1>
         {% for block in value.optional_course %}
             <div class="row">
               <a class="col-3" href="{{ block.link }}" target="_blank">
