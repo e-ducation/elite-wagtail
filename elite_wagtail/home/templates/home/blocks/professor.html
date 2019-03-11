@@ -11,16 +11,16 @@
         <div class="row">
             {% for item in value.professor %}
                 <div class="col-6">
-                    <a href="{{ item.professor_pic_link }}" target="_blank">
+                    <a href="{{ item.professor_link }}" target="_blank">
                         {% image item.professor_pic width-400 as tmp_photo %}
                         <img src="{{ tmp_photo.url }}" />
+                        <div class="brife">
+                            <h2>{{ item.name }}</h2>
+                            {% for sub_item in item.professor_degree %}
+                                <p>{{ sub_item }}</p>
+                            {% endfor %}
+                        </div>
                     </a>
-                    <div class="brife">
-                        <h2>{{ item.name }}</h2>
-                        {% for sub_item in item.professor_degree %}
-                            <a href="{{ item.professor_degree_link }}" target="_blank"><p>{{ sub_item }}</p></a>
-                        {% endfor %}
-                    </div>
                     <p class="desc">
                         {{ item.content }}
                     </p>

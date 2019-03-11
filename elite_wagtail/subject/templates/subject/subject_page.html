@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+{% endblock extra_css %}
+
+{% block content %}
+<div class="window-wrap">
+{% include 'home/header.html' %}
+<main class="main content-wrapper">
+        {{ page.body }}
+</main>
+{% include 'home/footer.html' %}
+
+</div>
+{% comment %}
+{% endcomment %}
+
+
+
+{% endblock content %}
