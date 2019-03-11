@@ -439,6 +439,7 @@ p {
   .series-course-item {
     width: 355px;
     position: relative;
+    min-height: 280px;
     &:after {
       content: '';
       width: 33px;
