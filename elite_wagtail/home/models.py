@@ -13,7 +13,7 @@ from wagtail.embeds.blocks import EmbedBlock
 
 
 class CourseBlock(blocks.StructBlock):
-    course_photo = ImageChooserBlock()
+    image = ImageChooserBlock()
     title = blocks.CharBlock()
     description = blocks.CharBlock()
     link = blocks.URLBlock()
@@ -92,7 +92,7 @@ class VipBlock(blocks.StructBlock):
 
 
 class SeriesBlock(blocks.StructBlock):
-    course_photo = ImageChooserBlock()
+    image = ImageChooserBlock()
     title = blocks.CharBlock()
     description = blocks.CharBlock()
     link = blocks.URLBlock()
@@ -103,27 +103,27 @@ class SeriesBlock(blocks.StructBlock):
 
 class HomePage(Page):
     body = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
-        ('paragraph', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('text', blocks.TextBlock()),
-        ('EmailBlock', blocks.EmailBlock()),
-        ('IntegerBlock', blocks.IntegerBlock()),
-        ('FloatBlock', blocks.FloatBlock()),
-        ('DecimalBlock', blocks.DecimalBlock()),
-        ('URLBlock', blocks.URLBlock()),
-        ('BooleanBlock', blocks.BooleanBlock()),
-        ('DateBlock', blocks.DateBlock()),
-        ('TimeBlock', blocks.TimeBlock()),
-        ('DateTimeBlock', blocks.DateTimeBlock()),
-        ('RawHTMLBlock', blocks.RawHTMLBlock()),
-        ('BlockQuoteBlock', blocks.BlockQuoteBlock()),
+        ('Paragraph', blocks.RichTextBlock()),
+        ('Image', ImageChooserBlock()),
+        ('Text', blocks.TextBlock()),
+        ('Heading', blocks.CharBlock()),
+        ('BlockQuote', blocks.BlockQuoteBlock()),
+        ('Email', blocks.EmailBlock()),
+        ('URL', blocks.URLBlock()),
+        ('Boolean', blocks.BooleanBlock()),
+        ('Integer', blocks.IntegerBlock()),
+        ('Float', blocks.FloatBlock()),
+        ('Decimal', blocks.DecimalBlock()),
+        ('Date', blocks.DateBlock()),
+        ('Time', blocks.TimeBlock()),
+        ('DateTime', blocks.DateTimeBlock()),
+        ('RawHTML', blocks.RawHTMLBlock()),
 
-        ('ChoiceBlock', blocks.ChoiceBlock()),
-        ('PageChooserBlock', blocks.PageChooserBlock()),
-        ('DocumentChooserBlock', DocumentChooserBlock()),
+        ('Choice', blocks.ChoiceBlock()),
+        ('PageChooser', blocks.PageChooserBlock()),
+        ('DocumentChooser', DocumentChooserBlock()),
 
-        ('EmbedBlock', EmbedBlock()),
+        ('Embed', EmbedBlock()),
         ('RecommendCourse', blocks.StructBlock([
             ('title', blocks.CharBlock()),
             ('courses', blocks.ListBlock(CourseBlock()))

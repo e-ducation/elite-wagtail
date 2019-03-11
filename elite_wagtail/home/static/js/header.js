@@ -179,11 +179,18 @@ $('.return-top').click(function(){
     $('html ,body').animate({scrollTop: 0}, 300);
 });
 $(document).ready(function(){
-    var isLoggedin = true;
+    var isLoggedin = $.cookie('edxloggedin');
+    
     if (isLoggedin){
+        var userInfo = $.cookie('edx-user-info');
+        var info = JSON.parse(userInfo.replace(/\\054/g, ','));
+
         $('.secondary.login').show();
         $('.secondary.logout').hide();
-        $('.nav-item .username').html('yourname') // set name
+        $('.nav-item .username').html(info.username) // set name
+        $('.user-url').attr('href', '/u/'+info.username)
+        $('.user-image-frame').attr('src', info.profile_image_url)
+
     } else{
         $('.secondary.login').hide();
         $('.secondary.logout').show();
