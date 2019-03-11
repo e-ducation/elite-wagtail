@@ -1,0 +1,15 @@
+{% load wagtailimages_tags %}
+
+<div class="propaganda-block">
+    <img src="http://127.0.0.1:8000/media/images/timg.original.jpg"/>
+    {% image value.background_image width-400 as tmp_photo %}
+        <img src="{{ tmp_photo.url }}" />
+    <div class="propaganda-content">
+        <h1>
+            {{ value.background_cotent }}
+        </h1>
+        <a href="{{ value.background_link }}" target="_blank" class="vip-btn">
+            {{ value.title }}
+        </a>
+    </div>
+</div>
