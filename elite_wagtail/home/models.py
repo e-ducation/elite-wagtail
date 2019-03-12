@@ -12,6 +12,20 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 
 
+class BannerBlock(blocks.StructBlock):
+    banners = blocks.ListBlock(blocks.StructBlock([
+        ('image', ImageChooserBlock()),
+        ('mobile_image', ImageChooserBlock()),
+        ('link', blocks.URLBlock()),
+    ]))
+    loop_time = blocks.IntegerBlock()
+
+    class Meta:
+        label = 'Banner'
+        template = 'home/blocks/banner.html'
+        icon = 'user'
+
+
 class CourseBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.CharBlock()
@@ -19,6 +33,7 @@ class CourseBlock(blocks.StructBlock):
     link = blocks.URLBlock()
 
     class Meta:
+        label = '推荐课程'
         template = 'home/blocks/course.html'
         icon = 'user'
 
@@ -113,6 +128,7 @@ class SeriesBlock(blocks.StructBlock):
     link = blocks.URLBlock()
 
     class Meta:
+        label = '系列课程'
         icon = 'user'
 
 
@@ -138,6 +154,7 @@ class HomePage(Page):
         ('PageChooser', blocks.PageChooserBlock()),
         ('DocumentChooser', DocumentChooserBlock()),
 
+        ('Banner', BannerBlock()),
         ('Embed', EmbedBlock()),
         ('RecommendCourse', blocks.StructBlock([
             ('title', blocks.CharBlock()),
