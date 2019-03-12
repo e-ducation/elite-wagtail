@@ -1,0 +1,30 @@
+{% load wagtailimages_tags %}
+
+{% if value.fill_the_screen_or_nor %}
+    {% if value.img_for_MOBILE and value.img_for_pc %}
+        <!-- 2. 撑满屏幕，传了两张图 -->
+        <div class="section-pic">
+            {% image value.img_for_pc original class="pc" %}
+            {% image value.img_for_MOBILE original class="mobile" %}
+        </div>
+    {% elif value.img_for_pc %}
+        <div class="section-pic">
+            {% image value.img_for_pc original %}
+        </div>
+    {% endif %}
+{% else %}
+    {% if value.img_for_MOBILE and value.img_for_pc %}
+        <!-- 1.不撑满屏幕，传了两张图 -->
+        <div class="section section-pic">
+            {% image value.img_for_pc original class="pc" %}
+            {% image value.img_for_MOBILE original class="mobile" %}
+        </div>
+    {% elif value.img_for_pc %}
+        <!-- 3. 不撑满屏幕，只传了一张图-->
+        <div class="section section-pic">
+            {% image value.img_for_pc original %}
+        </div>
+    {% endif %}
+{% endif %}
+
+
