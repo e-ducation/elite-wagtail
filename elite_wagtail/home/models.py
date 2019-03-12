@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.core import blocks
@@ -11,8 +12,6 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 
-
-from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 @register_setting
 class BaiduBridgeSettings(BaseSetting):
@@ -125,7 +124,7 @@ class VipBlock(blocks.StructBlock):
 
 class SeriesProcessBlock(blocks.StructBlock):
     title = blocks.CharBlock(label=_('模块标题'))
-    has_update_or_nor = blocks.BooleanBlock(label=_('是否有敬请期待'),required=False)
+    has_update_or_nor = blocks.BooleanBlock(label=_('是否有敬请期待'), required=False)
     series = blocks.ListBlock(blocks.StructBlock([
         ('course_photo', ImageChooserBlock(required=True, label=_('课程图片'))),
         ('title', blocks.CharBlock(required=True, label=_('课程标题'))),
