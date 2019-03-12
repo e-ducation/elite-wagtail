@@ -274,7 +274,7 @@ body{
   box-sizing: border-box;
   background-image: linear-gradient(to bottom, #fff 0%, #fff 45%, #f2f9ff 100%);
   font-size: 14px;
-  padding: 0 10px 40px;
+  padding: 0 0 40px;
   position: relative;
 }
 .window-wrap .block-image{
@@ -288,7 +288,7 @@ body{
 }
 .propaganda-block{
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 40px auto 0;
   position: relative;
   img{
     width: 100%;
@@ -304,6 +304,7 @@ body{
       font-size: 28px;
       font-weight: 400;
       color: #333;
+      padding: 0 20px;
       // position: absolute;
       // top: 30px;
     }
@@ -311,6 +312,11 @@ body{
       @extend %btn-my-primary;
       margin: 0 auto;
       margin-top: 30px;
+    }
+    @media screen and (max-width: 576px){
+      h1{
+        font-size: 14px;
+      }
     }
   }
   

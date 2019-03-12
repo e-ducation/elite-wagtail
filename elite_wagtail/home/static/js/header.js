@@ -179,6 +179,18 @@ $('.return-top').click(function(){
     $('html ,body').animate({scrollTop: 0}, 300);
 });
 $(document).ready(function(){
+    $(window).scroll(function(){
+        var top = $(document).scrollTop();
+        if (top > 0){
+            if ($('.return-top').hasClass('hidden')){
+                $('.return-top').removeClass('hidden');
+            }
+        } else{
+            $('.return-top').addClass('hidden');
+        }
+    })
+    
+
     var isLoggedin = $.cookie('edxloggedin');
     
     if (isLoggedin){
