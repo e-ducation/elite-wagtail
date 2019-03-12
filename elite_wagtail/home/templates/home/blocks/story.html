@@ -7,7 +7,7 @@
                 {% if item.photo_location == 'left' %}
                     <div class="first">
                         {% for sub_item in item.story_photo %}
-                            {% image sub_item width-400 as tmp_photo %}
+                            {% image sub_item original as tmp_photo %}
                             <img src="{{ tmp_photo.url }}" />
                         {% endfor %}
                         <h2>
@@ -21,7 +21,7 @@
                     {% if item.photo_location == 'center' %}
                         <div>
                             {% for sub_item in item.story_photo %}
-                                {% image sub_item width-400 as tmp_photo %}
+                                {% image sub_item original as tmp_photo %}
                                 <img src="{{ tmp_photo.url }}" />
                             {% endfor %}
                             <h2>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <a href="{{ value.propaganda_link }}" target="_blank" class="right">
-            {% image value.propaganda_image width-400 as tmp_photo %}
+            {% image value.propaganda_image original as tmp_photo %}
                 <img src="{{ tmp_photo.url }}" />
         </a>
     </div>
