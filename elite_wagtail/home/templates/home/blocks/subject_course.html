@@ -5,7 +5,7 @@
     {% for block in value.required_course %}
         <div class="row">
           <a class="col-3" href="{{ block.link }}" target="_blank">
-            {% image block.course_photo width-250 height-160 %}
+            {% image block.image width-250 height-160 %}
             <div class="text">
               <h2>{{ block.title }}</h2>
               <p> {{ block.description }} </p>
@@ -21,7 +21,7 @@
         {% for block in value.optional_course %}
             <div class="row">
               <a class="col-3" href="{{ block.link }}" target="_blank">
-                {% image block.course_photo width-250 height-160 %}
+                {% image block.image width-250 height-160 %}
                 <div class="text">
                   <h2>{{ block.title }}</h2>
                   <p> {{ block.description }} </p>
