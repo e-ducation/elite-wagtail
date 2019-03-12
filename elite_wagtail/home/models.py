@@ -73,6 +73,20 @@ class StoryBlock(blocks.StructBlock):
         template = 'home/blocks/story.html'
 
 
+class OtherImgBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label=_('模块标题'))
+    fill_the_screen_or_nor = blocks.BooleanBlock(label=_('是否撑满屏幕'), required=False)
+
+    img_for_pc = ImageChooserBlock(required=True, label=_('PC端图片'))
+    img_for_MOBILE = ImageChooserBlock(required=False, label=_('移动端图片'))
+
+    class Meta:
+        label = "其余图文"
+        icon = 'user'
+
+        template = 'home/blocks/otherimg.html'
+
+
 class ProfessorBlock(blocks.StructBlock):
     title = blocks.CharBlock(label=_('模块标题'))
     professor_image = ImageChooserBlock(label=_('宣传图片'))
@@ -107,7 +121,7 @@ class VipBlock(blocks.StructBlock):
 
 class SeriesProcessBlock(blocks.StructBlock):
     title = blocks.CharBlock(label=_('模块标题'))
-    has_update_or_nor = blocks.BooleanBlock(label=_('是否有敬请期待'),required=False)
+    has_update_or_nor = blocks.BooleanBlock(label=_('是否有敬请期待'), required=False)
     series = blocks.ListBlock(blocks.StructBlock([
         ('course_photo', ImageChooserBlock(required=True, label=_('课程图片'))),
         ('title', blocks.CharBlock(required=True, label=_('课程标题'))),
@@ -136,6 +150,7 @@ class HomePage(Page):
     body = StreamField([
         ('Paragraph', blocks.RichTextBlock()),
         ('Image', ImageChooserBlock()),
+        ('OtherImgBlock', OtherImgBlock()),
         ('Text', blocks.TextBlock()),
         ('Heading', blocks.CharBlock()),
         ('BlockQuote', blocks.BlockQuoteBlock()),
