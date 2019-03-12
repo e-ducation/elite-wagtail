@@ -18,7 +18,7 @@ class BannerBlock(blocks.StructBlock):
         ('mobile_image', ImageChooserBlock()),
         ('link', blocks.URLBlock()),
     ]))
-    loop_time = blocks.IntegerBlock()
+    loop_time = blocks.IntegerBlock(default=3000)
 
     class Meta:
         label = 'Banner'
