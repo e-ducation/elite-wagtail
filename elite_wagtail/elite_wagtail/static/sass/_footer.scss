@@ -22,7 +22,7 @@ $border:#b6dcfe;
       width: 20%;
       margin-right: 5%;
       vertical-align: text-top;
-      height: 138px;
+      height: 158px;
       border-right: 1px dashed $border;
       padding-top: 22px;
     }
@@ -74,6 +74,8 @@ $border:#b6dcfe;
       color: $title;
       padding: 1px 0 20px;
       margin: 0;
+      font-weight: normal;
+      line-height: 1;
     }
     .footer-line{
       width: 65.5%;
@@ -111,6 +113,7 @@ $border:#b6dcfe;
         display: none;
         background: #fff;
         width: 100px;
+        height: 100px;
         box-sizing: content-box;
         img{
           width: 90px;
