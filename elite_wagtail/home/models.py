@@ -122,6 +122,10 @@ class HomePage(Page):
         ('StoryBlock', StoryBlock()),
         ('ProfessorBlock', ProfessorBlock()),
         ('CategoriesListBlock', CategoriesListBlock()),
+        ('SubjectCourse', blocks.StructBlock([
+            ('required_course', blocks.ListBlock(SeriesBlock())),
+            ('optional_course', blocks.ListBlock(SeriesBlock()))
+        ], template='home/blocks/subject_course.html')),
     ])
 
     content_panels = Page.content_panels + [
