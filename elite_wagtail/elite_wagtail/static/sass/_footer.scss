@@ -232,6 +232,7 @@ $border:#b6dcfe;
     display: flex;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.45);
+    opacity: 1;
     img{
       // width: 100%;
       width: 22px;
@@ -241,5 +242,11 @@ $border:#b6dcfe;
       left: 50%;
       top: 50%;
       margin-top: -11px;
+    }
+    &:hover{
+      opacity: 0.8;
+    }
+    &.hidden{
+      display: none;
     }
   }

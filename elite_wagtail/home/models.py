@@ -1,15 +1,32 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.core import blocks
 from wagtail.admin.edit_handlers import (
-    StreamFieldPanel,
+    StreamFieldPanel, PageChooserPanel
 )
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
+
+
+@register_setting
+class BaiduBridgeSettings(BaseSetting):
+    url = models.URLField(
+        help_text='Your Baidu Bridge URL')
+
+
+@register_setting
+class ImportantPages(BaseSetting):
+    bridge_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL)
+
+    panels = [
+        PageChooserPanel('bridge_page'),
+    ]
 
 
 class BannerBlock(blocks.StructBlock):
@@ -73,6 +90,20 @@ class StoryBlock(blocks.StructBlock):
         template = 'home/blocks/story.html'
 
 
+class OtherImgBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label=_('模块标题'))
+    fill_the_screen_or_nor = blocks.BooleanBlock(label=_('是否撑满屏幕'), required=False)
+
+    img_for_pc = ImageChooserBlock(required=True, label=_('PC端图片'))
+    img_for_MOBILE = ImageChooserBlock(required=False, label=_('移动端图片'))
+
+    class Meta:
+        label = "其余图文"
+        icon = 'user'
+
+        template = 'home/blocks/otherimg.html'
+
+
 class ProfessorBlock(blocks.StructBlock):
     title = blocks.CharBlock(label=_('模块标题'))
     professor_image = ImageChooserBlock(label=_('宣传图片'))
@@ -107,7 +138,7 @@ class VipBlock(blocks.StructBlock):
 
 class SeriesProcessBlock(blocks.StructBlock):
     title = blocks.CharBlock(label=_('模块标题'))
-    has_update_or_nor = blocks.BooleanBlock(label=_('是否有敬请期待'),required=False)
+    has_update_or_nor = blocks.BooleanBlock(label=_('是否有敬请期待'), required=False)
     series = blocks.ListBlock(blocks.StructBlock([
         ('course_photo', ImageChooserBlock(required=True, label=_('课程图片'))),
         ('title', blocks.CharBlock(required=True, label=_('课程标题'))),
@@ -136,6 +167,7 @@ class HomePage(Page):
     body = StreamField([
         ('Paragraph', blocks.RichTextBlock()),
         ('Image', ImageChooserBlock()),
+        ('OtherImgBlock', OtherImgBlock()),
         ('Text', blocks.TextBlock()),
         ('Heading', blocks.CharBlock()),
         ('BlockQuote', blocks.BlockQuoteBlock()),
@@ -167,6 +199,10 @@ class HomePage(Page):
         ('StoryBlock', StoryBlock()),
         ('ProfessorBlock', ProfessorBlock()),
         ('CategoriesListBlock', CategoriesListBlock()),
+        ('SubjectCourse', blocks.StructBlock([
+            ('required_course', blocks.ListBlock(SeriesBlock())),
+            ('optional_course', blocks.ListBlock(SeriesBlock()))
+        ], template='home/blocks/subject_course.html')),
         ('VipBlock', VipBlock()),
         ('SeriesProcessBlock', SeriesProcessBlock()),
     ])

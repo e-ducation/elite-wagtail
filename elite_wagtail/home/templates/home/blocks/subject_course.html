@@ -1,0 +1,35 @@
+{% load wagtailimages_tags %}
+
+<div class="section">
+    <h1 style="text-align: left">必学课程</h1>
+    <div class="row">
+    {% for block in value.required_course %}
+      <a class="col-3" href="{{ block.link }}" target="_blank">
+        {% image block.image width-250 as img %}
+        <img src="{{ img.url }}" />
+        <div class="text">
+          <h2>{{ block.title }}</h2>
+          <p> {{ block.description }} </p>
+        </div>
+      </a>
+     {% endfor %}
+     </div>
+</div>
+
+{% if value.optional_course %}
+<div class="section">
+    <h1 style="text-align: left">选学课程</h1>
+    <div class="row">
+    {% for block in value.optional_course %}
+      <a class="col-3" href="{{ block.link }}" target="_blank">
+        {% image block.image width-250 as img %}
+        <img src="{{ img.url }}" />
+        <div class="text">
+          <h2>{{ block.title }}</h2>
+          <p> {{ block.description }} </p>
+        </div>
+      </a>
+    {% endfor %}
+    </div>
+</div>
+{% endif %}
