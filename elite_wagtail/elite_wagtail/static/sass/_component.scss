@@ -410,6 +410,9 @@ p {
     width: 355px;
     position: relative;
     min-height: 280px;
+    border: none;
+    flex: 0 0 33.3%;
+    padding-right: 100px;
     &:after {
       content: '';
       width: 33px;
@@ -443,7 +446,7 @@ p {
       }
     }
     .series-course-block {
-      width: 265px;
+      /*width: 265px;*/
       display: block;
       background: #fff;
       border: 1px solid #e9e9e9;
