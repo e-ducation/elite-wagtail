@@ -1,0 +1,46 @@
+{% load static %}
+{% load wagtailimages_tags %}
+<!-- 轮播图 -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {% for struct in value.banners %}
+            <div class="swiper-slide">
+                {% image struct.image original as image %}
+                <a class="pc" href="{{ struct.link }}" target="_blank" >
+                    <img src="{{ image.url }}" />
+                </a>
+                {% image struct.mobile_image original as mobile_image %}
+                <a class="mobile" href="{{ struct.link }}" target="_blank">
+                    <img src="{{ mobile_image.url }}" />
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+<script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script>
+<script>
+    var loopTime = {{ value.loop_time }};
+    var mySwiper = new Swiper ('.swiper-container', {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + '</span>';
+            },
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+            delay: loopTime,
+        },
+    })
+</script>
