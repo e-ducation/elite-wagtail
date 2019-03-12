@@ -95,10 +95,8 @@ p {
   p {
     color: $font;
     line-height: 1.5;
-    height: 40px;
     overflow: hidden;
-    text-overflow: ellipsis; // min-width: 250px;
-    // max-width: 300px;
+    text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -112,7 +110,6 @@ p {
   >div,
   >a {
     border: 1px solid $border;
-    border-radius: 3px;
     background: #fff;
     margin-bottom: 20px;
   }
@@ -127,9 +124,9 @@ p {
     flex: 0 0 23.75%;
     margin-right: 1.25%;
   }
-  .col-6 {
-    flex: 0 0 48.88%;
-    margin-right: 1.12%;
+  .col-6{
+    flex: 0 0 47.7%;
+    margin-right: 2.3%;
   }
   .col-9 {
     flex: 0 0 74.58%;
@@ -143,8 +140,6 @@ p {
   }
   img {
     width: 100%;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
     height: auto;
   }
   @media screen and (max-width: 576px) {
@@ -159,26 +154,25 @@ p {
 .section-professor {
   >div {
     position: relative;
-    padding-left: 220px;
-    height: 434px;
+    padding-left: 290px;
+    height: 420px;
   }
-  .left {
-    height: 434px;
+  
+  .left{
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     border: 1px solid $border;
-    border-radius: 3px;
-    width: 200px;
-    img {
+    width: 270px;
+    img{
       width: 100%;
     }
   }
   .col-6 {
     position: relative;
     padding: 20px;
-    height: 207px;
-    border-radius: 3px;
+    height: 200px;
     border: 1px solid $border;
     overflow: auto;
     margin-bottom: 20px;
@@ -213,27 +207,28 @@ p {
     flex: 1;
     display: flex;
     border: none;
-    height: 380px;
-    .first {
-      flex: 0 0 35%;
+
+    .first{
+      flex: 0 0 33.6%;
       margin-right: 2%;
       border: 1px solid $border;
-      img {
-        border-radius: 0;
-      }
-      img:first-child {
+      font-size: 0;
+
+      img:first-child{
         width: 100%;
         margin-bottom: 4px;
       }
-      img:nth-child(2) {
-        width: 49.3%;
+      img:nth-child(2){
+        width: 50%;
         display: inline-block;
         height: auto;
+        padding-right: 2px;
       }
-      img:nth-child(3) {
-        width: 49.3%;
+      img:nth-child(3){
+        width: 50%;
         display: inline-block;
         float: right;
+        padding-left: 2px;
         height: auto
       }
       h2 {
@@ -241,12 +236,13 @@ p {
         @include text-overflow(2)
       }
     }
-    .second {
-      flex: 0 0 63%;
+
+    .second{
+      flex: 0 0 64%;
       border: none;
       >div {
         position: relative;
-        height: 180px;
+        height: 160px;
         border: 1px solid $border;
         overflow: hidden;
         img {
@@ -255,16 +251,16 @@ p {
           position: absolute;
           top: 0;
         }
-        &:first-child {
-          padding: 20px 20px 20px 340px;
+        &:first-child{
+          padding: 20px 20px 20px 310px;
           margin-bottom: 20px;
           img {
             left: 0;
           }
         }
-        &:last-child {
-          padding: 20px 320px 20px 20px;
-          img {
+        &:last-child{
+          padding: 20px 310px 20px 20px;
+          img{
             right: 0;
           }
         }
@@ -274,12 +270,13 @@ p {
       }
     }
   }
-  .right {
-    flex: 0 0 200px;
+  
+  .right{
+    flex: 0 0 150px;
     margin: 0 0 0 20px;
     border: none;
-    img {
-      height: 380px;
+    img{
+      height: 340px;
     }
   }
 }
@@ -302,76 +299,9 @@ p {
   }
 }
 
-// slide
-.slider {
-  position: relative;
-  overflow: hidden;
-  ul li {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.5s ease-in;
-    img {
-      width: 100%;
-    }
-    &:first-child {
-      position: static;
-    }
-    &.slider-item-active {
-      z-index: 2;
-      opacity: 1;
-      transition: opacity 0.5s ease-in;
-    }
-  }
-  .dot {
-    position: absolute;
-    z-index: 3;
-    bottom: 20px;
-    right: 20px;
-    list-style: none;
-    li {
-      display: inline-block;
-      width: 36px;
-      height: 36px;
-      background: #fff;
-      border: 1px solid #000;
-      text-align: center;
-      line-height: 36px;
-      margin-right: 10px;
-      cursor: pointer;
-      &.dot-item-active {
-        background: rgba(129, 211, 248, 1);
-      }
-    }
-  }
-  .prev {
-    position: absolute;
-    top: 50%;
-    font-size: 30px;
-    color: #fff;
-    left: 20px;
-    z-index: 4;
-  }
-  .next {
-    position: absolute;
-    top: 50%;
-    font-size: 30px;
-    right: 20px;
-    color: #fff;
-    z-index: 4;
-  }
-}
-
-.slider-mobile {
-  display: none;
-}
-
-@media screen and (max-width: 1000px) {
-  .section-professor {
-    >div {
+@media screen and (max-width: 1000px){
+  .section-professor{
+    >div{
       padding: 0;
     }
     .left {
@@ -402,18 +332,9 @@ p {
       height: auto;
     }
   }
-  .slider {
-    .slider-pc,
-    .prev,
-    .next {
-      display: none;
-    }
-    .slider-mobile {
-      display: block;
-    }
-  }
-  .section-story {
-    .left {
+  
+  .section-story{
+    .left{
       display: block;
       width: 100%;
       height: auto;
@@ -439,12 +360,18 @@ p {
   .series-course-item {
     width: 355px;
     position: relative;
+    min-height: 280px;
     &:after {
-      content: '替换->';
+      content: '';
+      width: 33px;
+      height: 22.5px;
       display: block;
       position: absolute;
-      right: 15px;
+      right: 30px;
       top: 50%;
+      background: url('../images/row.png') no-repeat;
+      transform: translateY(-50%);
+      background-size: 100%;
     }
     &.no-next:after {
       display: none;

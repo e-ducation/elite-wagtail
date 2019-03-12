@@ -3,7 +3,7 @@
     <div class="row">
         {% for block in self %} 
             <div class="col-3">
-                {% image block.course_photo width-400 %}
+                {% image block.image width-400 %}
                 <div class="text">
                     <h2>{{ block.title }}</h2>
                     <p> {{ block.description }} </p>
