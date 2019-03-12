@@ -1,7 +1,8 @@
 {% load wagtailimages_tags %}
 
 <div class="section series-course">
-
+    <h1>{{ value.title }}</h1> 
+    <div class="row">
     {% for block in value.series %}
         {% if forloop.last and not value.has_update_or_nor %}
             <div class="series-course-item no-next">
@@ -27,6 +28,7 @@
 
 
     {% endfor %}
+    
 
 
     {% if value.has_update_or_nor %}
@@ -36,6 +38,7 @@
             </div>
         </div>
     {% endif %}
+    </div> 
 
 </div>
 

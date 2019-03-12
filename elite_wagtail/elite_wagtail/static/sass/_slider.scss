@@ -18,6 +18,7 @@
 
   img{
     width: 100%;
+    display: block;
   }
   .pc{
     display: block;
@@ -28,15 +29,15 @@
  }  
  .swiper-container-horizontal>.swiper-pagination-bullets{
    bottom: 20px;
-   right: 20px;
+   right: 0;
    left: initial;
-   text-align: right;
+   text-align: center;
  }
  .swiper-pagination-bullet {
    width: 35px;
    height: 35px;
    text-align: center;
-   line-height: 35px;
+   line-height: 33px;
    color:#000;
    border: 1px solid #000;
    opacity: 1;
@@ -59,6 +60,6 @@
    .swiper-pagination-bullet{
      width: 20px;
      height: 20px;
-     line-height: 20px;
+     line-height: 18px;
    }
  }
