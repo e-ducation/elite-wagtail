@@ -24,6 +24,17 @@
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
+
+        {# Baidu Bridge #}
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "{{ settings.home.BaiduBridgeSettings.url }}";
+              var s = document.getElementsByTagName("script")[0];
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
     </head>
 
     <body class="{% block body_class %}{% endblock %}">

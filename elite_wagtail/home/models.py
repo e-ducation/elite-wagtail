@@ -5,11 +5,29 @@ from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.core import blocks
 from wagtail.admin.edit_handlers import (
-    StreamFieldPanel,
+    StreamFieldPanel, PageChooserPanel
 )
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
+
+
+from wagtail.contrib.settings.models import BaseSetting, register_setting
+
+@register_setting
+class BaiduBridgeSettings(BaseSetting):
+    url = models.URLField(
+        help_text='Your Baidu Bridge URL')
+
+
+@register_setting
+class ImportantPages(BaseSetting):
+    bridge_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL)
+
+    panels = [
+        PageChooserPanel('bridge_page'),
+    ]
 
 
 class BannerBlock(blocks.StructBlock):
