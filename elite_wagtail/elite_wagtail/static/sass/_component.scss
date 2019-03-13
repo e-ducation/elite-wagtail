@@ -328,6 +328,70 @@ p {
   }
 }
 
+
+.series-course {
+  h1{
+    text-align: left;
+  }
+  .series-course-item {
+    position: relative;
+    border: none;
+    flex: 0 0 33.3%;
+    padding-right: 100px;
+    &:after {
+      content: '';
+      width: 33px;
+      height: 22.5px;
+      display: block;
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      background: url('../images/row.png') no-repeat;
+      transform: translateY(-50%);
+      background-size: 100%;
+    }
+    &.no-next:after {
+      display: none;
+    }
+    &.no-next {
+      .waiting {
+        width: 156px;
+        height: 156px;
+        border-radius: 50%;
+        color: #333333;
+        top: 50%;
+        left: 40px;
+        margin-top: -78px;
+        position: absolute;
+        line-height: 156px;
+        text-align: center;
+        font-size: 32px;
+        border: 1px solid #dedede;
+        background: #fff;
+      }
+    }
+    .series-course-block {
+      display: block;
+      background: #fff;
+      border: 1px solid #e9e9e9;
+      border-radius: 3px;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .text {
+      padding: 20px;
+    }
+    p{
+      @include text-overflow(2);
+    }
+    h2{
+      @include text-overflow(1);
+    }
+  }
+}
+
 @media screen and (max-width: 1000px){
   .section-series{
     padding: 0 10px;
@@ -352,6 +416,9 @@ p {
     .col-3 {
       flex: 0 0 47.5%;
     }
+  }
+  .series-course .series-course-item{
+    flex: 0 0 50%;
   }
 }
 
@@ -402,73 +469,7 @@ p {
       height: auto;
     }
   }
-}
-
-.series-course {
-  .series-course-item {
-    position: relative;
-    min-height: 280px;
-    border: none;
-    flex: 0 0 33.3%;
-    padding-right: 100px;
-    &:after {
-      content: '';
-      width: 33px;
-      height: 22.5px;
-      display: block;
-      position: absolute;
-      right: 30px;
-      top: 50%;
-      background: url('../images/row.png') no-repeat;
-      transform: translateY(-50%);
-      background-size: 100%;
-    }
-    &.no-next:after {
-      display: none;
-    }
-    &.no-next {
-      .waiting {
-        width: 156px;
-        height: 156px;
-        border-radius: 50%;
-        color: #333333;
-        top: 50%;
-        left: 40px;
-        margin-top: -78px;
-        position: absolute;
-        line-height: 156px;
-        text-align: center;
-        font-size: 32px;
-        border: 1px solid #dedede;
-        background: #fff;
-      }
-    }
-    .series-course-block {
-      /*width: 265px;*/
-      display: block;
-      background: #fff;
-      border: 1px solid #e9e9e9;
-      border-radius: 3px;
-      background: #fff;
-      /*margin-bottom: 20px;*/
-    }
-    img {
-      width: 100%;
-      height: auto;
-    }
-    .text {
-      padding: 20px;
-    }
-    p{
-      @include text-overflow(2);
-    }
-    h2{
-      @include text-overflow(1)
-    }
-  }
-  @media screen and (max-width: 576px){
-    .series-course-item{
-      flex: 0 0 100%;
-    }
+  .series-course .series-course-item{
+    flex: 0 0 100%;
   }
 }
