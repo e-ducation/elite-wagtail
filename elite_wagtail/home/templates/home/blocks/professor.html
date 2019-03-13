@@ -11,19 +11,21 @@
         <div class="row">
             {% for item in value.professor %}
                 <div class="col-6">
-                    <a href="{{ item.professor_link }}" target="_blank">
-                        {% image item.professor_pic original as tmp_photo %}
-                        <img src="{{ tmp_photo.url }}" />
-                        <div class="brife">
-                            <h2>{{ item.name }}</h2>
-                            {% for sub_item in item.professor_degree %}
-                                <p>{{ sub_item }}</p>
-                            {% endfor %}
-                        </div>
-                    </a>
-                    <p class="desc">
-                        {{ item.content }}
-                    </p>
+                    <div> 
+                        <a href="{{ item.professor_link }}" target="_blank">
+                            {% image item.professor_pic original as tmp_photo %}
+                            <img src="{{ tmp_photo.url }}" />
+                            <div class="brife">
+                                <h2>{{ item.name }}</h2>
+                                {% for sub_item in item.professor_degree %}
+                                    <p>{{ sub_item }}</p>
+                                {% endfor %}
+                            </div>
+                        </a>
+                        <p class="desc">
+                            {{ item.content }}
+                        </p>
+                    </div>
                 </div>
             {% endfor %}
         </div>
