@@ -27,27 +27,7 @@
     display: none;
   }
  }  
- .swiper-container-horizontal>.swiper-pagination-bullets{
-   bottom: 20px;
-   right: 0;
-   left: initial;
-   text-align: center;
- }
- .swiper-pagination-bullet {
-   width: 35px;
-   height: 35px;
-   text-align: center;
-   line-height: 33px;
-   color:#000;
-   border: 1px solid #000;
-   opacity: 1;
-   background: #fff;
-   border-radius: 0;
- }
- .swiper-pagination-bullet-active {
-   color:#fff;
-   background: rgb(129, 211, 248);
- }
+
  @media screen and (max-width:576px){
    .swiper-container .pc,
    .swiper-button-prev,
@@ -56,10 +36,5 @@
    }
    .swiper-container .mobile{
        display: block;
-   }
-   .swiper-pagination-bullet{
-     width: 20px;
-     height: 20px;
-     line-height: 18px;
    }
  }
