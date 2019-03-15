@@ -57,7 +57,7 @@ class CourseBlock(blocks.StructBlock):
 
 class CategoriesListBlock(blocks.StructBlock):
     categorieslist = blocks.ListBlock(blocks.StructBlock([
-        ('categories_name', blocks.RegexBlock(regex=r'[\u4e00-\u9fa5\w]{2,10}', error_messages={
+        ('categories_name', blocks.RegexBlock(regex=r'^[\u4e00-\u9fa5\w]{2,10}$', error_messages={
             'invalid': _('只允许输入2到10位中英文字符')
         }, required=True, label=_('分类名称'))),
         ('categories_link', blocks.URLBlock(required=True, label=_('分类链接'))),
