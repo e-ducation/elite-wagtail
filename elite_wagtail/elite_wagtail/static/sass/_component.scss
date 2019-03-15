@@ -211,6 +211,7 @@ p {
     img {
       position: absolute;
       width: 60px;
+      height: 60px;
       top: 20px;
       left: 30px;
       border-radius: 30px;
@@ -346,6 +347,8 @@ p {
     position: relative;
     border: none;
     flex: 0 0 33.3%;
+    min-height: 156px;
+    padding: 0 10px;
     &:after {
       content: '';
       width: 33px;
