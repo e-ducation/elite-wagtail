@@ -201,8 +201,15 @@ $(document).ready(function(){
         $('.secondary.logout').hide();
         $('.nav-item .username').html(info.username) // set name
         $('.user-url').attr('href', '/u/'+info.username)
-        $('.user-image-frame').attr('src', info.profile_image_url)
-
+        $('.user-image-frame').attr('src', info.profile_image_url);
+        // 置空
+        $('.mobile-menu').html('');
+        createMobileMenu()
+        $('.mobile-menu .mobile-nav-item').each(function(){
+            if($(this).find('A').hasClass('sign-in-btn')||$(this).find('A').hasClass('register-btn')){
+                $(this).hide()
+            }
+        })
     } else{
         $('.secondary.login').hide();
         $('.secondary.logout').show();
