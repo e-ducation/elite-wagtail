@@ -14,6 +14,12 @@ from wagtail.embeds.blocks import EmbedBlock
 
 
 @register_setting
+class GoogleSettings(BaseSetting):
+    analytics_account = models.CharField(max_length=127, blank=True,
+        help_text='Your Google Analytics Account, UA-xxxxx')
+
+
+@register_setting
 class BaiduBridgeSettings(BaseSetting):
     url = models.URLField(
         help_text='Your Baidu Bridge URL')
