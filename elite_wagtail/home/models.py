@@ -16,7 +16,7 @@ from wagtail.embeds.blocks import EmbedBlock
 @register_setting
 class GoogleSettings(BaseSetting):
     analytics_account = models.CharField(max_length=127, blank=True,
-        help_text='Your Google Analytics Account, UA-xxxxx')
+                                         help_text='Your Google Analytics Account, UA-xxxxx')
 
 
 @register_setting
@@ -104,6 +104,8 @@ class OtherImgBlock(blocks.StructBlock):
 
     img_for_pc = ImageChooserBlock(required=True, label=_('PC端图片'))
     img_for_MOBILE = ImageChooserBlock(required=False, label=_('移动端图片'))
+
+    link = blocks.URLBlock(required=False, label=_('链接(非必填)'))
 
     class Meta:
         label = "其余图文"
