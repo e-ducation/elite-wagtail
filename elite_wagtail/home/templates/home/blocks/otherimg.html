@@ -1,36 +1,40 @@
 {% load wagtailimages_tags %}
+{% load custom_tags %}
 
-{% if value.fill_the_screen_or_nor %}
-    {% if value.img_for_MOBILE and value.img_for_pc %}
-        <!-- 2. 撑满屏幕，传了两张图 -->
-        <div class="section-pic">
-            {% image value.img_for_pc original as tmp_photo %}
-            <img src="{{ tmp_photo.url }}" class="pc"/>
-            {% image value.img_for_MOBILE original as tmp_photo %}
-            <img src="{{ tmp_photo.url }}" class="mobile"/>
-        </div>
-    {% elif value.img_for_pc %}
-        <div class="section-pic">
-            {% image value.img_for_pc original as tmp_photo %}
-            <img src="{{ tmp_photo.url }}"/>
-        </div>
+{% with value.link|gen_href as gen_href %}
+
+    {% if value.fill_the_screen_or_nor %}
+        {% if value.img_for_MOBILE and value.img_for_pc %}
+            <!-- 2. 撑满屏幕，传了两张图 -->
+            <a class="section-pic" {{ gen_href }}>
+                {% image value.img_for_pc original as tmp_photo %}
+                <img src="{{ tmp_photo.url }}" class="pc"/>
+                {% image value.img_for_MOBILE original as tmp_photo %}
+                <img src="{{ tmp_photo.url }}" class="mobile"/>
+            </a>
+        {% elif value.img_for_pc %}
+            <a class="section-pic" {{ gen_href }}>
+                {% image value.img_for_pc original as tmp_photo %}
+                <img src="{{ tmp_photo.url }}"/>
+            </a>
+        {% endif %}
+    {% else %}
+        {% if value.img_for_MOBILE and value.img_for_pc %}
+            <!-- 1.不撑满屏幕，传了两张图 -->
+            <a class="section section-pic" {{ gen_href }}>
+                {% image value.img_for_pc original as tmp_photo %}
+                <img src="{{ tmp_photo.url }}" class="pc"/>
+                {% image value.img_for_MOBILE original as tmp_photo %}
+                <img src="{{ tmp_photo.url }}" class="mobile"/>
+            </a>
+        {% elif value.img_for_pc %}
+            <!-- 3. 不撑满屏幕，只传了一张图-->
+            <a class="section section-pic" {{ gen_href }}>
+                {% image value.img_for_pc original as tmp_photo %}
+                <img src="{{ tmp_photo.url }}"/>
+            </a>
+        {% endif %}
     {% endif %}
-{% else %}
-    {% if value.img_for_MOBILE and value.img_for_pc %}
-        <!-- 1.不撑满屏幕，传了两张图 -->
-        <div class="section section-pic">
-            {% image value.img_for_pc original as tmp_photo %}
-            <img src="{{ tmp_photo.url }}" class="pc"/>
-            {% image value.img_for_MOBILE original as tmp_photo %}
-            <img src="{{ tmp_photo.url }}" class="mobile"/>
-        </div>
-    {% elif value.img_for_pc %}
-        <!-- 3. 不撑满屏幕，只传了一张图-->
-        <div class="section section-pic">
-            {% image value.img_for_pc original as tmp_photo %}
-            <img src="{{ tmp_photo.url }}"/>
-        </div>
-    {% endif %}
-{% endif %}
+{% endwith %}
 
 
