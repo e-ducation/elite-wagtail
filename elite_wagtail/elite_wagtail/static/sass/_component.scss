@@ -343,6 +343,7 @@ p {
 
 // 单图
 .section-pic {
+  display: inherit;
   &.section{
     padding: 0 10px;
   }
