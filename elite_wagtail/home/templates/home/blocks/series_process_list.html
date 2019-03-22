@@ -4,29 +4,15 @@
     <h1>{{ value.title }}</h1> 
     <div class="row">
     {% for block in value.series %}
-        {% if forloop.last and not value.has_update_or_nor %}
-            <div class="series-course-item no-next">
-                <a class="series-course-block" href="{{ block.link }}" target="_blank">
-                    {% image block.course_photo width-400 height-225 %}
-                    <div class="text">
-                        <h2>{{ block.title }}</h2>
-                        <p>{{ block.description }}</p>
-                    </div>
-                </a>
-            </div>
-        {% else %}
-            <div class="series-course-item">
-                <a class="series-course-block" href="{{ block.link }}" target="_blank">
-                    {% image block.course_photo width-400 height-225 %}
-                    <div class="text">
-                        <h2>{{ block.title }}</h2>
-                        <p>{{ block.description }}</p>
-                    </div>
-                </a>
-            </div>
-        {% endif %}
-
-
+        <div class="series-course-item">
+            <a class="series-course-block" href="{{ block.link }}" target="_blank">
+                {% image block.course_photo width-400 height-225 %}
+                <div class="text">
+                    <h2>{{ block.title }}</h2>
+                    <p>{{ block.description }}</p>
+                </div>
+            </a>
+        </div>
     {% endfor %}
     
 
