@@ -132,6 +132,7 @@ p {
       border: 1px solid $border;
       height: 100%;
       margin: 0 10px;
+      background: #fff;
     }
   }
   a {
@@ -378,7 +379,7 @@ p {
     &:after {
       content: '';
       width: 33px;
-      height: 22.5px;
+      height: 33px;
       display: block;
       position: absolute;
       right: 30px;
