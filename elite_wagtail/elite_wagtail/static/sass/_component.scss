@@ -297,12 +297,14 @@ p {
       width: 0;
       overflow: hidden;
       margin: 0;
+      background: none;
       >div {
         position: relative;
         height: 160px;
         border: 1px solid $border;
         overflow: hidden;
         margin: 0 10px;
+        background: #fff;
         h2{
           @include text-overflow(1);
         }
