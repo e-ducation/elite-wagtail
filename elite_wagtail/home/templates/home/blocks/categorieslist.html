@@ -5,7 +5,7 @@
     <div>
         <h3>课程分类：</h3>
         {% for item in value.categorieslist %}
-            <a href="{{ item.categories_link }}"><span>{{ item.categories_name }}</span></a>
+            <a href={{ item.categories_link }} target="_blank"><span>{{ item.categories_name }}</span></a>
         {% endfor %}
     </div>
 </div>
