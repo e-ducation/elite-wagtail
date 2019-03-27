@@ -3,14 +3,24 @@ from django.utils.translation import ugettext_lazy as _
 
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.models import Page
-from wagtail.core.fields import StreamField
+from wagtail.core.fields import (
+    StreamField,
+    RichTextField
+)
 from wagtail.core import blocks
 from wagtail.admin.edit_handlers import (
-    StreamFieldPanel, PageChooserPanel
+    FieldPanel,
+    PageChooserPanel,
+    StreamFieldPanel,
 )
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.embeds.blocks import EmbedBlock
+
+from modelcluster.fields import ParentalKey
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from taggit.models import TaggedItemBase
 
 
 @register_setting
@@ -218,5 +228,37 @@ class HomePage(Page):
     ])
 
     content_panels = Page.content_panels + [
+        StreamFieldPanel('body'),
+    ]
+
+
+class ArticlePageTag(TaggedItemBase):
+    content_object = ParentalKey('home.ArticlePage', on_delete=models.CASCADE, related_name='tagged_items')
+
+
+class ArticlePage(Page):
+    tags = ClusterTaggableManager(through=ArticlePageTag, blank=True)
+    author_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    author_name = models.CharField(max_length=10)
+    article_date = models.DateField()
+    liked_count = models.IntegerField()
+
+    body = StreamField([
+        ('Paragraph', blocks.RichTextBlock()),
+        ('RawHTML', blocks.RawHTMLBlock()),
+        ('DocumentChooser', DocumentChooserBlock()),
+    ])
+
+    content_panels = Page.content_panels + [
+        FieldPanel('tags'),
+        ImageChooserPanel('author_image'),
+        FieldPanel('author_name'),
+        FieldPanel('article_date'),
         StreamFieldPanel('body'),
     ]
