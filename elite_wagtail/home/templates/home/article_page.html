@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags article_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -10,13 +12,23 @@
 <div class="window-wrap">
     {% include 'home/header.html' %}
     <main class="main content-wrapper">
+
         {{ page.title }}
-        {% for tag in page.tags.all %}
-            <a href="#">{{ tag }}</a>
-        {% endfor %}
+        
+        {% image page.author_image original as image %}
+        <img src="{{ image.url }}" />
         {{ page.author_name }}
-        {{ page.author_image }}
+        {{ page.article_datetime }}
+
         {{ page.body }}
+
+        <hr/>
+        {% prev_and_next_article %}
+        <hr/>
+
+        {% if page.display_popular_articles %}
+            {% popular_articles %}
+        {% endif %}
     </main>
 {% include 'home/footer.html' %}
 
