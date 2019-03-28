@@ -4,27 +4,28 @@ import ast
 from django.db import models
 from django.core.cache import cache
 from django.utils.translation import ugettext_lazy as _
-
-from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.core.models import Page
-from wagtail.core.fields import (
-    StreamField,
-    RichTextField
-)
-from wagtail.core import blocks
 from wagtail.admin.edit_handlers import (
     FieldPanel,
+    MultiFieldPanel,
     PageChooserPanel,
     StreamFieldPanel,
 )
+from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.core.models import Page, Orderable
+from wagtail.core.fields import (
+    StreamField,
+)
+from wagtail.core import blocks
+
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.embeds.blocks import EmbedBlock
+from wagtail.snippets.models import register_snippet
 
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from taggit.models import TaggedItemBase
+from taggit.models import TaggedItemBase, Tag as TaggitTag
 
 
 @register_setting
@@ -292,8 +293,15 @@ class ArticlePage(Page):
         related_name='+'
     )
     author_name = models.CharField(max_length=10)
-    article_date = models.DateField()
-    liked_count = models.IntegerField()
+    article_datetime = models.DateTimeField()
+    article_cover = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    liked_count = models.IntegerField(default=0)
 
     body = StreamField([
         ('Paragraph', blocks.RichTextBlock()),
@@ -301,10 +309,44 @@ class ArticlePage(Page):
         ('DocumentChooser', DocumentChooserBlock()),
     ])
 
+    display_popular_articles = models.BooleanField(
+        default=True,
+        verbose_name=_('Display popular articles')
+    )
+
     content_panels = Page.content_panels + [
+        FieldPanel('title'),
         FieldPanel('tags'),
         ImageChooserPanel('author_image'),
         FieldPanel('author_name'),
-        FieldPanel('article_date'),
+        FieldPanel('article_datetime'),
+        ImageChooserPanel('article_cover'),
         StreamFieldPanel('body'),
     ]
+    settings_panels = Page.settings_panels + [
+        MultiFieldPanel(
+            [FieldPanel('display_popular_articles'), ],
+            heading=_("Widgets")
+        ),
+    ]
+
+
+@register_snippet
+class PopularArticle(Orderable):
+    title = models.CharField(max_length=5)
+    right_link = models.URLField(blank=True)
+    random_article = models.BooleanField(default=False)
+    random_num = models.IntegerField(default=3)
+    selected_articles = StreamField([
+        ('article', blocks.PageChooserBlock(ArticlePage)),
+    ])
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('right_link'),
+        FieldPanel('random_article'),
+        StreamFieldPanel('selected_articles'),
+    ]
+
+    def __str__(self):
+        return self.title
