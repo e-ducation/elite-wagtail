@@ -1,4 +1,8 @@
+from datetime import datetime
+import ast
+
 from django.db import models
+from django.core.cache import cache
 from django.utils.translation import ugettext_lazy as _
 
 from wagtail.contrib.settings.models import BaseSetting, register_setting
@@ -184,6 +188,17 @@ class SeriesBlock(blocks.StructBlock):
 
 
 class HomePage(Page):
+    ONCE = 1
+    ONCE_A_DAY = 2
+    PAGE_REQUEST_EACH_TIME = 3
+
+    PUSH_CHOICES = (
+        (ONCE, _("只弹一次")),
+        (ONCE_A_DAY, _("每天弹出一次")),
+        (PAGE_REQUEST_EACH_TIME, _("每次打开页面弹一次")),
+    )
+
+    adv_status = models.IntegerField(choices=PUSH_CHOICES, default=ONCE, verbose_name=_('广告弹窗'))
     body = StreamField([
         ('Paragraph', blocks.RichTextBlock()),
         ('Image', ImageChooserBlock()),
@@ -228,8 +243,39 @@ class HomePage(Page):
     ])
 
     content_panels = Page.content_panels + [
+        FieldPanel('adv_status'),
         StreamFieldPanel('body'),
     ]
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        push_adv = self.push_adv_or_not(request, context)
+        context['push_adv'] = push_adv
+        return context
+
+    def push_adv_or_not(self, request, context):
+        try:
+            adv_status = self.adv_status
+            cache_key = 'push_adv_{uid}_time'.format(uid=ast.literal_eval(request.COOKIES['edx-user-info'])['username'])
+            cache_value = cache.get(cache_key, '')
+            if not cache_value:
+                cache.set(cache_key, datetime.now().date())
+                return True
+            if adv_status == self.ONCE:
+                cache.set(cache_key, datetime.now().date())
+                return False
+            elif adv_status == self.ONCE_A_DAY:
+                if cache_value == datetime.now().date():
+                    return False
+                else:
+                    cache.set(cache_key, datetime.now().date())
+                    return True
+            elif adv_status == self.PAGE_REQUEST_EACH_TIME:
+                cache.set(cache_key, datetime.now().date())
+                return True
+            return False
+        except Exception as err:
+            return False
 
 
 class ArticlePageTag(TaggedItemBase):
