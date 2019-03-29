@@ -3,7 +3,7 @@ from wagtail.contrib.modeladmin.options import (
     modeladmin_register
 )
 from taggit.models import Tag
-from home.models import ArticlePage
+from home.models import ArticlePage, ArticlePageTag
 
 
 class TagAdmin(ModelAdmin):
@@ -17,13 +17,5 @@ class TagAdmin(ModelAdmin):
     list_filter = ('name',)
     search_fields = ('name', )
 
-
-class ArticlePageAdmin(ModelAdmin):
-    model = ArticlePage
-    list_display = ('title', )
-    list_filter = ('title',)
-
-
 # Now you just need to register your customised ModelAdmin class with Wagtail
 modeladmin_register(TagAdmin)
-modeladmin_register(ArticlePageAdmin)

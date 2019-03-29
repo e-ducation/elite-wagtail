@@ -23,6 +23,7 @@ urlpatterns = [
     # the list:
     url(r'^api/v2/', api_router.urls),
     url(r'', include(wagtail_urls)),
+    url(r'^select2/', include('django_select2.urls')),
 
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:

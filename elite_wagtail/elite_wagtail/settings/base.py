@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wagtail.api.v2',
     'rest_framework',
-    ]
+    'django_select2',
+]
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
