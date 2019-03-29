@@ -374,13 +374,6 @@ class ArticlePage(Page):
 
         return self.article_datetime.strftime("%Y-%m-%d %H:%I")
 
-    settings_panels = Page.settings_panels + [
-        MultiFieldPanel(
-            [FieldPanel('display_popular_articles'), ],
-            heading=_("Widgets")
-        ),
-    ]
-
     @property
     def first_tag(self):
         if self.tags:
