@@ -351,11 +351,6 @@ class ArticlePage(Page):
         ('DocumentChooser', DocumentChooserBlock()),
     ])
 
-    display_popular_articles = models.BooleanField(
-        default=True,
-        verbose_name=_('Display popular articles')
-    )
-
     content_panels = Page.content_panels + [
         FieldPanel('tags'),
         ImageChooserPanel('author_image'),
