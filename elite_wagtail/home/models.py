@@ -4,11 +4,19 @@ import ast
 from django.db import models
 from django.core.cache import cache
 from django.utils.translation import ugettext_lazy as _
+from django.utils import six
+
+from wagtail.contrib.settings.models import BaseSetting, register_setting
+from wagtail.core.models import Page, PageBase
+from wagtail.core.fields import StreamField, RichTextField
+from wagtail.core import blocks
+from wagtail.search import index
 from wagtail.admin.edit_handlers import (
     FieldPanel,
     MultiFieldPanel,
     PageChooserPanel,
     StreamFieldPanel,
+    MultiFieldPanel,
 )
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core.models import Page, Orderable
@@ -16,13 +24,18 @@ from wagtail.core.fields import (
     StreamField,
 )
 from wagtail.core import blocks
-
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.embeds.blocks import EmbedBlock
 from wagtail.snippets.models import register_snippet
+from wagtail.api import APIField
 
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
+
+from .routes import ArticleListRoutes
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase, Tag as TaggitTag
@@ -279,6 +292,38 @@ class HomePage(Page):
             return False
 
 
+class ArticleListPage(ArticleListRoutes, Page):
+    display_tags = models.BooleanField(default=True, verbose_name=_('Display tags'))
+    num_entries_page = models.IntegerField(default=5, verbose_name=_('Entries per page'))
+    settings_panels = Page.settings_panels + [
+        MultiFieldPanel(
+            [
+                FieldPanel('display_tags'),
+            ],
+            heading=_("Widgets")
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel('num_entries_page'),
+            ],
+            heading=_("Parameters")
+        ),
+    ]
+    subpage_types = ['ArticlePage']
+
+    def get_entries(self):
+        return ArticlePage.objects.descendant_of(self).live().order_by('-article_datetime')
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(ArticleListPage, self).get_context(request, *args, **kwargs)
+        context['entries'] = self.entries
+        context['article_page'] = self
+        return context
+
+    class Meta:
+        verbose_name = _('ArticleList')
+
+
 class ArticlePageTag(TaggedItemBase):
     content_object = ParentalKey('home.ArticlePage', on_delete=models.CASCADE, related_name='tagged_items')
 
@@ -323,6 +368,21 @@ class ArticlePage(Page):
         ImageChooserPanel('article_cover'),
         StreamFieldPanel('body'),
     ]
+
+    api_fields = [
+        APIField('tags'),
+        APIField('author_image'),
+        APIField('article_datetime'),
+         # This will nest the relevant BlogPageAuthor objects in the API response
+    ]
+
+    parent_page_types = ['ArticleListPage']
+    subpage_types = []  
+
+    def get_datetime_format(self):
+
+        return self.article_datetime.strftime("%Y-%m-%d %H:%I")
+
     settings_panels = Page.settings_panels + [
         MultiFieldPanel(
             [FieldPanel('display_popular_articles'), ],
