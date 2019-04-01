@@ -16,3 +16,65 @@ $font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,"Helvetica N
 
 .clearfix::after { clear: both; }
 .clearfix { *zoom: 1; }
+
+// 底色蓝，字体白按钮
+%btn-my-primary{
+  box-sizing: border-box;
+  display: inline-block;
+  width: auto;
+  padding: 0 20px !important;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  height: 36px;
+  line-height: 34px !important;
+  border-radius: 3px;
+  font-weight: normal;
+  cursor: pointer;
+  border: none;
+  background: $primary;
+  border: 1px solid $primary;
+  color: #fff;
+  text-shadow: none;
+  box-shadow: none;
+  font-family: $font-family;
+  outline: none;
+
+  &:hover,&:focus, &:active, &:visited, &:hover:not(:disabled), &:active:not(:disabled), &:focus:not(:disabled){
+    background: $primary;
+    background-image: none;
+    text-decoration: none;
+    opacity: 0.95;
+    box-shadow: none;
+    color: #fff;
+    border: 1px solid $primary;
+  }
+}
+// 底色白，字体蓝
+%btn-my-white{
+  box-sizing: border-box;
+  display: inline-block;
+  width: auto;
+  padding: 0 20px !important;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  height: 36px;
+  line-height: 34px !important;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #fff;
+  color: $primary;
+  border: 1px solid $primary;
+  text-shadow: none;
+  font-family: $font-family;
+  outline: none;
+  box-shadow: none;
+
+  &:hover, &:focus, &:active, &:visited, &:hover:not(:disabled), &:active:not(:disabled), &:focus:not(:disabled){
+    background: #f7fbfe;
+    background-image: none;
+    color: $primary;
+    text-decoration: none;
+    border: 1px solid $primary;
+    box-shadow: none;
+  }
+}

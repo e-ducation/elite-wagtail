@@ -42,7 +42,7 @@ p {
   }
 }
 
-@mixin text-overflow($line) {
+@mixin text-overflow($line, $font-size: 14px) {
   @if $line == 1 {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -52,7 +52,7 @@ p {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: $line;
     overflow: hidden;
-    max-height: 22px * $line ;
+    max-height: $font-size * 1.5 * $line ;
   }
 
 }
@@ -94,6 +94,7 @@ p {
 .section {
   max-width: 1220px; // min-width: 960px;
   margin: 0 auto;
+
   h1 {
     font-size: 18px;
     color: $title;
@@ -169,6 +170,7 @@ p {
     width: 100%;
     height: auto;
     display: block;
+    background: #f3f5f7;
   }
   @media screen and (max-width: 576px) {
     .col-4,

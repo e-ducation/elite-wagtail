@@ -12,26 +12,37 @@
 <div class="window-wrap">
     {% include 'home/header.html' %}
     <main class="main content-wrapper">
-
-        {{ page.title }}
-        
-        {% image page.author_image original as image %}
-        <img src="{{ image.url }}" />
-        {{ page.author_name }}
-        {{ page.article_datetime }}
-
-        {{ page.body }}
-
-        <hr/>
-        {% prev_and_next_article %}
-        <hr/>
-
-        {% if settings.home.PopularArticleSettings.display_popular_articles%}
-            {% popular_articles %}
-        {% endif %}
+        <div class="section">
+            <div class="article">
+                <div class="article-content">
+                    <h1>{{ page.title }}</h1>
+                    <div class="article-info">
+                        {% image page.author_image original as image %}
+                        <img src="{{ image.url }}" />
+                        <span>{{ page.author_name }}</span>
+                        <span> | {{ page.article_datetime }}</span>
+                    </div>
+                    <div class="article-raw">
+                        {{ page.body }}
+                    </div>
+                    <div class="like">
+                        <div>
+                            <img src="/static/images/like.png" />
+                            <div>12</div>
+                        </div>
+                        <p>赞一个</p>
+                    </div>
+                    
+                    {% prev_and_next_article %}
+                    
+                </div>
+                {% if settings.home.PopularArticleSettings.display_popular_articles%}
+                    {% popular_articles %}
+                {% endif %}
+            </div>
+        </div>
     </main>
-{% include 'home/footer.html' %}
-
+    {% include 'home/footer.html' %}
 </div>
 
 {% comment %}
