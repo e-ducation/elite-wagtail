@@ -416,7 +416,7 @@ class PopularArticle(Orderable):
     def get_random_popular_articles(self):
         if self.random_strategy == 'liked':
             return ArticlePage.objects.all().order_by('liked_count')[:self.random_num]
-        if self.random_strategy == 'updated':
+        if self.random_strategy == 'last_published_at':
             return ArticlePage.objects.all().order_by('last_published_at')[:self.random_num]
 
         return None
