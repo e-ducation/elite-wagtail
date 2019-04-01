@@ -26,7 +26,7 @@
         {% prev_and_next_article %}
         <hr/>
 
-        {% if page.display_popular_articles %}
+        {% if settings.home.PopularArticleSettings.display_popular_articles%}
             {% popular_articles %}
         {% endif %}
     </main>

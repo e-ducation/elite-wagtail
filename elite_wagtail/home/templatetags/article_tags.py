@@ -7,10 +7,13 @@ register = Library()
 
 @register.inclusion_tag('home/tags/popular_articles.html', takes_context=True)
 def popular_articles(context):
-    p = PopularArticle.objects.all()[0]
-    return {
-        'p': p
-    }
+    if PopularArticle.objects.all():
+        pop_article = PopularArticle.objects.all().first()
+        return {
+            'pop_article': pop_article
+        }
+    else:
+        return None
 
 
 @register.simple_tag(takes_context=True)

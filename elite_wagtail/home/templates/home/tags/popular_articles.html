@@ -1,3 +1,13 @@
-{{ p.right_link }}
-{{ p.selected_articles }}
+<hr/>
+{{ pop_article.title }}
+{{ pop_article.right_link }}
+
+<hr/>
+
+{% for article in pop_article.articles %}
+    {{ article.title }}
+    {{ article.first_tag }}
+    {{ article.get_url }}
+{% endfor %}
+
 <hr/>

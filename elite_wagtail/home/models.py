@@ -1,44 +1,33 @@
-from datetime import datetime
 import ast
+from datetime import datetime
 
 from django.db import models
 from django.core.cache import cache
 from django.utils.translation import ugettext_lazy as _
-from django.utils import six
 
-from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.core.models import Page, PageBase
-from wagtail.core.fields import StreamField, RichTextField
-from wagtail.core import blocks
-from wagtail.search import index
 from wagtail.admin.edit_handlers import (
     FieldPanel,
     MultiFieldPanel,
     PageChooserPanel,
     StreamFieldPanel,
-    MultiFieldPanel,
 )
+from wagtail.api import APIField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
-from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import (
-    StreamField,
-)
 from wagtail.core import blocks
+from wagtail.core.fields import StreamField
+from wagtail.core.models import Page, Orderable
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.embeds.blocks import EmbedBlock
 from wagtail.snippets.models import register_snippet
-from wagtail.api import APIField
 
+from django_select2.forms import Select2MultipleWidget
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from modelcluster.fields import ParentalKey
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from taggit.models import TaggedItemBase, Tag as TaggitTag
 
 from .routes import ArticleListRoutes
-from modelcluster.fields import ParentalKey
-from modelcluster.contrib.taggit import ClusterTaggableManager
-from taggit.models import TaggedItemBase, Tag as TaggitTag
 
 
 @register_setting
@@ -51,6 +40,14 @@ class GoogleSettings(BaseSetting):
 class BaiduBridgeSettings(BaseSetting):
     url = models.URLField(
         help_text='Your Baidu Bridge URL')
+
+
+@register_setting
+class PopularArticleSettings(BaseSetting):
+    display_popular_articles = models.BooleanField(
+        default=True,
+        verbose_name=_('Display popular articles')
+    )
 
 
 @register_setting
@@ -354,13 +351,7 @@ class ArticlePage(Page):
         ('DocumentChooser', DocumentChooserBlock()),
     ])
 
-    display_popular_articles = models.BooleanField(
-        default=True,
-        verbose_name=_('Display popular articles')
-    )
-
     content_panels = Page.content_panels + [
-        FieldPanel('title'),
         FieldPanel('tags'),
         ImageChooserPanel('author_image'),
         FieldPanel('author_name'),
@@ -373,40 +364,66 @@ class ArticlePage(Page):
         APIField('tags'),
         APIField('author_image'),
         APIField('article_datetime'),
-         # This will nest the relevant BlogPageAuthor objects in the API response
+        # This will nest the relevant BlogPageAuthor objects in the API response
     ]
 
     parent_page_types = ['ArticleListPage']
-    subpage_types = []  
+    subpage_types = []
 
     def get_datetime_format(self):
 
         return self.article_datetime.strftime("%Y-%m-%d %H:%I")
 
-    settings_panels = Page.settings_panels + [
-        MultiFieldPanel(
-            [FieldPanel('display_popular_articles'), ],
-            heading=_("Widgets")
-        ),
-    ]
+    @property
+    def first_tag(self):
+        if self.tags:
+            return self.tags.first()
+        else:
+            return None
 
 
 @register_snippet
 class PopularArticle(Orderable):
+
+    RANDOM_STRATEGY = (
+        ('liked', 'liked'),
+        ('last_published_at', 'last_published_at'),
+    )
+
     title = models.CharField(max_length=5)
     right_link = models.URLField(blank=True)
-    random_article = models.BooleanField(default=False)
+    use_random_article = models.BooleanField(default=False)
     random_num = models.IntegerField(default=3)
-    selected_articles = StreamField([
-        ('article', blocks.PageChooserBlock(ArticlePage)),
-    ])
+    random_strategy = models.CharField(
+        choices=RANDOM_STRATEGY, 
+        max_length=16,
+        default='liked'
+    )
+    selected_articles = models.ManyToManyField(ArticlePage)
 
     panels = [
         FieldPanel('title'),
         FieldPanel('right_link'),
-        FieldPanel('random_article'),
-        StreamFieldPanel('selected_articles'),
+        FieldPanel('use_random_article'),
+        FieldPanel('random_num'),
+        FieldPanel('random_strategy'),
+        FieldPanel('selected_articles', widget=Select2MultipleWidget),
     ]
 
     def __str__(self):
         return self.title
+
+    def get_random_popular_articles(self):
+        if self.random_strategy == 'liked':
+            return ArticlePage.objects.all().order_by('liked_count')[:self.random_num]
+        if self.random_strategy == 'updated':
+            return ArticlePage.objects.all().order_by('last_published_at')[:self.random_num]
+
+        return None
+
+    @property
+    def articles(self):
+        if self.use_random_article:
+            return self.get_random_popular_articles()
+        else:
+            return self.selected_articles.all()
