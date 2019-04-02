@@ -414,10 +414,10 @@ class PopularArticle(Orderable):
     random_num = models.IntegerField(default=3)
     random_strategy = models.CharField(
         choices=RANDOM_STRATEGY,
-        max_length=16,
+        max_length=32,
         default='liked'
     )
-    selected_articles = models.ManyToManyField(ArticlePage)
+    selected_articles = models.ManyToManyField(ArticlePage, blank=True)
 
     panels = [
         FieldPanel('title'),
