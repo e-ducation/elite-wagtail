@@ -34,6 +34,8 @@ from taggit.models import TaggedItemBase, Tag as TaggitTag
 
 from .routes import ArticleListRoutes
 
+from rest_framework.fields import DateTimeField
+
 
 @register_setting
 class GoogleSettings(BaseSetting):
@@ -376,7 +378,7 @@ class ArticlePage(Page):
         APIField('tags'),
         APIField('author_image'),
         APIField('author_name'),
-        APIField('article_datetime'),
+        APIField('article_datetime', serializer=DateTimeField(format="%Y-%m-%d %H:%M")),
         APIField('article_cover'),
         APIField('description'),
         APIField('liked_count'),
