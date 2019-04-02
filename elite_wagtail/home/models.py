@@ -3,10 +3,15 @@ from datetime import datetime
 
 from django.db import models
 from django.core.cache import cache
+from django.core.validators import (
+    MaxLengthValidator,
+    MinLengthValidator,
+)
 from django.utils.translation import ugettext_lazy as _
 
 from wagtail.admin.edit_handlers import (
     FieldPanel,
+    HelpPanel,
     MultiFieldPanel,
     PageChooserPanel,
     StreamFieldPanel,
@@ -326,6 +331,7 @@ class ArticlePageTag(TaggedItemBase):
 
 
 class ArticlePage(Page):
+
     tags = ClusterTaggableManager(through=ArticlePageTag, blank=True)
     author_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -334,7 +340,9 @@ class ArticlePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    author_name = models.CharField(max_length=10)
+    author_name = models.CharField(max_length=10, validators=[
+        MinLengthValidator(2)
+    ])
     article_datetime = models.DateTimeField()
     article_cover = models.ForeignKey(
         'wagtailimages.Image',
@@ -353,7 +361,9 @@ class ArticlePage(Page):
     ])
 
     content_panels = Page.content_panels + [
+        HelpPanel('建议文章标题不超过30个字'),
         FieldPanel('tags'),
+        HelpPanel('建议标签数量最多2个，标签字数1～5个'),
         FieldPanel('description'),
         ImageChooserPanel('author_image'),
         FieldPanel('author_name'),
@@ -396,12 +406,14 @@ class PopularArticle(Orderable):
         ('last_published_at', 'last_published_at'),
     )
 
-    title = models.CharField(max_length=5)
+    title = models.CharField(max_length=5, validators=[
+        MinLengthValidator(2),
+    ])
     right_link = models.URLField(blank=True)
     use_random_article = models.BooleanField(default=False)
     random_num = models.IntegerField(default=3)
     random_strategy = models.CharField(
-        choices=RANDOM_STRATEGY, 
+        choices=RANDOM_STRATEGY,
         max_length=16,
         default='liked'
     )
@@ -414,6 +426,7 @@ class PopularArticle(Orderable):
         FieldPanel('random_num'),
         FieldPanel('random_strategy'),
         FieldPanel('selected_articles', widget=Select2MultipleWidget),
+        HelpPanel('建议选择3～8篇文章'),
     ]
 
     def __str__(self):
