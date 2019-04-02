@@ -365,7 +365,11 @@ class ArticlePage(Page):
     api_fields = [
         APIField('tags'),
         APIField('author_image'),
+        APIField('author_name'),
         APIField('article_datetime'),
+        APIField('article_cover'),
+        APIField('description'),
+        APIField('liked_count'),
         # This will nest the relevant BlogPageAuthor objects in the API response
     ]
 
