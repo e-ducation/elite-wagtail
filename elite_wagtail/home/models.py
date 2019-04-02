@@ -343,6 +343,7 @@ class ArticlePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    description = models.TextField(blank=True)
     liked_count = models.IntegerField(default=0)
 
     body = StreamField([
@@ -353,6 +354,7 @@ class ArticlePage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('tags'),
+        FieldPanel('description'),
         ImageChooserPanel('author_image'),
         FieldPanel('author_name'),
         FieldPanel('article_datetime'),
