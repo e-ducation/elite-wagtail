@@ -12,40 +12,49 @@
 
 {% block content %}
 <div class="window-wrap">
-
-{% include 'home/header.html' %}
-    {% with per_page=article_page.num_entries_page %}
-        {% if article_page.display_tags %}
-            <ul class="sidebar">
-                    <h4>{{ article_page.title }}</h4>
-                    {% tags_list %}
-            </ul>
-        {% endif %}
-        {% for entry in entries %}
-            <article class="box page-content blog_grid">
-
-                <section class="article">
-                    {% image entry.author_image original as tmp_photo %}
-                    <img src="{{ tmp_photo.url }}" />
-                    {% image entry.article_cover original as cover_photo %}
-                    <img src="{{ cover_photo.url }}" />         
-                    {{ entry.author_name }}
-                    {% for tag in entry.tags.all %}
-                        {{ tag }}
+    {% include 'home/header.html' %}
+    <main class="main content-wrapper">
+    <div class="section section-list">
+        <h2>{{ article_page.title }}</h2>
+        <div class="row-list">
+            <div class="col-list">
+                {% with per_page=article_page.num_entries_page %}
+                    {% if article_page.display_tags %}
+                        {% tags_list %}
+                    {% endif %}
+                    {% for entry in entries %}
+                        <a class="list-item" href="/{{ article_page.slug }}/{{ entry.slug }}/">
+                            <div class="col-3">
+                                {% image entry.article_cover original as cover_photo %}
+                                <img src="{{ cover_photo.url }}" /> 
+                            </div>
+                            <div class="col-9">
+                                <h3>{{ entry.title }}</h3>
+                                <p>文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介</p>
+                                <div>
+                                    {% image entry.author_image original as tmp_photo %}
+                                    <img class="item-avatar" src="{{ tmp_photo.url }}" /> 
+                                    <span class="item-name">{{ entry.author_name }}</span>
+                                    <span class="item-date">{{ entry.get_datetime_format }}</span>
+                                    <img class="item-like" src="/static/images/like.png" />{{ entry.liked_count }}
+                                    {% for tag in entry.tags.all %}
+                                        <span class="item-tag">{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>                  
+                        </a>
                     {% endfor %}
-                    <a href="/{{ article_page.slug }}/{{ entry.slug }}/">{{ entry.title }}</a>            
-
-                    {{ entry.get_datetime_format }}
-                    {{ entry.liked_count }}                     
-                </section>
-            </article>
-        {% endfor %}
-
-    {% endwith %}  
-    
-     
-{% include 'home/footer.html' %}
-
+                {% endwith %} 
+            </div>
+            <div class="col-ad">
+                <h3>英荔商学院</h3>
+                <img src="/static/images/qrcode.png" />
+                <p>关注英荔商学院<br/>第一时间获取文章</p>
+            </div>
+        </div>
+    </div>
+    </main>
+    {% include 'home/footer.html' %}
 </div>
 
 {% comment %}

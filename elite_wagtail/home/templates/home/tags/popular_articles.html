@@ -1,13 +1,17 @@
-<hr/>
-{{ pop_article.title }}
-{{ pop_article.right_link }}
+<div class="hot">
+    <h2>{{ pop_article.title }}</h2>
+    <div class="">
+        {% for article in pop_article.articles %}
+            <div class="hot-item">
+                <img src="/media/images/logo_Hy2cRjx.original.png" />
+                <a href="{{ article.get_url }}">{{ article.title }}</a>
+                <p>{{ article.article_datetime}}</p>
+            </div>   
+        {% endfor %}
+    </div>
+    <div class="more">
+        <a href="{{ pop_article.right_link }}">更多文章</a>
+    </div>
+</div>
 
-<hr/>
 
-{% for article in pop_article.articles %}
-    {{ article.title }}
-    {{ article.first_tag }}
-    {{ article.get_url }}
-{% endfor %}
-
-<hr/>
