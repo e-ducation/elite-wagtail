@@ -1,33 +1,10 @@
 {% load i18n wagtailroutablepage_tags %}
 
 <div class="list-tag">
-    <a href="/{{ article_page.slug }}/">全部</a>
+    <a v-bind:class="[tag == '' ? 'active' : '']" v-on:click="showTag('')">全部</a>
     {% for tag in tags %}
-        <a href="{% routablepageurl article_page "entries_by_tag" tag.slug %}">{{ tag }}</a>
+        <a v-bind:class="[tag == '{{tag}}' ? 'active' : '']" v-on:click="showTag('{{tag}}')">{{ tag }}</a>
     {% empty %}
         {% trans 'No tags yet' %}
     {% endfor %}
 </div>
-<div class="list-select">
-    <span class="active">最新</span>
-    <span>最热</span>
-</div>
-
-<script>
-    // 判断当前页面路由
-    var url = window.location.href;
-    var a = document.querySelectorAll('.list-tag a');
-    var flag = false;
-    if ( url.indexOf("/tag/") == -1 ){
-        // 全部
-        a[0].classList = 'active';
-    } else {
-        // tag页面
-        for(var i = 1; i < a.length; i++){
-            var href = a[i].href;
-            if(url.indexOf("/tag/") != -1 && url.indexOf(href) != -1) {
-                a[i].classList = 'active';
-            }
-        }
-    }
-</script>
