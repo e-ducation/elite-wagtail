@@ -20,7 +20,6 @@
 
         {# Global stylesheets #}
         <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-
         <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 
         {% block extra_css %}
@@ -47,6 +46,7 @@
             ga('create', '{{ settings.home.GoogleSettings.analytics_account }}', 'auto');
             ga('send', 'pageview');
         </script>
+        <script type="text/javascript" src="{% static 'js/jquery-1.7.2.min.js' %}"></script>
         <!-- End Google Analytics -->
     </head>
 
@@ -59,7 +59,7 @@
             <img src="{% static 'images/u229.png' %}">
         </div>
         {# Global javascript #}
-        <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <script type="text/javascript" src="{% static 'js/header.js' %}"></script>
 

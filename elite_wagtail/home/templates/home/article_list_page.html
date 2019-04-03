@@ -2,8 +2,8 @@
 {% load static %}
 
 {% load static i18n wagtailcore_tags wagtailimages_tags %}
-{% load custom_tags %}
 {% load i18n wagtailroutablepage_tags %}
+{% load custom_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -17,33 +17,42 @@
     <div class="section section-list">
         <h2>{{ article_page.title }}</h2>
         <div class="row-list">
-            <div class="col-list">
+            <div class="col-list" id="app">
                 {% with per_page=article_page.num_entries_page %}
                     {% if article_page.display_tags %}
                         {% tags_list %}
                     {% endif %}
-                    {% for entry in entries %}
-                        <a class="list-item" href="/{{ article_page.slug }}/{{ entry.slug }}/">
-                            <div class="col-3">
-                                {% image entry.article_cover original as cover_photo %}
-                                <img src="{{ cover_photo.url }}" /> 
+                    <div class="list-select">
+                        <span v-on:click="getNewList" v-bind:class="[order == '-article_datetime' ? 'active' : '']">最新</span>
+                        <span v-on:click="getHotList" v-bind:class="[order == '-liked_count' ? 'active' : '']">最热</span>
+                    </div>
+                    <a v-for="(item, index) in list" class="list-item" :href="item.meta.html_url">
+                        <div class="col-3">
+                            <img :src="item.article_cover.meta.download_url" /> 
+                        </div>
+                        <div class="col-9">
+                            <h3>${ item.title }</h3>
+                            <p>${ item.description }</p>
+                            <div>
+                                <img class="item-avatar" :src="item.author_image.meta.download_url" /> 
+                                <span class="item-name">${ item.author_name }</span>
+                                <span class="item-date">${ item.article_datetime }</span>
+                                <img class="item-like" src="/static/images/like.png" />${ item.liked_count }
+                                <span class="item-tag" v-for="tag in item.tags">
+                                    ${ tag }
+                                </span>
                             </div>
-                            <div class="col-9">
-                                <h3>{{ entry.title }}</h3>
-                                <p>文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介文章简介</p>
-                                <div>
-                                    {% image entry.author_image original as tmp_photo %}
-                                    <img class="item-avatar" src="{{ tmp_photo.url }}" /> 
-                                    <span class="item-name">{{ entry.author_name }}</span>
-                                    <span class="item-date">{{ entry.get_datetime_format }}</span>
-                                    <img class="item-like" src="/static/images/like.png" />{{ entry.liked_count }}
-                                    {% for tag in entry.tags.all %}
-                                        <span class="item-tag">{{ tag }}</span>
-                                    {% endfor %}
-                                </div>
-                            </div>                  
-                        </a>
-                    {% endfor %}
+                        </div>                  
+                    </a>
+                    <!-- 骨架屏 -->
+                    <div v-if="has_more && list.length" class="list-item list-item-skeleton">
+                        <div class="col-3"></div>
+                        <div class="col-9">
+                            <h3></h3>
+                            <p></p>
+                            <div></div>
+                        </div>
+                    </div> 
                 {% endwith %} 
             </div>
             <div class="col-ad">
@@ -56,7 +65,90 @@
     </main>
     {% include 'home/footer.html' %}
 </div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        delimiters: ['${', '}'],
+        data: {
+            list: [],
+            total_count: 0,
+            has_more: true,
+            order: '',
+            loading: false,
+            tag: '',
+        },
+        methods:{
+            getList: function(){
+                if (this.loading || !this.has_more) return false;
 
+                var that = this;
+                var str_tag = this.tag ? ( '&&tags=' + this.tag ) : ''
+                var str = 'offset=' + this.list.length + '&&limit=3&&order=' + this.order + str_tag;
+                this.loading = true;
+                
+                $.ajax({
+                    type: 'GET',
+                    url: '/api/v2/pages/?type=home.ArticlePage&' + str + '&&fields=tags,author_image,article_datetime,article_cover,liked_count,description,author_name',
+                    success: function(res){
+                        if (res.meta){
+                            var arr = that.list.length ? JSON.parse(JSON.stringify(that.list)).concat(res.items) : res.items;
+                            that.total_count = res.meta.total_count;
+                            that.list = arr;
+                            if (res.meta.total_count == that.list.length){
+                                // 移除window.onscroll事件
+                                that.has_more = false;
+                                
+                            }
+                            that.loading = false;
+                        }
+                    }
+                })
+            },
+            getHotList: function(){
+                this.order = '-liked_count';
+                this.initAndchangeHash();
+                this.getList(0);
+            },
+            getNewList: function(){
+                this.order = '-article_datetime';
+                this.initAndchangeHash();
+                this.getList(0);
+            },
+            showTag: function(tag){
+                this.tag = tag;
+                this.order = '-article_datetime';
+                this.initAndchangeHash();
+                this.getList(0)
+            },
+            scrollHandle: function(){
+                if(document.documentElement.scrollTop + window.innerHeight > (document.body.clientHeight - 500)){
+                    this.getList();
+                }
+            },
+            initAndchangeHash: function(){
+                this.has_more = true;
+                this.list = [];
+                window.location.hash = '#' + decodeURI(this.tag) + '#' + this.order;
+            }
+        },
+        mounted: function(){
+            var that = this;
+            
+            // 根据url确定tag, order
+            var url = window.location.href.split('#');
+            this.tag = url.length > 1 ? decodeURI(url[1]) : '';
+            this.order = (url[2] && url[2] == '-liked_count' ) ? '-liked_count' : '-article_datetime';
+            this.getList();
+
+            // 绑定scroll加载事件
+            window.onscroll = function(){
+                /*滚动响应区域高度取500px*/
+                that.scrollHandle();
+            }
+        }
+    })
+</script>
 {% comment %}
 {% endcomment %}
 

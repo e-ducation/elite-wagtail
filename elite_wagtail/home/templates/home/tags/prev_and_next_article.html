@@ -1,16 +1,25 @@
 <div class="article-nav">
-  <a class="prev" href="{{ prev_url }}">
-    <div>上一篇</div>
-    <div>{{ prev_title }}</div>
-  </a>
-  <a class="next" href="{{ next_url }}">
-    <div>下一篇</div>
-    <div>{{ next_title }}</div>
-  </a>
+  {% if prev_url == '#' %}
+    <div class="prev">
+      <div>上一篇</div>
+      <p>{{ prev_title }}</p>
+    </div>
+  {% else %}
+    <a class="prev" href="{{ prev_url }}">
+      <div>上一篇</div>
+      <p>{{ prev_title }}</p>
+    </a>
+  {% endif %}
+
+  {% if next_url == '#' %}
+    <div class="next">
+      <div>下一篇</div>
+      <p>{{ next_title }}</p>
+    </div>
+  {% else %}
+    <a class="next" href="{{ next_url }}">
+      <div>下一篇</div>
+      <p>{{ next_title }}</p>
+    </a>
+  {% endif %}
 </div>
-<!--
-{{ prev_url }}
-{{ prev_title }}
-{{ next_url }}
-{{ next_title }}
--->

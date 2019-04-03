@@ -19,22 +19,24 @@
                     <div class="article-info">
                         {% image page.author_image original as image %}
                         <img src="{{ image.url }}" />
-                        <span>{{ page.author_name }}</span>
-                        <span> | {{ page.article_datetime }}</span>
+                        <span class="article-author">{{ page.author_name }}</span>
+                        <span class="article-date">{{ page.article_datetime|date:"Y-m-d H:i" }}</span>
+                        {% for tag in page.tags.all %}
+                            <span class="article-tag">{{ tag }}</span>
+                        {% endfor %}
                     </div>
                     <div class="article-raw">
                         {{ page.body }}
                     </div>
                     <div class="like">
-                        <div>
+                        <div onclick="like()">
                             <img src="/static/images/like.png" />
-                            <div>12</div>
+                            <img src="/static/images/liked.png" />
+                            <div class="count">{{ page.liked_count }}</div>
                         </div>
                         <p>赞一个</p>
                     </div>
-                    
                     {% prev_and_next_article %}
-                    
                 </div>
                 {% if settings.home.PopularArticleSettings.display_popular_articles%}
                     {% popular_articles %}
@@ -43,9 +45,29 @@
         </div>
     </main>
     {% include 'home/footer.html' %}
+    {% csrf_token %}
 </div>
-
+<script>
+    var article_id = {{ page.id }};
+    var liked = false;
+    function like(){
+        if (liked) return false;
+        liked = true;
+        $.ajax({
+            type: 'PUT',
+            url: '/articles/' + article_id + '/liked/',
+            success: function(res){
+                $('.like > div').addClass('liked');
+                $('.like .count').html(res.liked_count);
+            }
+        })
+    } 
+    window.onload = function(){
+        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    }
+</script>
 {% comment %}
 {% endcomment %}
+
 
 {% endblock content %}
