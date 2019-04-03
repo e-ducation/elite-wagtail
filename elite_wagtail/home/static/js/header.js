@@ -191,7 +191,7 @@ $(document).ready(function(){
     
 
     var isLoggedin = $.cookie('edxloggedin');
-    
+
     if (isLoggedin){
         var userInfo = $.cookie('edx-user-info');
         var info = JSON.parse(userInfo.replace(/\\054/g, ','));
@@ -201,6 +201,24 @@ $(document).ready(function(){
         $('.nav-item .username').html(info.username) // set name
         $('.user-url').attr('href', '/u/'+info.username)
         $('.user-image-frame').attr('src', info.profile_image_url);
+
+        // 哈商
+        var hmm_url = $.cookie('hmm_url');
+        var hmm_expiry_date = $.cookie('hmm_expiry_date');
+        if (hmm_url && hmm_expiry_date){
+            var style = document.createElement('style');
+            var css = ".nav-tab-harvard .tab-nav-link{text-align:center;position:relative;top:-9px}.nav-tab-harvard .tab-nav-link span{display:block}.nav-tab-harvard .tab-nav-link span:last-child{font-size:12px;color:#999}@media screen and (max-width:992px){.nav-tab-harvard:hover .tab-nav-link span:last-child{color:#fff}.nav-tab-harvard .tab-nav-link{text-align:left;position:static}.nav-tab-harvard .tab-nav-link span{display:inline-block}.nav-tab-harvard .tab-nav-link span:last-child{float:right;font-size:14px}}";
+            if(style.styleSheet){
+                style.styleSheet.cssText = css;
+            }else{
+                style.appendChild(document.createTextNode(css));
+            }
+            document.getElementsByTagName('head')[0].appendChild(style);
+
+            var a = '<div class="mobile-nav-item hidden-mobile nav-item nav-tab nav-tab-harvard"><a class="tab-nav-link" href="' + hmm_url + '"><span>哈佛学习营</span><span>有效期至:' + hmm_expiry_date + '</span></a></div>'
+            $('.global-header .main').append(a);
+        }
+
         // 置空
         $('.mobile-menu').html('');
         createMobileMenu()
@@ -209,6 +227,7 @@ $(document).ready(function(){
                 $(this).hide()
             }
         })
+        
     } else{
         $('.secondary.login').hide();
         $('.secondary.logout').show();
