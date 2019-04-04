@@ -45,11 +45,23 @@
         </div>
     </main>
     {% include 'home/footer.html' %}
-    {% csrf_token %}
 </div>
+{% csrf_token %}
 <script>
     var article_id = {{ page.id }};
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
     var liked = false;
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
     function like(){
         if (liked) return false;
         liked = true;
@@ -62,9 +74,6 @@
             }
         })
     } 
-    window.onload = function(){
-        var csrftoken = $("[name=csrfmiddlewaretoken]").val();
-    }
 </script>
 {% comment %}
 {% endcomment %}
