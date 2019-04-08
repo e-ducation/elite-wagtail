@@ -7,17 +7,20 @@
 {% endblock extra_css %}
 
 {% block content %}
-<div class="window-wrap">
-{% include 'home/header.html' %}
-<main class="main content-wrapper">
-        {{ page.body }}
-</main>
-{% include 'home/footer.html' %}
+    {% block adv %}
+        {% include 'home/notice.html' %}
+    {% endblock adv %}
+    <div class="window-wrap">
+        {% include 'home/header.html' %}
+        <main class="main content-wrapper">
+            {{ page.body }}
+        </main>
+        {% include 'home/footer.html' %}
 
-</div>
-{% comment %}
+    </div>
+    {% comment %}
 {% endcomment %}
 
-   
+
 
 {% endblock content %}

@@ -1,0 +1,43 @@
+{{ page.advert.raw_html |safe }}
+
+<script>
+    /*
+    * notice_type
+    * 1: 只弹一次            notice_id: notice_id
+    * 2: 每天弹出一次         notice_id: notice_id, notice_close_time: 2012-02-02
+    * 3: 每次打开页面弹一次
+    */
+    var notice_type = {{ page.advert.adv_status }};
+    var notice_id = '{{ page.advert.update_id }}';
+
+    /*
+    * 判断广告要出现
+    * 1. cookie里的id与要显示的id不一致
+    * 2. id一致，每次打开页面弹一次 type == 3
+    * 3. id一致，每天弹出一次 type == 2，距离上次关闭时间 > 1天
+    */
+    if (!$.cookie('notice_id') || $.cookie('notice_id') != notice_id) {
+        $('.notice').show();
+    } else if (notice_type == 3) {
+        $('.notice').show();
+    } else if (notice_type == 2 && (new Date().getTime() - $.cookie('notice_close_time') > 24 * 60 * 60 * 1000)) {
+        $('.notice').show();
+    }
+
+    function closeNotice() {
+        $('.notice').hide();
+        // 记录已读
+        if (notice_type == 1) {
+            $.cookie('notice_id', notice_id);
+        } else if (notice_type == 2) {
+            $.cookie('notice_id', notice_id);
+            $.cookie('notice_close_time', new Date().getTime());
+        }
+    }
+
+    function goToNotice(url) {
+        closeNotice();
+        window.open(url);
+    }
+</script>
+
