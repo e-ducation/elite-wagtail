@@ -2,10 +2,16 @@
 @import 'variables';
 @import 'header'; 
 @import 'footer';
-@import 'component';
+
+@import 'notice';
 @import 'slider';
+@import 'tag';
+@import 'component';
+@import 'story';
+
 @import 'article';
-@import 'article_list';
+@import 'articleList';
+
 
 *{
   margin: 0;
@@ -16,3 +22,24 @@ body{
   font-family: $font-family;
   font-size: 14px;
 }
+a,
+h1,
+h2,
+p {
+  text-decoration: none;
+  &:hover,
+  &:active,
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
+
+.clearfix::after { clear: both; }
+.clearfix { *zoom: 1; }

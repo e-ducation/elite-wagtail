@@ -1,0 +1,74 @@
+.tag {
+  background: #0baffb;
+  color: #fff;
+  >div {
+    max-width: 1220px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 10px 0 70px;
+  }
+  h3 {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 46px;
+  }
+  a {
+    text-decoration: none;
+    padding: 8px 27px;
+    display: inline-block;
+    span{
+      line-height: 30px;
+      padding: 0 8px;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 3px;
+      &:hover{
+        background: #05a1e9;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:576px){
+  .tag{
+    background: #fff;
+    color: $font;
+    font-size: 0;
+    >div{
+      padding: 0;
+    }
+    h3{
+      position: static;
+      text-align: center;
+      background: #b6dcfe33;
+      &:after{
+        content: '';
+        width: 10px;
+        height: 6px;
+        display: inline-block;
+        background: url('../images/up.png') no-repeat;
+        background-size: contain;
+        position: relative;
+        top: -2px;
+      }
+    }
+    a{ 
+      border-right: 1px solid $border;
+      border-bottom: 1px solid $border;
+      font-size: 14px;
+      padding: 8px 0;
+      width: 33.3%;
+      text-align: center;
+
+      &:nth-child(1), &:nth-child(2), &:nth-child(3){
+        border-top: 1px solid $border;
+      }
+      &:nth-child(3n+3){
+        border-right: none;
+      }
+    }
+  }
+}
