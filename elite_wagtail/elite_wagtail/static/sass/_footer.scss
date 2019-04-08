@@ -1,14 +1,14 @@
 // my-footer
-$border:#b6dcfe;
+$border-footer:#b6dcfe;
 .my-footer{
     width: 100%;
     color: $font;
     font-size: 14px;
-    box-shadow: 0 2px 2px 2px $border;
+    box-shadow: 0 2px 2px 2px $border-footer;
     line-height: 1.8;
     padding: 14px 0;
     box-sizing: border-box;
-    border-top: 1px solid $border;
+    border-top: 1px solid $border-footer;
     // 1. 布局
     .footer-content{
       width: 96%;
@@ -23,7 +23,7 @@ $border:#b6dcfe;
       margin-right: 5%;
       vertical-align: text-top;
       height: 158px;
-      border-right: 1px dashed $border;
+      border-right: 1px dashed $border-footer;
       padding-top: 22px;
     }
   
@@ -32,7 +32,7 @@ $border:#b6dcfe;
       display: inline-block;
       width: 13%;
       vertical-align: text-top;
-      border-left: 1px dashed $border;
+      border-left: 1px dashed $border-footer;
       padding-top: 22px;
       h3{ 
         text-align: center;
@@ -80,7 +80,7 @@ $border:#b6dcfe;
     .footer-line{
       width: 65.5%;
       height: 1px;
-      border-bottom: 1px dashed $border;
+      border-bottom: 1px dashed $border-footer;
       position: absolute;
       left: 20%;
       top: 58px;
@@ -108,7 +108,7 @@ $border:#b6dcfe;
         position: absolute;
         bottom: 42px;
         left: -20px;
-        box-shadow: 0px 1px 4px 0px $border;
+        box-shadow: 0px 1px 4px 0px $border-footer;
         padding: 5px;
         display: none;
         background: #fff;
@@ -151,7 +151,7 @@ $border:#b6dcfe;
     .footer-qrcode{
       width: 60px;
       margin: 10px 0;
-      border: 1px solid $border;
+      border: 1px solid $border-footer;
     }
     .footer-wechat div{
       font-size: 12px;
@@ -196,7 +196,7 @@ $border:#b6dcfe;
   
   @media screen and (max-width:768px){
     .my-footer{
-      border-top: 1px solid $border;
+      border-top: 1px solid $border-footer;
       box-shadow: none;
       padding: 40px 0 20px 0;
   

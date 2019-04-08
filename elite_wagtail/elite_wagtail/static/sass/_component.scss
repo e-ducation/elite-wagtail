@@ -1,96 +1,3 @@
-$font: #656D78;
-$title: #2E313C;
-$note: #AAB2BD;
-$blue: #4788C7;
-$border: rgb(233, 233, 233);
-$font-family: -apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-Roboto,
-"Helvetica Neue",
-Helvetica,
-Tahoma，Arial,
-"PingFang SC",
-"Hiragino Sans GB",
-"Heiti SC",
-"Microsoft YaHei",
-"WenQuanYi Micro Hei",
-SimHei，sans-serif;
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: $font-family;
-  font-size: 14px;
-  padding: 0;
-  margin: 0;
-}
-
-a,
-h1,
-h2,
-p {
-  text-decoration: none;
-  &:hover,
-  &:active,
-  &:link,
-  &:visited {
-    color: inherit;
-  }
-}
-
-@mixin text-overflow($line, $font-size: 14px) {
-  @if $line == 1 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  } @else {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: $line;
-    overflow: hidden;
-    max-height: $font-size * 1.5 * $line ;
-  }
-
-}
-
-.tag {
-  background: #0baffb;
-  color: #fff;
-  >div {
-    max-width: 1220px;
-    margin: 0 auto;
-    position: relative;
-    padding: 0 10px 0 70px;
-  }
-  h3 {
-    position: absolute;
-    top: 0;
-    left: 10px;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 46px;
-  }
-  a {
-    text-decoration: none;
-    padding: 8px 27px;
-    display: inline-block;
-    span{
-      line-height: 30px;
-      padding: 0 8px;
-      display: inline-block;
-      vertical-align: middle;
-      border-radius: 3px;
-      &:hover{
-        background: #05a1e9;
-      }
-    }
-  }
-}
-
 .section {
   max-width: 1220px; // min-width: 960px;
   margin: 0 auto;
@@ -258,93 +165,6 @@ p {
   }
 }
 
-// 用户故事
-.section-story {
-  .left {
-    flex: 1;
-    display: flex;
-    border: none;
-
-    .first{
-      flex: 0 0 33.6%;
-      border: 1px solid $border;
-      font-size: 0;
-
-      img:first-child{
-        width: 100%;
-        margin-bottom: 4px;
-      }
-      img:nth-child(2){
-        width: 50%;
-        display: inline-block;
-        height: auto;
-        padding-right: 2px;
-      }
-      img:nth-child(3){
-        width: 50%;
-        display: inline-block;
-        float: right;
-        padding-left: 2px;
-        height: auto
-      }
-      h2 {
-        margin: 17px 20px;
-        @include text-overflow(2)
-      }
-    }
-
-    .second{
-      flex: 0 0 64.4%;
-      border: none;
-      width: 0;
-      overflow: hidden;
-      margin: 0;
-      background: none;
-      >div {
-        position: relative;
-        height: 160px;
-        border: 1px solid $border;
-        overflow: hidden;
-        margin: 0 10px;
-        background: #fff;
-        h2{
-          @include text-overflow(1);
-        }
-        img {
-          height: 100%;
-          width: auto;
-          position: absolute;
-          top: 0;
-        }
-        &:first-child{
-          padding: 20px 20px 20px 310px;
-          margin-bottom: 20px;
-          img {
-            left: 0;
-          }
-        }
-        &:last-child{
-          padding: 20px 310px 20px 20px;
-          img{
-            right: 0;
-          }
-        }
-        p {
-          @include text-overflow(4)
-        }
-      }
-    }
-  }
-  
-  .right{
-    flex: 0 0 150px;
-    border: none;
-    margin: 0 10px;
-    img{
-      height: 340px;
-    }
-  }
-}
 
 // 单图
 .section-pic {
@@ -401,6 +221,7 @@ p {
         width: 200px;
         height: 200px;
         margin: 35px auto;
+        border-radius: 200px;
       }
     }
     .series-course-block {
@@ -439,11 +260,6 @@ p {
       display: none;
     }
   }
-  .section-story {
-    .right {
-      display: none;
-    }
-  }
 }
 
 @media screen and (max-width:768px) {
@@ -455,9 +271,30 @@ p {
   .series-course .series-course-item{
     flex: 0 0 50%;
   }
+  .section-recommand{
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width:576px) {
+  .section{
+    h1{
+      font-size: 16px;
+      padding: 40px 10px 20px;
+      &:after{
+        content: '';
+        width: 40px;
+        height: 3px;
+        background: $primary;
+        display: block;
+        margin: 5px auto 0;
+      }
+    }
+    h2{
+      font-size: 14px;
+    }
+  } 
   .row {
     .col-3,
     .col-4,
@@ -466,54 +303,26 @@ p {
       height: auto;
     }
   }
-  
-  .section-story{
-    .left{
-      display: block;
-      width: 100%;
-      height: auto;
-      .first,
-      .second {
-        flex: 0 0 100%;
-        margin: 0 0 20px 0;
-        height: auto;
-      }
-      .second{
-        width: auto;
-        >div{
-          height: auto;
-          
-          &:first-child, &:nth-child(2){
-            padding: 0;
-          }
-          img{
-            position: static;
-            width: 100%;
-          }
-          h2{
-            margin: 20px 20px 0;
-          }
-          p{
-            margin: 0 20px 20px;
-          }
-        }
-      }
-    }
-  }
   .section-professor {
     >div {
       height: auto;
     }
-  }
-  .series-course .series-course-item{
-    flex: 0 0 100%;
-  }
-  .tag{
-    h3{
-      left: 34px;
-    }
-    >div{
-      padding: 0 10px 0 104px;
+    .col-6{
+      &:nth-child(3), &:nth-child(4){
+        margin-bottom: 20px;
+      }
     }
   }
+  .series-course{
+    h1{
+      text-align: center;
+    }
+    .series-course-item{
+      flex: 0 0 100%;
+    }
+  } 
+  .section-recommand{
+    width: 100%;
+  }
+
 }

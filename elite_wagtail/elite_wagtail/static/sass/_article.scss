@@ -10,6 +10,9 @@
       font-size: 30px;
       text-align: left;
       padding: 0;
+      &:after{
+        display: none;
+      }
     }
     .article-info{
       margin: 25px 0;
@@ -19,6 +22,7 @@
         height: 24px;
         vertical-align: middle;
         margin-right: 8px;
+        border-radius: 24px;
       }
       .article-author{
         color: $font;
@@ -96,7 +100,7 @@
   font-size: 16px;
   >a, >div {
     display: inline-block;
-    max-width: 50%;
+    width: 50%;
     vertical-align: text-top;
     padding: 15px;
     >p{
@@ -109,9 +113,11 @@
     }
     p{
       color: $title;
+      
     }
   }
   .prev{
+    padding-right: 15%;
     div{
       border-left: 4px solid $blue;
       padding-left: 5px;
@@ -120,6 +126,7 @@
   .next{
     text-align: right;
     float: right;
+    padding-left: 15%;
     div{
       border-right: 4px solid $blue;
       padding-right: 5px;
@@ -129,7 +136,7 @@
 
 // 热门文章
 .hot{
-  flex: 0 0 350px;
+  flex: 0 0 29%;
   border: 1px solid $border;
   border-radius: 3px;
   height: 100%;
@@ -182,5 +189,43 @@
       color: $note;
       margin-top: 10px;
     }
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .article{
+    display: block;
+    margin-top: 20px;
+    padding: 0 10px;
+    .article-content{
+      padding: 0;
+    }
+  }
+}
+@media screen and (max-width: 576px){
+  .article{
+    .article-content{
+      h1{
+        font-size: 24px;
+      }
+      .article-info{
+        margin: 20px 0;
+        img{
+          display: none;
+        }
+        .article-tag{
+          display: none;
+        }
+        .article-date:before{
+          display: none;
+        }
+        .article-author{
+          color: $primary;
+        }
+      }
+    } 
+  }
+  .article-nav{
+    display: none;
   }
 }

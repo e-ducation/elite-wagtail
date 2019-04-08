@@ -3,9 +3,16 @@
 <!-- 课程分类 -->
 <div class="tag">
     <div>
-        <h3>课程分类：</h3>
+        <h3 onclick="">课程分类：</h3>
+        <div>
         {% for item in value.categorieslist %}
             <a href={{ item.categories_link }} target="_blank"><span>{{ item.categories_name }}</span></a>
         {% endfor %}
+        </div>
     </div>
 </div>
+<script>
+  $('.tag h3').click(function(){
+    
+  })
+</script>
