@@ -37,29 +37,15 @@ from .routes import ArticleListRoutes
 from rest_framework.fields import DateTimeField
 
 NOTICE_HTML = """
-  <div class="notice notice-privacy">
-    <p>
-      出于性能测试、数据分析和市场营销等目的，英荔使用cookies及其他跟踪技术。使用本网站即表示您接受此项操作。请在<a href="http://www.baidu.com">“隐私政策”</a>中了解更多相关技术的信息。
-      <svg onclick="closeNotice()" viewBox="64 64 896 896" class="" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
-    </p>
-  </div>
-  <div class="notice notice-ad">
-    <p>
-      营销的真正秘诀是什么？美国MBA教授给你不一样的答案。长岛大学商学院市场营销及国际商务系主任张东隆教授的新课程《营销管理与应用》上线啦！新学员限时优惠。
-      <span>
-        <a class="notice-btn" onclick="closeNotice()">我知道了</a>
-        <a class="notice-blue-btn" onclick="goToNotice('http://www.baidu.com')">去看看</a>
-      </span>
-      <svg onclick="closeNotice()" viewBox="64 64 896 896" class="" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
-    </p>
-          
-  </div>
-  <div class="notice notice-update">
-    <p><span style="color:black">版本更新通知：</span>英荔商学院将迎来版本升级，于<span style="color:black;">3月22日晚21:00至23:00</span>进行服务器更新。届时部分功能的使用将受到影响，敬请期待更优质的新版体验~届时部分功能的使用将受到影响，
-  敬请期待更优质的<span style="color:black;">新版体验</span>。
-    <svg onclick="closeNotice()" viewBox="64 64 896 896" class="" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
-          </p>
-  </div>
+【提示语句】<br/>
+- GDPR要求的隐私声明<br/>
+出于性能测试、数据分析和市场营销等目的，英荔使用cookies及其他跟踪技术。使用本网站即表示您接受此项操作。请在&lt;a href="http://www.baidu.com"&gt;“隐私政策”&lt;/a&gt;中了解更多相关技术的信息。<br/>
+
+- 特殊事项公告<br/>
+&lt;span style="color:#2e313c"&gt;版本更新通知：&lt;/span&gt;英荔商学院将迎来版本升级，于&lt;span style="color:#2e313c;"&gt;3月22日晚21:00至23:00&lt;/span&gt;进行服务器更新。届时部分功能的使用将受到影响，敬请期待更优质的新版体验~届时部分功能的使用将受到影响，敬请期待更优质的&lt;span style="color:#2e313c;"&gt;新版体验&lt;/span&gt;。<br/>
+
+- 广告推送<br/>
+营销的真正秘诀是什么？美国MBA教授给你不一样的答案。长岛大学商学院市场营销及国际商务系主任张东隆教授的新课程《营销管理与应用》上线啦！新学员限时优惠。
 """
 
 
@@ -461,18 +447,34 @@ class Advert(models.Model):
         (ONCE_A_DAY, _("每天弹出一次")),
         (PAGE_REQUEST_EACH_TIME, _("每次打开页面弹一次")),
     )
+
+    ADV_TYPE_1 = 1
+    ADV_TYPE_2 = 2
+    ADV_TYPE_3 = 3
+
+    ADV_TYPE_CHOICE = (
+        (ADV_TYPE_1, _("GDPR要求的隐私声明")),
+        (ADV_TYPE_2, _("特殊事项公告")),
+        (ADV_TYPE_3, _("广告推送")),
+    )
+
     title = models.CharField(verbose_name=_('广告标题'), max_length=5, validators=[
         MinLengthValidator(2),
     ])
     update_id = models.UUIDField(blank=True)
-    raw_html = models.TextField()
-    adv_status = models.IntegerField(choices=PUSH_CHOICES, default=ONCE, verbose_name=_('广告弹窗类型'))
+    raw_html = models.TextField(verbose_name=_('广告正文'))
+    adv_status = models.IntegerField(choices=PUSH_CHOICES, default=ONCE, verbose_name=_('广告弹窗频率'))
+
+    adv_type = models.IntegerField(choices=ADV_TYPE_CHOICE, default=ONCE, verbose_name=_('广告弹窗类型'))
+    type2_url = models.URLField(blank=True, verbose_name=_('特殊事项公告需要的链接'))
 
     panels = [
         FieldPanel('title'),
         FieldPanel('adv_status'),
         FieldPanel('raw_html'),
-        NewHelpPanel(NOTICE_HTML, template='home/new_help_panel.html'),
+        FieldPanel('adv_type'),
+        FieldPanel('type2_url'),
+        HelpPanel(NOTICE_HTML),
     ]
 
     def save(self, *args, **kwargs):
