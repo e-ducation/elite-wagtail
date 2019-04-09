@@ -1,12 +1,11 @@
-import ast
-from datetime import datetime
+import uuid
 
 from django.db import models
-from django.core.cache import cache
 from django.core.validators import (
     MaxLengthValidator,
     MinLengthValidator,
 )
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 from wagtail.admin.edit_handlers import (
@@ -16,6 +15,7 @@ from wagtail.admin.edit_handlers import (
     PageChooserPanel,
     StreamFieldPanel,
 )
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.api import APIField
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.core import blocks
@@ -35,6 +35,32 @@ from taggit.models import TaggedItemBase, Tag as TaggitTag
 from .routes import ArticleListRoutes
 
 from rest_framework.fields import DateTimeField
+
+NOTICE_HTML = """
+  <div class="notice notice-privacy">
+    <p>
+      出于性能测试、数据分析和市场营销等目的，英荔使用cookies及其他跟踪技术。使用本网站即表示您接受此项操作。请在<a href="http://www.baidu.com">“隐私政策”</a>中了解更多相关技术的信息。
+      <svg onclick="closeNotice()" viewBox="64 64 896 896" class="" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
+    </p>
+  </div>
+  <div class="notice notice-ad">
+    <p>
+      营销的真正秘诀是什么？美国MBA教授给你不一样的答案。长岛大学商学院市场营销及国际商务系主任张东隆教授的新课程《营销管理与应用》上线啦！新学员限时优惠。
+      <span>
+        <a class="notice-btn" onclick="closeNotice()">我知道了</a>
+        <a class="notice-blue-btn" onclick="goToNotice('http://www.baidu.com')">去看看</a>
+      </span>
+      <svg onclick="closeNotice()" viewBox="64 64 896 896" class="" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
+    </p>
+          
+  </div>
+  <div class="notice notice-update">
+    <p><span style="color:black">版本更新通知：</span>英荔商学院将迎来版本升级，于<span style="color:black;">3月22日晚21:00至23:00</span>进行服务器更新。届时部分功能的使用将受到影响，敬请期待更优质的新版体验~届时部分功能的使用将受到影响，
+  敬请期待更优质的<span style="color:black;">新版体验</span>。
+    <svg onclick="closeNotice()" viewBox="64 64 896 896" class="" data-icon="close" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
+          </p>
+  </div>
+"""
 
 
 @register_setting
@@ -206,17 +232,14 @@ class SeriesBlock(blocks.StructBlock):
 
 
 class HomePage(Page):
-    ONCE = 1
-    ONCE_A_DAY = 2
-    PAGE_REQUEST_EACH_TIME = 3
-
-    PUSH_CHOICES = (
-        (ONCE, _("只弹一次")),
-        (ONCE_A_DAY, _("每天弹出一次")),
-        (PAGE_REQUEST_EACH_TIME, _("每次打开页面弹一次")),
+    advert = models.ForeignKey(
+        'home.Advert',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
     )
 
-    adv_status = models.IntegerField(choices=PUSH_CHOICES, default=ONCE, verbose_name=_('广告弹窗'))
     body = StreamField([
         ('Paragraph', blocks.RichTextBlock()),
         ('Image', ImageChooserBlock()),
@@ -261,39 +284,9 @@ class HomePage(Page):
     ])
 
     content_panels = Page.content_panels + [
-        FieldPanel('adv_status'),
         StreamFieldPanel('body'),
+        SnippetChooserPanel('advert'),
     ]
-
-    def get_context(self, request):
-        context = super().get_context(request)
-        push_adv = self.push_adv_or_not(request, context)
-        context['push_adv'] = push_adv
-        return context
-
-    def push_adv_or_not(self, request, context):
-        try:
-            adv_status = self.adv_status
-            cache_key = 'push_adv_{uid}_time'.format(uid=ast.literal_eval(request.COOKIES['edx-user-info'])['username'])
-            cache_value = cache.get(cache_key, '')
-            if not cache_value:
-                cache.set(cache_key, datetime.now().date())
-                return True
-            if adv_status == self.ONCE:
-                cache.set(cache_key, datetime.now().date())
-                return False
-            elif adv_status == self.ONCE_A_DAY:
-                if cache_value == datetime.now().date():
-                    return False
-                else:
-                    cache.set(cache_key, datetime.now().date())
-                    return True
-            elif adv_status == self.PAGE_REQUEST_EACH_TIME:
-                cache.set(cache_key, datetime.now().date())
-                return True
-            return False
-        except Exception as err:
-            return False
 
 
 class ArticleListPage(ArticleListRoutes, Page):
@@ -333,7 +326,6 @@ class ArticlePageTag(TaggedItemBase):
 
 
 class ArticlePage(Page):
-
     tags = ClusterTaggableManager(through=ArticlePageTag, blank=True)
     author_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -402,7 +394,6 @@ class ArticlePage(Page):
 
 @register_snippet
 class PopularArticle(Orderable):
-
     RANDOM_STRATEGY = (
         ('liked', 'liked'),
         ('last_published_at', 'last_published_at'),
@@ -448,3 +439,45 @@ class PopularArticle(Orderable):
             return self.get_random_popular_articles()
         else:
             return self.selected_articles.all()
+
+
+class NewHelpPanel(HelpPanel):
+
+    def render(self):
+        import re
+        return render_to_string(self.template, {
+            'self': self
+        })
+
+
+@register_snippet
+class Advert(models.Model):
+    ONCE = 1
+    ONCE_A_DAY = 2
+    PAGE_REQUEST_EACH_TIME = 3
+
+    PUSH_CHOICES = (
+        (ONCE, _("只弹一次")),
+        (ONCE_A_DAY, _("每天弹出一次")),
+        (PAGE_REQUEST_EACH_TIME, _("每次打开页面弹一次")),
+    )
+    title = models.CharField(verbose_name=_('广告标题'), max_length=5, validators=[
+        MinLengthValidator(2),
+    ])
+    update_id = models.UUIDField(blank=True)
+    raw_html = models.TextField()
+    adv_status = models.IntegerField(choices=PUSH_CHOICES, default=ONCE, verbose_name=_('广告弹窗类型'))
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('adv_status'),
+        FieldPanel('raw_html'),
+        NewHelpPanel(NOTICE_HTML, template='home/new_help_panel.html'),
+    ]
+
+    def save(self, *args, **kwargs):
+        self.update_id = uuid.uuid1()
+        super(Advert, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
