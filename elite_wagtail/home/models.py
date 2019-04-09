@@ -466,14 +466,14 @@ class Advert(models.Model):
     adv_status = models.IntegerField(choices=PUSH_CHOICES, default=ONCE, verbose_name=_('广告弹窗频率'))
 
     adv_type = models.IntegerField(choices=ADV_TYPE_CHOICE, default=ONCE, verbose_name=_('广告弹窗类型'))
-    type2_url = models.URLField(blank=True, verbose_name=_('特殊事项公告需要的链接'))
+    type3_url = models.URLField(blank=True, verbose_name=_('广告推送需要的链接'))
 
     panels = [
         FieldPanel('title'),
         FieldPanel('adv_status'),
         FieldPanel('raw_html'),
         FieldPanel('adv_type'),
-        FieldPanel('type2_url'),
+        FieldPanel('type3_url'),
         HelpPanel(NOTICE_HTML),
     ]
 
