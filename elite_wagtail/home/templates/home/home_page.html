@@ -7,10 +7,10 @@
 {% endblock extra_css %}
 
 {% block content %}
-    {% block adv %}
-        {% include 'home/notice.html' %}
-    {% endblock adv %}
     <div class="window-wrap">
+        {% block adv %}
+            {% include 'home/notice.html' %}
+        {% endblock adv %}
         {% include 'home/header.html' %}
         <main class="main content-wrapper">
             {{ page.body }}
