@@ -18,14 +18,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 body{
   font-family: $font-family;
   font-size: 14px;
+  display: flex;
+  width: 100vw;
+  overflow-x: hidden;
+  padding-left: calc(~"100vw - 100%");
 }
-a,
-h1,
-h2,
-p {
+a{
   text-decoration: none;
   &:hover,
   &:active,
@@ -43,3 +48,6 @@ p {
 
 .clearfix::after { clear: both; }
 .clearfix { *zoom: 1; }
+.wagtail-userbar-reset{
+  display: none !important;
+}

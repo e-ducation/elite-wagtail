@@ -319,6 +319,12 @@
     }
     .series-course-item{
       flex: 0 0 100%;
+      .series-course-block{
+        margin-right: 0;
+      }
+      &.no-next, &:after{
+        display: none;
+      }
     }
   } 
   .section-recommand{

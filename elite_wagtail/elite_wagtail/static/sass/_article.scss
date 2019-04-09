@@ -42,7 +42,7 @@
   }
 
   .article-raw{
-    img{
+    span, img{
       max-width: 100%;
     }
   }
@@ -62,11 +62,8 @@
     padding-top: 15px;
     cursor: pointer;
 
-    img{
-      width: 22px;
-      &:nth-child(2){
-        display: none;
-      }
+    svg{
+      fill: #d4d6d9;
     }
     div{
       font-size: 12px;
@@ -75,11 +72,8 @@
     &:hover, &.liked{
       color: $blue;
       border: 1px solid $blue;
-      img:nth-child(1){
-        display: none;
-      }
-      img:nth-child(2){
-        display: inline-block;
+      svg{
+        fill: $primary;
       }
     }
     &.liked{
@@ -97,14 +91,17 @@
 .article-nav{
   border-top: 1px solid $border;
   padding: 20px 0;
-  font-size: 16px;
+  
   >a, >div {
     display: inline-block;
-    width: 50%;
+    width: auto;
+    max-width: 35%;
+    min-width: 15%;
     vertical-align: text-top;
     padding: 15px;
     >p{
       margin-top: 10px;
+      font-size: 14px;
     }
   }
   >a{
@@ -117,7 +114,6 @@
     }
   }
   .prev{
-    padding-right: 15%;
     div{
       border-left: 4px solid $blue;
       padding-left: 5px;
@@ -126,7 +122,6 @@
   .next{
     text-align: right;
     float: right;
-    padding-left: 15%;
     div{
       border-right: 4px solid $blue;
       padding-right: 5px;

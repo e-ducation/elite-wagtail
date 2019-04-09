@@ -16,8 +16,8 @@
     <main class="main content-wrapper">
     <div class="section section-list">
         <h2>{{ article_page.title }}</h2>
-        <div class="row-list">
-            <div class="col-list" id="app">
+        <div class="row-list" id="app" v-cloak>
+            <div class="col-list">
                 {% with per_page=article_page.num_entries_page %}
                     {% if article_page.display_tags %}
                         {% tags_list %}
@@ -37,7 +37,8 @@
                                 <img class="item-avatar" :src="item.author_image.meta.download_url" /> 
                                 <span class="item-name">${ item.author_name }</span>
                                 <span class="item-date">${ item.article_datetime }</span>
-                                <img class="item-like" src="/static/images/like.png" />${ item.liked_count }
+                                <svg class="icon" style="width: 13px; height: 13px;overflow: hidden;fill: #bbbbbb;vertical-align: text-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="627"><path d="M884.876 423.143H646.97C739.156 82.68 583.454 65.29 583.454 65.29c-65.993 0-52.313 52.182-57.303 60.882 0 166.502-176.85 296.971-176.85 296.971v472.172c0 46.608 63.517 63.394 88.433 63.394h357.452c33.641 0 61.036-88.224 61.036-88.224 88.434-300.706 88.434-390.178 88.434-390.178 0.001-62.128-59.78-57.164-59.78-57.164z m0 0M251.671 423.3H109.215c-29.42 0-29.873 28.896-29.873 28.896l29.42 476.203c0 30.309 30.361 30.309 30.361 30.309H262.42c25.686 0 25.46-20.05 25.46-20.05V459.411c0-36.574-36.209-36.111-36.209-36.111z m0 0" p-id="628"></path></svg>
+                                ${ item.liked_count }
                                 <span class="item-tag" v-for="tag in item.tags">
                                     ${ tag }
                                 </span>
@@ -77,13 +78,15 @@
             order: '',
             loading: false,
             tag: '',
+            show_mobile_tag: false,
+            isMobile: false,
         },
         methods:{
             getList: function(){
                 if (this.loading || !this.has_more) return false;
 
                 var that = this;
-                var str_tag = this.tag ? ( '&&tags=' + this.tag ) : ''
+                var str_tag = this.tag ? ( '&&tags=' + encodeURIComponent(this.tag) ) : ''
                 var str = 'offset=' + this.list.length + '&&limit=20&&order=' + this.order + str_tag;
                 this.loading = true;
                 
@@ -121,30 +124,51 @@
                 this.initAndchangeHash();
                 this.getList(0)
             },
-            scrollHandle: function(){
+            handleScroll: function(){
                 if(document.documentElement.scrollTop + window.innerHeight > (document.body.clientHeight - 500)){
                     this.getList();
+                }
+            },
+            handleResize: function(){
+              if (document.body.clientWidth < 576){
+                  this.isMobile = true;
+                  $('.window-wrap .global-header').css('position', 'fixed');
+                  $('.window-wrap .global-header .main-header').css('position', 'relative');
+                } else {
+                  this.isMobile = false;
+                  $('.window-wrap .global-header').css('position', 'static');
+                  $('.window-wrap .global-header .main-header').css('position', 'relative');
                 }
             },
             initAndchangeHash: function(){
                 this.has_more = true;
                 this.list = [];
-                window.location.hash = '#' + decodeURI(this.tag) + '#' + this.order;
+                if (this.isMobile) {
+                  this.show_mobile_tag = false;
+                }
+                // window.location.hash = '#' + decodeURI(this.tag) + '#' + this.order;
+            },
+            toggleMobileTag: function(){
+              this.show_mobile_tag = !this.show_mobile_tag;
             }
         },
         mounted: function(){
             var that = this;
             
             // 根据url确定tag, order
-            var url = window.location.href.split('#');
-            this.tag = url.length > 1 ? decodeURI(url[1]) : '';
-            this.order = (url[2] && url[2] == '-liked_count' ) ? '-liked_count' : '-article_datetime';
-            this.getList();
-
+            // var url = window.location.href.split('#');
+            // this.tag = url.length > 1 ? decodeURI(url[1]) : '';
+            // this.order = (url[2] && url[2] == '-liked_count' ) ? '-liked_count' : '-article_datetime';
+            this.handleResize();
+            this.getNewList();
+            
             // 绑定scroll加载事件
             window.onscroll = function(){
-                /*滚动响应区域高度取500px*/
-                that.scrollHandle();
+              /*滚动响应区域高度取500px*/
+              that.handleScroll();
+            }
+            window.onresize = function(){
+              that.handleResize();
             }
         }
     })

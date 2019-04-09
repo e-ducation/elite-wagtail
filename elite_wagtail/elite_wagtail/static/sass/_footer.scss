@@ -231,22 +231,38 @@ $border-footer:#b6dcfe;
     height: 40px;
     display: flex;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid $border;
     opacity: 1;
+    background: #fff;
+    z-index: 100;
     img{
-      // width: 100%;
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: auto;
       position: absolute;
-      margin-left: -11px;
+      margin-left: -9px;
       left: 50%;
       top: 50%;
-      margin-top: -11px;
+      margin-top: -12px;
     }
     &:hover{
       opacity: 0.8;
     }
     &.hidden{
       display: none;
+    }
+  }
+  #newBridge .icon-right-center{
+    top: initial;
+    bottom: 100px;
+    right: 50px;
+  }
+  #newBridge .nb-icon-skin-0 .nb-icon-inner-wrap{
+    width: 40px !important;
+    height: 40px !important;
+    background-size: 40px;
+  }
+  @media screen and (max-width:576px){
+    .return-top{
+      right: 20px;
     }
   }
