@@ -1,6 +1,14 @@
 {% load i18n wagtailroutablepage_tags %}
 
-<div class="list-tag">
+
+
+<div class="list-tag-selected" v-on:click="toggleMobileTag">
+  ${ tag || '全部' }
+  <svg v-show="show_mobile_tag" class="icon icon-up" style="width: 1.2em; height: 1.2em;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="627"><path d="M816.128 639.488l-48.128 48.128L463.872 384l48.128-48.128 304.128 303.616zM560.128 384L256 688.128l-48.128-48.128L512 335.872l48.128 48.128z" p-id="628"></path></svg>
+  <svg v-show="!show_mobile_tag" class="icon icon-down" style="width: 1.2em; height: 1.2em;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="657"><path d="M207.826 384.273l48.265-48.287L560.06 639.954l-48.288 48.242zM464.1 639.727L768.046 335.78l48.287 48.265-303.969 303.968z" p-id="658"></path></svg>
+</div>
+<div class="mask" v-show="show_mobile_tag" v-on:click="toggleMobileTag"></div>
+<div class="list-tag" v-show="(!!show_mobile_tag || !isMobile)">
     <a v-bind:class="[tag == '' ? 'active' : '']" v-on:click="showTag('')">全部</a>
     {% for tag in tags %}
         <a v-bind:class="[tag == '{{tag}}' ? 'active' : '']" v-on:click="showTag('{{tag}}')">{{ tag }}</a>

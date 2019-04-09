@@ -15,6 +15,9 @@
     font-weight: normal;
     line-height: 46px;
   }
+  svg{
+    display: none;
+  }
   a {
     text-decoration: none;
     padding: 8px 27px;
@@ -43,24 +46,24 @@
     h3{
       position: static;
       text-align: center;
-      background: #b6dcfe33;
-      &:after{
-        content: '';
-        width: 10px;
-        height: 6px;
-        display: inline-block;
-        background: url('../images/up.png') no-repeat;
-        background-size: contain;
-        position: relative;
-        top: -2px;
-      }
+      background: #f1f8ff;
+    }
+    svg{
+      display: inline-block;
+      vertical-align: sub;
+      fill: #ccd1d9;
+    }
+    >div>div{
+      display: flex;
+      flex-wrap: wrap;
     }
     a{ 
       border-right: 1px solid $border;
       border-bottom: 1px solid $border;
       font-size: 14px;
-      padding: 8px 0;
-      width: 33.3%;
+      padding: 13.5px 0;
+      width: auto;
+      flex: 0 0 33.3%;
       text-align: center;
 
       &:nth-child(1), &:nth-child(2), &:nth-child(3){
@@ -68,6 +71,12 @@
       }
       &:nth-child(3n+3){
         border-right: none;
+      }
+      span{
+        line-height: 1.5;
+        &:hover{
+          background: none;
+        }
       }
     }
   }

@@ -1,3 +1,6 @@
+[v-cloak]{
+  display: none;
+}
 .section-list{
   padding: 0 10px;
   h2{
@@ -17,10 +20,12 @@
     padding-right: 6%;
     
     // 标签
+    .list-tag-selected{
+      display: none;
+    }
     .list-tag{
       background: #f7fbff;
       border-radius: 3px;
-      padding: 10px;
       a{
         display: inline-block;
         padding: 0 13px;
@@ -28,6 +33,7 @@
         color: $title;
         cursor: pointer;
         line-height: 30px;
+        margin: 10px;
       }
       a.active{
         background: $primary;
@@ -62,6 +68,7 @@
       display: flex;
       overflow: hidden;
       width: 100%;
+
       .col-3{
         flex: 0 0 220px;
         margin-right: 3%;
@@ -115,8 +122,11 @@
           vertical-align: text-top;
           margin-right: 5px;
         }
-        .item-tag{
+        .item-tag-group{
           float: right;
+          display: inline-block;
+        }
+        .item-tag{
           padding-left: 30px;
         }
       }
@@ -180,6 +190,128 @@
     }
     .col-list{
       padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width:576px){
+  .section-list{
+    padding: 0;
+    h2{
+      display: none;
+    }
+    .col-list{
+      padding-top: 100px;
+      .list-tag-selected{
+        display: block;
+        line-height: 40px;
+        text-align: center;
+        background-color: #f1f8ff;
+        color: $primary;
+        position: fixed;
+        top: 60px;
+        width: 100%;
+        z-index: 10;
+        svg{
+          vertical-align: sub;
+        }
+      }
+      .mask{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.2);
+        position: fixed;
+        top: 100px;
+        left: 0;
+        z-index: 10;
+      }
+      .list-tag{
+        padding: 0px;
+        border: none;
+        background: #fff;
+        position: fixed;
+        width: 100%;
+        top: 100px;
+        z-index: 10;
+        border-radius: 0;
+        font-size: 0;
+        a{
+          flex: 0 0 33.3%;
+          display: inline-block;
+          width: 33.3%;
+          font-size: 14px;
+          color: $font;
+          padding: 9px 0;
+          text-align: center;
+          border-right: 1px solid $border;
+          border-bottom: 1px solid $border;
+          margin: 0;
+          &:nth-child(3n+3){
+            border-right: none;
+          }
+          &.active{
+            background: #fff;
+            color: $font;
+            border-radius: 0;
+          }
+        }
+
+      }
+
+      .list-select{
+        display: none;
+      }
+      .list-item{
+        padding: 15px 0;
+        margin: 0 10px;
+        width: auto;
+
+        &:first-child{
+          border-top: none;
+        }
+        .col-3{
+          flex: 0 0 25%;
+        }
+        .col-9{
+          h3{
+            font-size: 14px;
+            min-height: 44px;
+            margin: 0;
+          }
+          >div{
+            font-size: 10px;
+            line-height: 1;
+            position: static;
+          }
+          >p,
+          .item-avatar,
+          .item-name,
+          .item-date:after{
+            display: none;
+          }
+          .item-tag{
+            padding-left: 10px;
+            line-height: 1.5;
+          }
+          .item-date{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+  .list-item-skeleton{
+    .col-3{
+      height: 55px;
+    }
+    .col-9{
+      h3{
+        margin-bottom: 23px !important;
+      }
+      h3,p,div{
+        height: 16px !important;
+        min-height: 0 !important;
+      }
     }
   }
 }
