@@ -252,9 +252,9 @@ $border-footer:#b6dcfe;
     }
   }
   #newBridge .icon-right-center{
-    top: initial;
-    bottom: 100px;
-    right: 50px;
+    top: initial !important;
+    bottom: 90px !important;
+    right: 42px !important;
   }
   #newBridge .nb-icon-skin-0 .nb-icon-inner-wrap{
     width: 40px !important;
@@ -264,5 +264,9 @@ $border-footer:#b6dcfe;
   @media screen and (max-width:576px){
     .return-top{
       right: 20px;
+    }
+    #newBridge .icon-right-center{
+      right: 12px !important;
+      bottom: 85px !important;
     }
   }
