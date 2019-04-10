@@ -270,18 +270,19 @@
           border-top: none;
         }
         .col-3{
-          flex: 0 0 25%;
+          flex: 0 0 90px;
         }
         .col-9{
           h3{
             font-size: 14px;
-            min-height: 44px;
             margin: 0;
+            min-height: 38px;
           }
           >div{
             font-size: 10px;
             line-height: 1;
             position: static;
+            margin-top: 5px;
           }
           >p,
           .item-avatar,
