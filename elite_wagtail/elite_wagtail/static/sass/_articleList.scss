@@ -54,7 +54,7 @@
         }
         &:first-child:after{
           content: '|';
-          color: $note;
+          color: $border;
           padding: 0 13px;
         }
         
