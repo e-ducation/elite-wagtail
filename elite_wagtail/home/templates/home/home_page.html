@@ -9,7 +9,9 @@
 {% block content %}
     <div class="window-wrap">
         {% block adv %}
-            {% include 'home/notice.html' %}
+            {% if page.advert %}
+                {% include 'home/notice.html' %}
+            {% endif %}
         {% endblock adv %}
         {% include 'home/header.html' %}
         <main class="main content-wrapper">
