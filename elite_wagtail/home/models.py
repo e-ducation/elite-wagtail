@@ -430,7 +430,6 @@ class PopularArticle(Orderable):
 class NewHelpPanel(HelpPanel):
 
     def render(self):
-        import re
         return render_to_string(self.template, {
             'self': self
         })
