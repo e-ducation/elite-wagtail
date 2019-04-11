@@ -1,5 +1,5 @@
 [v-cloak]{
-  display: none;
+  display: none !important;
 }
 .section-list{
   padding: 0 10px;
@@ -35,7 +35,7 @@
         line-height: 30px;
         margin: 10px;
       }
-      a.active{
+      a.active, a:hover{
         background: $primary;
         color: #fff;
         border-radius: 3px;
@@ -68,6 +68,10 @@
       display: flex;
       overflow: hidden;
       width: 100%;
+
+      &:last-child{
+        border-bottom: 1px solid $border;
+      }
 
       .col-3{
         flex: 0 0 220px;
@@ -182,6 +186,22 @@
     }
   }
 }
+// 底线
+.list-bottom{
+  text-align: center;
+  color: $note;
+  line-height: 80px;
+  font-size: 16px;
+  &::before, &::after{
+    content: '';
+    display: inline-block;
+    width: 52px;
+    height: 1px;
+    background:$note;
+    vertical-align: middle;
+    margin: 0 10px;
+  }
+}
 
 @media screen and (max-width:1000px){
   .section-list{
@@ -212,6 +232,7 @@
         top: 60px;
         width: 100%;
         z-index: 10;
+        font-weight: bold;
         svg{
           vertical-align: sub;
         }
@@ -314,5 +335,8 @@
         min-height: 0 !important;
       }
     }
+  }
+  .list-bottom{
+    font-size: 14px;
   }
 }

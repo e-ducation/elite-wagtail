@@ -19,7 +19,7 @@
         <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
 
         {# Global stylesheets #}
-        <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 
         {% block extra_css %}
@@ -27,7 +27,7 @@
         {% endblock %}
 
         <script type="text/javascript" src="{% static 'js/jquery-1.7.2.min.js' %}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
         <!-- End Google Analytics -->
     </head>
 

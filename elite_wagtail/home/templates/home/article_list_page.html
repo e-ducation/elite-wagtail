@@ -57,7 +57,10 @@
                             <p></p>
                             <div></div>
                         </div>
-                    </div> 
+                    </div>
+                    <div v-if="!has_more" class="list-bottom">
+                      这个是底线~
+                    </div>
                 {% endwith %} 
             </div>
             <div class="col-ad">
@@ -70,7 +73,7 @@
     </main>
     {% include 'home/footer.html' %}
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script type="text/javascript" src="{% static 'js/vue.js' %}"></script>
 <script>
     var app = new Vue({
         el: '#app',
@@ -102,6 +105,7 @@
                             var arr = that.list.length ? JSON.parse(JSON.stringify(that.list)).concat(res.items) : res.items;
                             that.total_count = res.meta.total_count;
                             that.list = arr;
+                            
                             if (res.meta.total_count == that.list.length){
                                 // 移除window.onscroll事件
                                 that.has_more = false;
