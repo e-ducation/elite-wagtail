@@ -5,8 +5,8 @@
     <div>
         <h3 onclick="">
             课程分类：
-            <svg class="icon icon-up" style="width: 1em; height: 1em; overflow: hidden; display: none;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="657"><path d="M816.128 639.488l-48.128 48.128L463.872 384l48.128-48.128 304.128 303.616zM560.128 384L256 688.128l-48.128-48.128L512 335.872l48.128 48.128z" p-id="658"></path></svg>
-            <svg class="icon icon-down" style="width: 1em; height: 1em; overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="687"><path d="M207.826 384.273l48.265-48.287L560.06 639.954l-48.288 48.242zM464.1 639.727L768.046 335.78l48.287 48.265-303.969 303.968z" p-id="688"></path></svg>
+            <svg class="icon icon-up" style="width: 1em; height: 1em; overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="657"><path d="M816.128 639.488l-48.128 48.128L463.872 384l48.128-48.128 304.128 303.616zM560.128 384L256 688.128l-48.128-48.128L512 335.872l48.128 48.128z" p-id="658"></path></svg>
+            <svg class="icon icon-down" style="width: 1em; height: 1em; overflow: hidden;display: none;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="687"><path d="M207.826 384.273l48.265-48.287L560.06 639.954l-48.288 48.242zM464.1 639.727L768.046 335.78l48.287 48.265-303.969 303.968z" p-id="688"></path></svg>
         </h3>
         <div>
         {% for item in value.categorieslist %}
@@ -17,12 +17,13 @@
 </div>
 <script>
   $('.tag h3').click(function(){
+    console.log($('.tag div div').css('display') == 'none');
     if ($('.tag div div').css('display') == 'none'){
-      $('.icon-up').hide();
-      $('.icon-down').show();
-    } else {
       $('.icon-up').show();
       $('.icon-down').hide();
+    } else {
+      $('.icon-up').hide();
+      $('.icon-down').show();
     }
     $('.tag div div').toggle();
   })
