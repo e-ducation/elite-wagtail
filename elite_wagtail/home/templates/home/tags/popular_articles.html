@@ -4,8 +4,12 @@
     <div class="">
         {% for article in pop_article.articles %}
             <div class="hot-item">
-                {% image article.author_image original as author_image %}
-                <img  src="{{ author_image.url }}" /> 
+                {% if article.author_image %}
+                    {% image article.author_image original as image %}
+                    <img src="{{ image.url }}" />
+                {% else %}
+                    <img src="/static/images/article_author.png" />
+                {% endif %}
                 <a href="{{ article.get_url }}">{{ article.title }}</a>
                 <p>{{ article.article_datetime|date:"Y-m-d H:i"}}</p>
             </div>   
