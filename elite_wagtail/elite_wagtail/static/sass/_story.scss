@@ -87,11 +87,16 @@
   }
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) and (min-width: 577px){
   .section-story {
-    .right {
-      display: none;
-    }
+    .left{
+      .first{
+        display: none;
+      }
+      .second{
+        flex: 0 0 100%;
+      }
+    } 
   }
 }
 
@@ -103,6 +108,7 @@
       height: auto;
       .first,
       .second {
+        display: block;
         flex: 0 0 100%;
         margin: 0 0 20px 0;
         height: auto;
@@ -137,6 +143,9 @@
           }
         }
       }
+    }
+    .right{
+      display: none;
     }
   }
 }

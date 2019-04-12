@@ -23,6 +23,12 @@
   color: $note;
   a{
     color: $blue;
+    &:hover,
+    &:active,
+    &:link,
+    &:visited{
+      color: $blue;
+    }
   }
 }
 .notice-ad{
