@@ -29,13 +29,13 @@
                     <div>
                     <a v-for="(item, index) in list" class="list-item" :href="item.meta.html_url">
                         <div class="col-3">
-                            <img :src="item.article_cover.meta.download_url" /> 
+                            <img :src="item.article_cover ? item.article_cover.meta.download_url : '/static/images/article_cover.png'" /> 
                         </div>
                         <div class="col-9">
                             <h3>${ item.title }</h3>
                             <p>${ item.description }</p>
                             <div>
-                                <img class="item-avatar" :src="item.author_image.meta.download_url" /> 
+                                <img class="item-avatar" :src="item.author_image ? item.author_image.meta.download_url : '/static/images/article_author.png'" /> 
                                 <span class="item-name">${ item.author_name }</span>
                                 <span class="item-date">${ item.article_datetime }</span>
                                 <svg class="icon" style="width: 11px; height: 11px;overflow: hidden;fill: #bbbbbb;vertical-align: baseline" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="627"><path d="M884.876 423.143H646.97C739.156 82.68 583.454 65.29 583.454 65.29c-65.993 0-52.313 52.182-57.303 60.882 0 166.502-176.85 296.971-176.85 296.971v472.172c0 46.608 63.517 63.394 88.433 63.394h357.452c33.641 0 61.036-88.224 61.036-88.224 88.434-300.706 88.434-390.178 88.434-390.178 0.001-62.128-59.78-57.164-59.78-57.164z m0 0M251.671 423.3H109.215c-29.42 0-29.873 28.896-29.873 28.896l29.42 476.203c0 30.309 30.361 30.309 30.361 30.309H262.42c25.686 0 25.46-20.05 25.46-20.05V459.411c0-36.574-36.209-36.111-36.209-36.111z m0 0" p-id="628"></path></svg>
@@ -138,7 +138,7 @@
                 }
             },
             handleResize: function(){
-              if (document.body.clientWidth < 576){
+              if (document.body.clientWidth < 767){
                   this.isMobile = true;
                   $('.window-wrap .global-header').css('position', 'fixed');
                   $('.window-wrap .global-header .main-header').css('position', 'relative');
