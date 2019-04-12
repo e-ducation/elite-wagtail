@@ -252,7 +252,7 @@ $border-footer:#b6dcfe;
     }
   }
   #newBridge .icon-right-center{
-    top: initial !important;
+    top: inherit !important;
     bottom: 100px !important;
     right: 42px !important;
   }
@@ -276,7 +276,7 @@ $border-footer:#b6dcfe;
       background-size: 40px;
     }
     #newBridge .nb-icon-wrap-0{
-      top: initial !important;
+      top: inherit !important;
       bottom: 80px !important;
       right: 20px !important;
     }
