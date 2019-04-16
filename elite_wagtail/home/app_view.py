@@ -12,3 +12,7 @@ class AppPagesAPIEndpoint(PagesAPIEndpoint):
         'page_size',
         'page',
     ])
+    meta_fields = [
+        'html_url',
+        'parent',
+    ]
