@@ -73,6 +73,53 @@
             }
         })
     } 
+
+    // 获取设备类型
+    var getQueryString = function(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+      var r = window.location.search.substr(1).match(reg); 
+      if (r != null) return unescape(r[2]); return null; 
+    }
+
+
+    var device = getQueryString('device');
+    if(device != undefined){
+      $('.global-header').hide();
+      $('.my-footer').hide();
+      var style = document.createElement('style');
+      var css = "#newBridge{display:none !important}";
+      if(style.styleSheet){
+          style.styleSheet.cssText = css;
+      }else{
+          style.appendChild(document.createTextNode(css));
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+    if (device != undefined){
+      // app 
+      // 更多文章
+      $('.hot .more a').click(function(){
+        if (device == 'ios'){
+          window.location.href = 'eliteu://gotoArticleList';
+        } else{
+          if (window.JsInterface) {
+            JsInterface.gotoArticleList()();
+          }
+        }
+      });
+
+
+      // 热门文章列表，给a替换地址
+      var elem = $('.hot-item a');
+      for (var i = 0; i < elem.length; i++){
+        var href = $(elem[i]).attr('href');
+        if (device == 'ios'){
+          $(elem[i]).attr('href', href + '?device=ios')
+        } else {
+          $(elem[i]).attr('href', href + '?device=android')
+        }
+      }
+    }
 </script>
 {% comment %}
 {% endcomment %}
