@@ -331,6 +331,13 @@ class ArticlePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    article_cover_app = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     description = models.TextField(blank=True)
     liked_count = models.IntegerField(default=0)
 
@@ -349,6 +356,7 @@ class ArticlePage(Page):
         FieldPanel('author_name'),
         FieldPanel('article_datetime'),
         ImageChooserPanel('article_cover'),
+        ImageChooserPanel('article_cover_app'),
         StreamFieldPanel('body'),
     ]
 
@@ -358,6 +366,7 @@ class ArticlePage(Page):
         APIField('author_name'),
         APIField('article_datetime', serializer=DateTimeField(format="%Y-%m-%d %H:%M")),
         APIField('article_cover'),
+        APIField('article_cover_app'),
         APIField('description'),
         APIField('liked_count'),
         # This will nest the relevant BlogPageAuthor objects in the API response
