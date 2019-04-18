@@ -23,9 +23,10 @@ from wagtail.core.fields import StreamField
 from wagtail.core.models import Page, Orderable
 from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageChooserBlock as OldImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
+from wagtail.images.api.v2.serializers import ImageSerializer
 
 from django_select2.forms import Select2MultipleWidget
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -47,6 +48,14 @@ NOTICE_HTML = """
 - 广告推送<br/>
 营销的真正秘诀是什么？美国MBA教授给你不一样的答案。长岛大学商学院市场营销及国际商务系主任张东隆教授的新课程《营销管理与应用》上线啦！新学员限时优惠。
 """
+
+
+class ImageChooserBlock(OldImageChooserBlock):
+    def get_api_representation(self, value, context=None):
+        """
+        Override for output img url.
+        """
+        return value.file.url
 
 
 @register_setting
@@ -272,6 +281,11 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         StreamFieldPanel('body'),
         SnippetChooserPanel('advert'),
+    ]
+
+    api_fields = [
+        APIField('advert'),
+        APIField('body'),
     ]
 
 
