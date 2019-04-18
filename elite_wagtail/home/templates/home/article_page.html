@@ -98,21 +98,7 @@
           style.appendChild(document.createTextNode(css));
       }
       document.getElementsByTagName('head')[0].appendChild(style);
-    }
-    if (device != undefined){
-      // app 
-      // 更多文章
-      $('.hot .more a').click(function(){
-        if (device == 'ios'){
-          window.location.href = 'eliteu://gotoArticleList';
-        } else{
-          if (window.JsInterface) {
-            JsInterface.gotoArticleList();
-          }
-        }
-      });
-
-
+      
       // 热门文章列表，给a替换地址
       var elem = $('.hot-item a');
       for (var i = 0; i < elem.length; i++){
@@ -124,6 +110,24 @@
         }
       }
     }
+
+    // app 
+    // 更多文章
+    $('.hot .more a').click(function(){
+      if (!device){
+        window.location.href = $(this).data('href');
+      } else if (device == 'ios'){
+        window.location.href = 'eliteu://gotoArticleList';
+      } else{
+        if (window.JsInterface) {
+          JsInterface.gotoArticleList();
+        }
+      }
+    });
+
+
+    
+  
 </script>
 {% comment %}
 {% endcomment %}
