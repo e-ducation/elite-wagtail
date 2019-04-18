@@ -94,6 +94,17 @@
           style.appendChild(document.createTextNode(css));
       }
       document.getElementsByTagName('head')[0].appendChild(style);
+      
+      // 热门文章列表，给a替换地址
+      var elem = $('.hot-item a');
+      for (var i = 0; i < elem.length; i++){
+        var href = $(elem[i]).attr('href');
+        if (device == 'ios'){
+          $(elem[i]).attr('href', href + '?device=ios')
+        } else {
+          $(elem[i]).attr('href', href + '?device=android')
+        }
+      }
     }
 
     // app 
@@ -111,16 +122,7 @@
     });
 
 
-    // 热门文章列表，给a替换地址
-    var elem = $('.hot-item a');
-    for (var i = 0; i < elem.length; i++){
-      var href = $(elem[i]).attr('href');
-      if (device == 'ios'){
-        $(elem[i]).attr('href', href + '?device=ios')
-      } else {
-        $(elem[i]).attr('href', href + '?device=android')
-      }
-    }
+    
   
 </script>
 {% comment %}
