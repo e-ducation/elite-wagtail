@@ -1,4 +1,5 @@
 import uuid
+import re
 
 from django.db import models
 from django.core.validators import (
@@ -37,6 +38,8 @@ from .routes import ArticleListRoutes
 
 from rest_framework.fields import DateTimeField
 
+COURSE_KEY_REGEX = r'courses/(?:[^/+]+(/|\+)[^/+]+(/|\+)[^/?]+)/'
+
 NOTICE_HTML = """
 【提示语句】<br/>
 - GDPR要求的隐私声明<br/>
@@ -55,7 +58,22 @@ class ImageChooserBlock(OldImageChooserBlock):
         """
         Override for output img url.
         """
-        return value.file.url
+        try:
+            return value.file.url
+        except Exception:
+            return value
+
+
+class CourseUrlBlock(blocks.URLBlock):
+    def get_api_representation(self, value, context=None):
+        """
+        Override for output course url.
+        """
+        extract_course_url = re.search(COURSE_KEY_REGEX, value)
+        if extract_course_url:
+            return extract_course_url.group(0).replace('courses/', '').replace('/', '')
+        else:
+            return ''
 
 
 @register_setting
@@ -106,7 +124,7 @@ class CourseBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.CharBlock()
     description = blocks.CharBlock()
-    link = blocks.URLBlock()
+    link = CourseUrlBlock()
 
     class Meta:
         label = '推荐课程'
@@ -284,7 +302,6 @@ class HomePage(Page):
     ]
 
     api_fields = [
-        APIField('advert'),
         APIField('body'),
     ]
 
