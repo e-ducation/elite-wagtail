@@ -133,6 +133,7 @@ class CourseBlock(blocks.StructBlock):
 
 
 class CategoriesListBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label=_('模块标题'), default=_('课程分类'))
     categorieslist = blocks.ListBlock(blocks.StructBlock([
         ('categories_name', blocks.RegexBlock(regex=r'^[\u4e00-\u9fa5a-zA-Z]{2,10}$', error_messages={
             'invalid': _('只允许输入2到10位中英文字符')
