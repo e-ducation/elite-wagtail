@@ -1,6 +1,7 @@
 from wagtail.api.v2.endpoints import PagesAPIEndpoint, BaseAPIEndpoint
+from wagtail.core.models import Page
 from rest_framework.pagination import PageNumberPagination
-from taggit.models import Tag
+from .models import ArticlePage
 
 
 class NewPageNumberPagination(PageNumberPagination):
@@ -22,4 +23,6 @@ class AppPagesAPIEndpoint(PagesAPIEndpoint):
 class TagsAPIEndpoint(BaseAPIEndpoint):
     body_fields = BaseAPIEndpoint.body_fields + ['name']
     name = 'tags'
-    model = Tag
+
+    def get_queryset(self):
+        return ArticlePage.tags.all()
