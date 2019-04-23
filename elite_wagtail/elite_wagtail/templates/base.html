@@ -56,6 +56,28 @@
               var s = document.getElementsByTagName("script")[0];
               s.parentNode.insertBefore(hm, s);
             })();
+
+            // 兼容app, ?device=ios/android时，隐藏头部尾部咨询按钮
+            var getQueryString = function(name) {
+              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+              var r = window.location.search.substr(1).match(reg); 
+              if (r != null) return unescape(r[2]); return null; 
+            }
+
+
+            var device = getQueryString('device');
+            if(device != undefined){
+              $('.global-header').hide();
+              $('.my-footer').hide();
+              var style = document.createElement('style');
+              var css = "#newBridge{display:none !important}";
+              if(style.styleSheet){
+                  style.styleSheet.cssText = css;
+              }else{
+                  style.appendChild(document.createTextNode(css));
+              }
+              document.getElementsByTagName('head')[0].appendChild(style);
+            }
         </script>
 
         <!-- Google Analytics -->
@@ -68,5 +90,4 @@
             ga('send', 'pageview');
         </script>
     </body>
-    
 </html>
