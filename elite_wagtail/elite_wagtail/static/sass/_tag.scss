@@ -65,6 +65,8 @@
       width: auto;
       flex: 0 0 33.3%;
       text-align: center;
+      transform: scale(0.5);
+      transform-origin: 0% 50%;
 
       &:nth-child(1), &:nth-child(2), &:nth-child(3){
         border-top: 1px solid $border;
