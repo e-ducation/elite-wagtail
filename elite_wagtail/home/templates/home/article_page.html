@@ -79,6 +79,12 @@
     } 
 
     // 获取设备类型
+    var getQueryString = function(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+      var r = window.location.search.substr(1).match(reg); 
+      if (r != null) return unescape(r[2]); return null; 
+    }
+
     var device = getQueryString('device');
     if(device != undefined){
       // 热门文章列表，给a替换地址
