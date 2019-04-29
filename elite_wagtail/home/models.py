@@ -106,6 +106,15 @@ class ImportantPages(BaseSetting):
     ]
 
 
+@register_setting
+class EliteVariableSettings(BaseSetting):
+    elite_filing_website = models.URLField(
+        help_text='Your Elite Filing Website URL')
+    elite_case_number = models.CharField(
+        max_length = 32,  
+        help_text='Your Elite Case Number')      
+
+
 class BannerBlock(blocks.StructBlock):
     banners = blocks.ListBlock(blocks.StructBlock([
         ('image', ImageChooserBlock()),
