@@ -3,7 +3,21 @@
 {% block body_class %}template-404{% endblock %}
 
 {% block content %}
-    <h1>Page not found</h1>
 
-    <h2>Sorry, this page could not be found.</h2>
+
+    <div class="window-wrap">
+
+    {% include 'home/header.html' %}
+    <main class="main content-wrapper">
+        <div class="error_content">
+            <img class="error_img_pc" src=".././static/images/404_pc.png" />
+            <img class="error_img_phone" src=".././static/images/404_pc.png" />
+            <h1>Page not found</h1>
+            <p>Sorry, this page could not be found.</p>
+        </div>
+
+    </main>
+    {% include 'home/footer.html' %}
+
+    </div>
 {% endblock %}
