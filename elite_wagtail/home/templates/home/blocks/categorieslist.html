@@ -16,15 +16,19 @@
     </div>
 </div>
 <script>
-  $('.tag h3').click(function(){
-    console.log($('.tag div div').css('display') == 'none');
-    if ($('.tag div div').css('display') == 'none'){
-      $('.icon-up').show();
-      $('.icon-down').hide();
-    } else {
-      $('.icon-up').hide();
-      $('.icon-down').show();
-    }
-    $('.tag div div').toggle();
-  })
+  var isMobile = function(){
+      return navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i);
+  }
+  if (isMobile()){
+    $('.tag h3').click(function(){
+      if ($('.tag div div').css('display') == 'none'){
+        $('.icon-up').show();
+        $('.icon-down').hide();
+      } else {
+        $('.icon-up').hide();
+        $('.icon-down').show();
+      }
+      $('.tag div div').toggle();
+    })
+  }
 </script>
