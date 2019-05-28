@@ -1,4 +1,5 @@
 {% load wagtailimages_tags %}
+{% load static %}
 <div class="hot">
     <h2>{{ pop_article.title }}</h2>
     <div class="">
@@ -8,7 +9,7 @@
                     {% image article.author_image original as image %}
                     <img src="{{ image.url }}" />
                 {% else %}
-                    <img src="/static/images/article_author.png" />
+                    <img src="{% static 'images/article_author.png' %}" />
                 {% endif %}
                 <a href="{{ article.get_url }}">{{ article.title }}</a>
                 <p>{{ article.article_datetime|date:"Y-m-d H:i"}}</p>
