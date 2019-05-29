@@ -21,7 +21,7 @@
                         {% if image.url %}
                             <img src="{{ image.url }}" />
                         {% else %}
-                            <img src="/static/images/article_author.png" />
+                            <img src="{% static 'images/article_author.png' %}" />
                         {% endif %}
                         <span class="article-author">{{ page.author_name }}</span>
                         <span class="article-date">{{ page.article_datetime|date:"Y-m-d H:i" }}</span>
