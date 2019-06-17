@@ -6,14 +6,14 @@ from .models import HomePage, ArticlePage, ArticleListPage
 
 @register(HomePage)
 class HomePageTR(TranslationOptions):
-   pass
+    fields = (
+        'body',
+    )
 
 
 @register(ArticlePage)
 class ArticlePageTR(TranslationOptions):
-    fields = (
-        'author_name',
-    )
+    pass
 
 @register(ArticleListPage)
 class ArticleListPageTR(TranslationOptions):
