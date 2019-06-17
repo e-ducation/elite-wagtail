@@ -2,20 +2,24 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# li ying <code@eliteu.cn>, 2019
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-14 16:19+0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2019-06-14 08:55+0000\n"
+"Last-Translator: li ying <code@eliteu.cn>, 2019\n"
+"Language-Team: English (https://www.transifex.com/e-ducation/teams/93939/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: elite_wagtail/settings/base.py:141
 msgid "Chinese (China)"
@@ -125,7 +129,7 @@ msgstr ""
 #: home/models.py:209 home/templates/home/header.html:30
 #: home/templates/home/header.html:90
 msgid "教授"
-msgstr ""
+msgstr "Professors"
 
 #: home/models.py:220
 msgid "背景图片"
@@ -233,87 +237,89 @@ msgstr ""
 
 #: home/templates/home/footer.html:6
 msgid "学则变 · 变则进"
-msgstr ""
+msgstr "Learn to Change · Change to Improve"
 
 #: home/templates/home/footer.html:82 home/templates/home/footer.html:119
 msgid "英荔商学院"
-msgstr ""
+msgstr "EliteMBA"
 
 #: home/templates/home/footer.html:84
 msgid "关于我们"
-msgstr ""
+msgstr "About Us"
 
 #: home/templates/home/footer.html:85
 msgid "联系我们"
-msgstr ""
+msgstr "Contact Us"
 
 #: home/templates/home/footer.html:86
 msgid "加入我们"
-msgstr ""
+msgstr "Join Us"
 
 #: home/templates/home/footer.html:91
 msgid "关于平台"
-msgstr ""
+msgstr "About Platform"
 
 #: home/templates/home/footer.html:93
 msgid "使用手册"
-msgstr ""
+msgstr "Manual"
 
 #: home/templates/home/footer.html:95
 msgid "帮助与投诉"
-msgstr ""
+msgstr "Help and Complaint"
 
 #: home/templates/home/footer.html:100
 msgid "条款说明"
-msgstr ""
+msgstr "Terms Description"
 
 #: home/templates/home/footer.html:102
 msgid "用户协议"
-msgstr ""
+msgstr "User Agreement"
 
 #: home/templates/home/footer.html:103
 msgid "隐私政策"
-msgstr ""
+msgstr "Privacy Policy"
 
 #: home/templates/home/footer.html:104
 msgid "免责声明"
-msgstr ""
+msgstr "Disclaimer"
 
 #: home/templates/home/footer.html:109
 msgid "合作机构"
-msgstr ""
+msgstr "Partners"
 
 #: home/templates/home/footer.html:112
 msgid "网易云课堂"
-msgstr ""
+msgstr "NetEase Study"
 
 #: home/templates/home/footer.html:121
 msgid "微信扫一扫"
-msgstr ""
+msgstr " Scan WeChat QR Code"
 
 #: home/templates/home/footer.html:121
 msgid "关注名师开课动态"
-msgstr ""
+msgstr "to find out more"
 
 #: home/templates/home/footer.html:124
 msgid "© 2019 广东英荔国际教育科技有限公司&nbsp; 版权所有"
 msgstr ""
+"© 2019 Guangdong Elite International Education & Technology Co., Ltd. All "
+"Rights Reserved"
 
 #: home/templates/home/header.html:21 home/templates/home/header.html:81
 msgid "发现课程"
-msgstr ""
+msgstr "Explore courses"
 
 #: home/templates/home/header.html:25 home/templates/home/header.html:85
 msgid "会员资格"
-msgstr ""
+msgstr "Membership"
 
 #: home/templates/home/header.html:37 home/templates/home/header.html:94
 msgid "注册"
-msgstr ""
+msgstr "Register"
 
 #: home/templates/home/header.html:40 home/templates/home/header.html:97
 msgid "登录"
-msgstr ""
+msgstr "Sign in"
 
 #: home/templates/home/header.html:46
 msgid "帮助"
@@ -321,23 +327,23 @@ msgstr ""
 
 #: home/templates/home/header.html:63
 msgid "课程面板"
-msgstr ""
+msgstr "Dashboard"
 
 #: home/templates/home/header.html:65
 msgid "用户资料"
-msgstr ""
+msgstr "Profile"
 
 #: home/templates/home/header.html:68
 msgid "账号"
-msgstr ""
+msgstr "Account"
 
 #: home/templates/home/header.html:70
 msgid "会员中心"
-msgstr ""
+msgstr "VIP Center"
 
 #: home/templates/home/header.html:72
 msgid "退出"
-msgstr ""
+msgstr "Sign Out"
 
 #: home/templates/home/tags_list.html:16
 msgid "No tags yet"
@@ -357,9 +363,9 @@ msgstr ""
 
 #: home/templates/home/welcome_page.html:30
 msgid ""
-"Please feel free to <a href=\"https://github.com/wagtail/wagtail/wiki/Slack"
-"\">join our community on Slack</a>, or get started with one of the links "
-"below."
+"Please feel free to <a "
+"href=\"https://github.com/wagtail/wagtail/wiki/Slack\">join our community on"
+" Slack</a>, or get started with one of the links below."
 msgstr ""
 
 #: home/templates/home/welcome_page.html:39
