@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[wagtail-2.wagtail]
+file_filter = conf/locale/<lang>/LC_MESSAGES/django.po
+source_file = conf/locale/zh_CN/LC_MESSAGES/django.po
+source_lang = zh-cn
+type = PO

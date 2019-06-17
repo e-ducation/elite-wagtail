@@ -1,0 +1,387 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-14 16:19+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: elite_wagtail/settings/base.py:141
+msgid "Chinese (China)"
+msgstr ""
+
+#: elite_wagtail/settings/base.py:142
+msgid "English"
+msgstr ""
+
+#: home/models.py:95
+msgid "Display popular articles"
+msgstr ""
+
+#: home/models.py:145 home/models.py:161 home/models.py:184 home/models.py:200
+#: home/models.py:232
+msgid "模块标题"
+msgstr ""
+
+#: home/models.py:145 home/models.py:152
+msgid "课程分类"
+msgstr ""
+
+#: home/models.py:148
+msgid "只允许输入2到10位中英文字符"
+msgstr ""
+
+#: home/models.py:149
+msgid "分类名称"
+msgstr ""
+
+#: home/models.py:150
+msgid "分类链接"
+msgstr ""
+
+#: home/models.py:151
+msgid "app显示图标"
+msgstr ""
+
+#: home/models.py:162 home/models.py:201
+msgid "宣传图片"
+msgstr ""
+
+#: home/models.py:165
+msgid "故事图片"
+msgstr ""
+
+#: home/models.py:166
+msgid "故事标题"
+msgstr ""
+
+#: home/models.py:167
+msgid "故事内容"
+msgstr ""
+
+#: home/models.py:171
+msgid "图片位置"
+msgstr ""
+
+#: home/models.py:172
+msgid "故事链接"
+msgstr ""
+
+#: home/models.py:173
+msgid "用户故事"
+msgstr ""
+
+#: home/models.py:175 home/models.py:211
+msgid "宣传链接"
+msgstr ""
+
+#: home/models.py:185
+msgid "是否撑满屏幕"
+msgstr ""
+
+#: home/models.py:187
+msgid "PC端图片"
+msgstr ""
+
+#: home/models.py:188
+msgid "移动端图片"
+msgstr ""
+
+#: home/models.py:190
+msgid "链接(非必填)"
+msgstr ""
+
+#: home/models.py:204
+msgid "教授名称"
+msgstr ""
+
+#: home/models.py:205
+msgid "教授头像"
+msgstr ""
+
+#: home/models.py:206 home/models.py:223
+msgid "链接"
+msgstr ""
+
+#: home/models.py:207
+msgid "教授学历"
+msgstr ""
+
+#: home/models.py:208
+msgid "内容"
+msgstr ""
+
+#: home/models.py:209 home/templates/home/header.html:30
+#: home/templates/home/header.html:90
+msgid "教授"
+msgstr ""
+
+#: home/models.py:220
+msgid "背景图片"
+msgstr ""
+
+#: home/models.py:221
+msgid "背景内容"
+msgstr ""
+
+#: home/models.py:222
+msgid "标题"
+msgstr ""
+
+#: home/models.py:233
+msgid "是否有敬请期待"
+msgstr ""
+
+#: home/models.py:235
+msgid "课程图片"
+msgstr ""
+
+#: home/models.py:236
+msgid "课程标题"
+msgstr ""
+
+#: home/models.py:237
+msgid "课程描述"
+msgstr ""
+
+#: home/models.py:238
+msgid "课程链接"
+msgstr ""
+
+#: home/models.py:239
+msgid "课程路径"
+msgstr ""
+
+#: home/models.py:321
+msgid "Display tags"
+msgstr ""
+
+#: home/models.py:322
+msgid "Entries per page"
+msgstr ""
+
+#: home/models.py:328
+msgid "Widgets"
+msgstr ""
+
+#: home/models.py:334
+msgid "Parameters"
+msgstr ""
+
+#: home/models.py:349
+msgid "ArticleList"
+msgstr ""
+
+#: home/models.py:496
+msgid "只弹一次"
+msgstr ""
+
+#: home/models.py:497
+msgid "每天弹出一次"
+msgstr ""
+
+#: home/models.py:498
+msgid "每次打开页面弹一次"
+msgstr ""
+
+#: home/models.py:506
+msgid "GDPR要求的隐私声明"
+msgstr ""
+
+#: home/models.py:507
+msgid "特殊事项公告"
+msgstr ""
+
+#: home/models.py:508
+msgid "广告推送"
+msgstr ""
+
+#: home/models.py:511
+msgid "广告标题"
+msgstr ""
+
+#: home/models.py:515
+msgid "广告正文"
+msgstr ""
+
+#: home/models.py:516
+msgid "广告弹窗频率"
+msgstr ""
+
+#: home/models.py:518
+msgid "广告弹窗类型"
+msgstr ""
+
+#: home/models.py:519
+msgid "广告推送需要的链接"
+msgstr ""
+
+#: home/routes.py:17
+msgid "tag"
+msgstr ""
+
+#: home/templates/home/footer.html:6
+msgid "学则变 · 变则进"
+msgstr ""
+
+#: home/templates/home/footer.html:82 home/templates/home/footer.html:119
+msgid "英荔商学院"
+msgstr ""
+
+#: home/templates/home/footer.html:84
+msgid "关于我们"
+msgstr ""
+
+#: home/templates/home/footer.html:85
+msgid "联系我们"
+msgstr ""
+
+#: home/templates/home/footer.html:86
+msgid "加入我们"
+msgstr ""
+
+#: home/templates/home/footer.html:91
+msgid "关于平台"
+msgstr ""
+
+#: home/templates/home/footer.html:93
+msgid "使用手册"
+msgstr ""
+
+#: home/templates/home/footer.html:95
+msgid "帮助与投诉"
+msgstr ""
+
+#: home/templates/home/footer.html:100
+msgid "条款说明"
+msgstr ""
+
+#: home/templates/home/footer.html:102
+msgid "用户协议"
+msgstr ""
+
+#: home/templates/home/footer.html:103
+msgid "隐私政策"
+msgstr ""
+
+#: home/templates/home/footer.html:104
+msgid "免责声明"
+msgstr ""
+
+#: home/templates/home/footer.html:109
+msgid "合作机构"
+msgstr ""
+
+#: home/templates/home/footer.html:112
+msgid "网易云课堂"
+msgstr ""
+
+#: home/templates/home/footer.html:121
+msgid "微信扫一扫"
+msgstr ""
+
+#: home/templates/home/footer.html:121
+msgid "关注名师开课动态"
+msgstr ""
+
+#: home/templates/home/footer.html:124
+msgid "© 2019 广东英荔国际教育科技有限公司&nbsp; 版权所有"
+msgstr ""
+
+#: home/templates/home/header.html:21 home/templates/home/header.html:81
+msgid "发现课程"
+msgstr ""
+
+#: home/templates/home/header.html:25 home/templates/home/header.html:85
+msgid "会员资格"
+msgstr ""
+
+#: home/templates/home/header.html:37 home/templates/home/header.html:94
+msgid "注册"
+msgstr ""
+
+#: home/templates/home/header.html:40 home/templates/home/header.html:97
+msgid "登录"
+msgstr ""
+
+#: home/templates/home/header.html:46
+msgid "帮助"
+msgstr ""
+
+#: home/templates/home/header.html:63
+msgid "课程面板"
+msgstr ""
+
+#: home/templates/home/header.html:65
+msgid "用户资料"
+msgstr ""
+
+#: home/templates/home/header.html:68
+msgid "账号"
+msgstr ""
+
+#: home/templates/home/header.html:70
+msgid "会员中心"
+msgstr ""
+
+#: home/templates/home/header.html:72
+msgid "退出"
+msgstr ""
+
+#: home/templates/home/tags_list.html:16
+msgid "No tags yet"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:6
+msgid "Visit the Wagtail website"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:15
+msgid "View the release notes"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:29
+msgid "Welcome to your new Wagtail site!"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:30
+msgid ""
+"Please feel free to <a href=\"https://github.com/wagtail/wagtail/wiki/Slack"
+"\">join our community on Slack</a>, or get started with one of the links "
+"below."
+msgstr ""
+
+#: home/templates/home/welcome_page.html:39
+msgid "Wagtail Documentation"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:40
+msgid "Topics, references, & how-tos"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:46
+msgid "Tutorial"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:47
+msgid "Build your first Wagtail site"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:53
+msgid "Admin Interface"
+msgstr ""
+
+#: home/templates/home/welcome_page.html:54
+msgid "Create your superuser first!"
+msgstr ""
