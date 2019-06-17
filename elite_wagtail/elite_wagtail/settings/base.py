@@ -24,6 +24,10 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    'wagtail_modeltranslation',
+    'wagtail_modeltranslation.makemigrations',
+    'wagtail_modeltranslation.migrate',
+
     'home',
     'search',
 
@@ -59,6 +63,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # should be after SessionMiddleware and before CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -127,7 +132,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
+# default language
 LANGUAGE_CODE = 'zh-cn'
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+  ('zh-cn', _('Chinese (China)')),
+  ('en', _('English')),
+]
+
+LOCALE_PATHS = [
+  os.path.join(BASE_DIR, 'conf/locale'),
+]
 
 TIME_ZONE = 'UTC'
 
@@ -148,6 +165,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
+    os.path.join(BASE_DIR, 'home/static'),
 ]
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated

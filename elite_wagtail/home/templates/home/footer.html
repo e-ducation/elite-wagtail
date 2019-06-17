@@ -1,8 +1,9 @@
+{% load i18n %} 
 <div class="my-footer">
     <div class="footer-content clearfix">
         <div class="footer-app">
             <img class="logo" src="https://www.elitemba.cn/static/normal-theme/images/logo.5cef1c16cb0a.png">
-            <p class="slogan">学则变 · 变则进</p>
+            <p class="slogan">{% trans "学则变 · 变则进" %}</p>
             <div class="footer-btn">
                 <i class="footer-icon">
                     <svg viewBox="64 64 896 896" class="" width="1em" height="1em" aria-hidden="true">
@@ -78,47 +79,47 @@
         <div class="footer-line"></div>
         <div class="footer-links">
             <div class="footer-list">
-                <h3>英荔商学院</h3>
+                <h3>{% trans "英荔商学院" %}</h3>
                 <ul>
-                    <li><a href="/about">关于我们</a></li>
-                    <li><a href="/contact">联系我们</a></li>
-                    <li><a href="/join_us">加入我们</a></li>
+                    <li><a href="/about">{% trans "关于我们" %}</a></li>
+                    <li><a href="/contact">{% trans "联系我们" %}</a></li>
+                    <li><a href="/join_us">{% trans "加入我们" %}</a></li>
                 </ul>
             </div>
 
             <div class="footer-list">
-                <h3>关于平台</h3>
+                <h3>{% trans "关于平台" %}</h3>
                 <ul>
-                    <li><a href="/manual">使用手册</a></li>
+                    <li><a href="/manual">{% trans "使用手册" %}</a></li>
                     <!--<li><a href="">充值与支付</a></li>-->
-                    <li><a href="/contact">帮助与投诉</a></li>
+                    <li><a href="/contact">{% trans "帮助与投诉" %}</a></li>
                 </ul>
             </div>
 
             <div class="footer-list">
-                <h3>条款说明</h3>
+                <h3>{% trans "条款说明" %}</h3>
                 <ul>
-                    <li><a href="/user_agreement">用户协议</a></li>
-                    <li><a href="/privacy">隐私政策</a></li>
-                    <li><a href="/disclaimer">免责声明</a></li>
+                    <li><a href="/user_agreement">{% trans "用户协议" %}</a></li>
+                    <li><a href="/privacy">{% trans "隐私政策" %}</a></li>
+                    <li><a href="/disclaimer">{% trans "免责声明" %}</a></li>
                 </ul>
             </div>
 
             <div class="footer-list">
-                <h3>合作机构</h3>
+                <h3>{% trans "合作机构" %}</h3>
                 <ul>
                     <li><a href="https://study.163.com/provider/1024795882/index.htm?_trace_c_p_k2_=494e8df7049f4426bf94a0e1fe587c12"
-                            target="_blank">网易云课堂</a></li>
+                            target="_blank">{% trans "网易云课堂" %}</a></li>
                     <!--<li><a href="https://eliteu.ke.qq.com/#tab=1&category=-1">腾讯课堂</a></li>-->
                 </ul>
             </div>
         </div>
 
         <div class="footer-wechat">
-            <h3>英荔商学院</h3>
+            <h3>{% trans "英荔商学院" %}</h3>
             <img src="https://www.elitemba.cn/static/normal-theme/images/qrcode.24b97c1319db.png" class="footer-qrcode">
-            <div>微信扫一扫<br>关注名师开课动态</div>
+            <div>{% trans "微信扫一扫" %}<br>{% trans "关注名师开课动态" %}</div>
         </div>
     </div>
-    <div class="footer-text">© 2019 广东英荔国际教育科技有限公司&nbsp; 版权所有 <a href="{{ settings.home.EliteVariableSettings.elite_filing_website }}" target="_blank">{{ settings.home.EliteVariableSettings.elite_case_number }}</a></div>
+    <div class="footer-text">{% trans "© 2019 广东英荔国际教育科技有限公司&nbsp; 版权所有" %} <a href="{{ settings.home.EliteVariableSettings.elite_filing_website }}" target="_blank">{{ settings.home.EliteVariableSettings.elite_case_number }}</a></div>
 </div>
