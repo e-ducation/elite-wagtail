@@ -40,6 +40,9 @@ urlpatterns += i18n_patterns(
     prefix_default_language=True
 )
 
+urlpatterns += auth_urlpatterns
+
+
 if settings.DEBUG:
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
