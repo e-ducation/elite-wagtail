@@ -3,10 +3,13 @@
     <div class="main-header">
         <h1 class="header-logo">
             <!--<a href="/dashboard">-->
-            <a href="/">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% language LANGUAGE_CODE %}
+            <a href="{% url 'wagtail_serve' '' %}">
                 <img class="logo" src="https://www.elitemba.cn/static/normal-theme/images/logo.5cef1c16cb0a.png"
                     alt="英荔商学院 主页">
             </a>
+            {% endlanguage %}
         </h1>
 
         <div class="hamburger-menu" role="button" aria-label="选项栏" aria-expanded="false" aria-controls="mobile-menu"
