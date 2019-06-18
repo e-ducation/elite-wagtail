@@ -59,7 +59,15 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_select2',
     'drf_yasg',
+    'social_django',
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    'auth_backends.backends.EdXOpenIdConnect',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,6 +81,7 @@ MIDDLEWARE = [
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'elite_wagtail.urls'
@@ -187,3 +196,31 @@ WAGTAIL_SITE_NAME = "elite_wagtail"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+
+### Social AUTHENTICATION
+
+SOCIAL_AUTH_STRATEGY = 'auth_backends.strategies.EdxDjangoStrategy'
+
+# Set these to the correct values for your OAuth2/OpenID Connect provider
+SOCIAL_AUTH_EDX_OIDC_KEY = ""
+SOCIAL_AUTH_EDX_OIDC_SECRET = ""
+SOCIAL_AUTH_EDX_OIDC_URL_ROOT = "http://www.example.com/oauth2"
+SOCIAL_AUTH_EDX_OIDC_LOGOUT_URL = "http://www.example.com/logout"
+SOCIAL_AUTH_EDX_OIDC_ISSUER = "http://www.example.com/oauth2"
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
+
+# This value should be the same as SOCIAL_AUTH_EDX_OIDC_SECRET
+SOCIAL_AUTH_EDX_OIDC_ID_TOKEN_DECRYPTION_KEY = SOCIAL_AUTH_EDX_OIDC_SECRET
+
+EXTRA_SCOPE = ['permissions']
+
+CSRF_COOKIE_NAME = 'cms_csrftoken'
+LANGUAGE_COOKIE_NAME = 'openedx-language-preference'
+SESSION_COOKIE_NAME = 'cms_sessionid'
+SESSION_COOKIE_SECURE = False
+
+# 登录成功后回到 CMS 主页
+LOGIN_REDIRECT_URL = 'www.eliteu.xyz'
+
+### END Social AUTHENTICATION
