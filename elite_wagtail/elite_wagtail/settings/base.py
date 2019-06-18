@@ -220,6 +220,6 @@ LANGUAGE_COOKIE_NAME = 'openedx-language-preference'
 SESSION_COOKIE_NAME = 'cms_sessionid'
 SESSION_COOKIE_SECURE = False
 
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = '/'
 
 ### END Social AUTHENTICATION
