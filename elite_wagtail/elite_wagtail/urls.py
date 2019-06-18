@@ -33,14 +33,14 @@ urlpatterns = [
     #    url(r'^pages/', include(wagtail_urls)),
 ]
 
+urlpatterns += auth_urlpatterns
+
 urlpatterns += i18n_patterns(
     # These URLs will have /<language_code>/ appended to the beginning
     re_path(r'^search/$', search_views.search, name='search'),
     re_path(r'', include(wagtail_urls)),
     prefix_default_language=True
 )
-
-urlpatterns += auth_urlpatterns
 
 
 if settings.DEBUG:
