@@ -220,7 +220,6 @@ LANGUAGE_COOKIE_NAME = 'openedx-language-preference'
 SESSION_COOKIE_NAME = 'cms_sessionid'
 SESSION_COOKIE_SECURE = False
 
-# 登录成功后回到 CMS 主页
-LOGIN_REDIRECT_URL = 'www.eliteu.xyz'
+LOGIN_REDIRECT_URL = ''
 
 ### END Social AUTHENTICATION
