@@ -6,3 +6,9 @@ file_filter = conf/locale/<lang>/LC_MESSAGES/django.po
 source_file = conf/locale/zh_CN/LC_MESSAGES/django.po
 source_lang = zh-cn
 type = PO
+
+[wagtail-2.wagtail-js]
+file_filter = conf/locale/<lang>/LC_MESSAGES/djangojs.po
+source_file = conf/locale/zh_CN/LC_MESSAGES/djangojs.po
+source_lang = zh-cn
+type = PO

@@ -215,7 +215,8 @@ $(document).ready(function(){
             }
             document.getElementsByTagName('head')[0].appendChild(style);
 
-            var a = '<div class="mobile-nav-item hidden-mobile nav-item nav-tab nav-tab-harvard"><a class="tab-nav-link" href="' + hmm_url + '"><span>哈佛管理导师</span><span>有效期至：' + hmm_expiry_date + '</span></a></div>'
+            var a = '<div class="mobile-nav-item hidden-mobile nav-item nav-tab nav-tab-harvard"><a class="tab-nav-link" href="' + 
+            hmm_url + '"><span>' + gettext('哈佛管理导师') + '</span><span>' + gettext('有效期至：') + hmm_expiry_date + '</span></a></div>'
             $('.global-header .main').append(a);
         }
 
