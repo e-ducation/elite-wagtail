@@ -3,6 +3,7 @@ from django.conf.urls import include, url, re_path
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import path
+from django.views.i18n import JavaScriptCatalog
 
 from auth_backends.urls import auth_urlpatterns
 from wagtail.admin import urls as wagtailadmin_urls
@@ -37,9 +38,10 @@ urlpatterns += auth_urlpatterns
 
 urlpatterns += i18n_patterns(
     # These URLs will have /<language_code>/ appended to the beginning
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     re_path(r'^search/$', search_views.search, name='search'),
     re_path(r'', include(wagtail_urls)),
-    prefix_default_language=True
+    prefix_default_language=False
 )
 
 
