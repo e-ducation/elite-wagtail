@@ -2,4 +2,5 @@ Django>=2.1,<2.2
 wagtail>=2.4,<2.5
 django-select2==6.3.1
 drf-yasg==1.15.0
+wagtail-modeltranslation==0.10.2
 git+https://github.com/e-ducation/auth-backends.git@master#egg=edx-auth-backends==2.0.1
