@@ -134,7 +134,7 @@ class CourseBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     description = blocks.CharBlock()
     link = CourseUrlBlock()
-    publicity_page_url = blocks.URLBlock()
+    publicity_page_url = blocks.URLBlock(required=False)
 
     class Meta:
         label = '推荐课程'
