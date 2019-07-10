@@ -134,7 +134,7 @@ class CourseBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     description = blocks.CharBlock()
     link = CourseUrlBlock()
-    publicity_page_url = blocks.URLBlock()
+    publicity_page_url = blocks.URLBlock(required=False)
 
     class Meta:
         label = '推荐课程'
@@ -149,7 +149,7 @@ class CategoriesListBlock(blocks.StructBlock):
             'invalid': _('只允许输入2到10位中英文字符')
         }, required=True, label=_('分类名称'))),
         ('categories_link', blocks.URLBlock(required=True, label=_('分类链接'))),
-        ('img_for_app', ImageChooserBlock(required=False, label=_('app显示图标'))),
+            ('img_for_app', ImageChooserBlock(required=False, label=_('app显示图标'))),
     ]), label=_('课程分类'))
 
     class Meta:
