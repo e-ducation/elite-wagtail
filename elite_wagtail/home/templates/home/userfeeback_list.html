@@ -1,0 +1,34 @@
+{% load i18n modeladmin_tags %}
+{% load custom_tags %}
+{% if object_list %}
+<table class="listing full-width" style="margin-bottom:10px">
+    <thead>
+        <tr>
+            {% for header in result_headers %}
+            <th scope="col" {{ header.class_attrib }}>
+                {% if header.sortable %}<a href="{{ header.url_primary }}" class="icon {% if header.ascending %}icon-arrow-up-after{% else %}icon-arrow-down-after{% endif %}">{% endif %}
+                {{ header.text|capfirst }}
+                {% if header.sortable %}</a>{% endif %}
+           </th>
+           {% endfor %}
+       </tr>
+    </thead>
+    <tbody>
+     {% for items in object_list %}
+     <tr>
+        <td>{{ items.id }}</td>
+        <td>{{ items.nick_name}}</td>
+        <td>{% image_list %}</td>
+        <td>{{ items.content}}</td>
+        <td>{{ items.contact}}</td>
+        <td>{{ items.create_date | date:"Y-m-d H:i:s"}}</td>
+     </tr>   
+     {% endfor %}
+</tbody>
+</table>
+{% else %}
+    <div class="nice-padding no-search-results">
+        <p>{% blocktrans with view.verbose_name_plural as name %}Sorry, there are no {{ name }} matching your search parameters.{% endblocktrans %}</p>
+    </div>
+{% endif %}
+
