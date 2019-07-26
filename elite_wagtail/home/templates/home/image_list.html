@@ -1,0 +1,6 @@
+{% load custom_tags %}
+{% if pic_list %}
+    {% for image in pic_list %}
+        <image src="{{ image }}" />
+    {% endfor %}    
+{% endif %}

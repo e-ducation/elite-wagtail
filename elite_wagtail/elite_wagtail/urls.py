@@ -23,6 +23,8 @@ urlpatterns = [
 
     path('articles/<int:pk>/liked/', home_views.liked, name='liked'),
 
+    path('user_feeback/', home_views.UserFeedback, name='user_feeback'),
+
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
