@@ -8,7 +8,7 @@ def verify_parameters_exist(parameters_dict):
     :return:
     """
     result = None
-    parameters_dict_require = ['contact', 'username', 'image_url']
+    parameters_dict_require = ['contact']
     for i in parameters_dict_require:
         if not parameters_dict[i]:
             result = {
