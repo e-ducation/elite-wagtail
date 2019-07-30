@@ -111,7 +111,7 @@ class EliteVariableSettings(BaseSetting):
     elite_filing_website = models.URLField(
         help_text='Your Elite Filing Website URL')
     elite_case_number = models.CharField(
-        max_length = 32,
+        max_length=32,
         help_text='Your Elite Case Number')
 
 
@@ -537,24 +537,22 @@ class Advert(models.Model):
 
 
 class UserFeedBack(models.Model):
-    
-    image_url = models.CharField(verbose_name=_('图片'), max_length=500)
-    nick_name = models.CharField(blank=True,max_length=30, verbose_name=_('用户昵称'))
+    image_url = models.CharField(verbose_name=_('图片'), max_length=500, blank=True, null=True)
+    nick_name = models.CharField(blank=True, null=True, max_length=30, verbose_name=_('用户昵称'))
     content = models.TextField(verbose_name=_('反馈内容'))
-    contact = models.CharField(blank=True,max_length=30, verbose_name=_('联系方式'))
+    contact = models.CharField(blank=True, null=True, max_length=30, verbose_name=_('联系方式'))
     create_date = models.DateTimeField(auto_now_add=True, verbose_name=_('提交时间'))
-    
+
     panels = [
         FieldPanel('image_url'),
         FieldPanel('nick_name'),
         FieldPanel('content'),
         FieldPanel('contact'),
     ]
+
     class Meta(object):
-    
         verbose_name = _("用户反馈")
         verbose_name_plural = _("用户反馈")
 
     def __str__(self):
-        return self.nick_name       
-
+        return self.nick_name
