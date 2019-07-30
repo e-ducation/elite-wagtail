@@ -123,3 +123,5 @@ dmypy.json
 
 .sass-cache
 *.css.map
+
+.idea/
