@@ -538,7 +538,7 @@ class Advert(models.Model):
 
 class UserFeedBack(models.Model):
     
-    image_url = models.CharField(verbose_name=_('图片'), max_length=300)
+    image_url = models.CharField(verbose_name=_('图片'), max_length=500)
     nick_name = models.CharField(blank=True,max_length=30, verbose_name=_('用户昵称'))
     content = models.TextField(verbose_name=_('反馈内容'))
     contact = models.CharField(blank=True,max_length=30, verbose_name=_('联系方式'))

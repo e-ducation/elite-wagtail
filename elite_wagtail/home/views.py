@@ -27,7 +27,7 @@ def UserFeedback(request, *args, **kwargs):
     
     if request.method == 'POST': 
         image_url = request.POST.get('image_url', '')
-        nick_name = request.POST.get('nick_name', '')
+        nick_name = request.POST.get('username', '')
         content = request.POST.get('content', '')
         contact = request.POST.get('contact', '')
 
