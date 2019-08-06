@@ -3,7 +3,7 @@
     <h1>{{ value.title }}</h1>
     <div class="row">
         {% for block in value.courses %} 
-            <a class="col-3" href="{{ block.link }}" target="_blank">
+            <a class="col-3" href="{{ block.publicity_page_url }}" target="_blank">
                 <div>
                     {% image block.image width-400 %}
                     <div class="text">
