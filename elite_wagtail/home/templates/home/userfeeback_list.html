@@ -17,8 +17,8 @@
      {% for items in object_list %}
      <tr>
         <td>{{ items.id }}</td>
-        <td>{{ items.nick_name}}</td>
         <td>{% image_list %}</td>
+        <td>{{ items.nick_name}}</td>
         <td>{{ items.content}}</td>
         <td>{{ items.contact}}</td>
         <td>{{ items.create_date | date:"Y-m-d H:i:s"}}</td>
