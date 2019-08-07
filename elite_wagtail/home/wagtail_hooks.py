@@ -30,7 +30,7 @@ class UserFeebackAdmin(ModelAdmin):
     exclude_from_explorer = False  # or True to exclude pages of this type from Wagtail's explorer view
     list_per_page = 5
     list_display = ('id', 'image_url', 'nick_name',  'content', 'contact' , 'create_date',)
-    ordering = ('id',)
+    ordering = ('-id',)
     # list_filter = ('id', 'nick_name', 'image_url', 'contact', 'content', 'create_date')
     search_fields = ('nick_name', 'contact', 'content')
     index_template_name = "home/userfeeback.html"
