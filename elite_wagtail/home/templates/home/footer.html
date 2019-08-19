@@ -1,4 +1,5 @@
 {% load i18n %} 
+{% load static %}
 <div class="my-footer">
     <div class="footer-content clearfix">
         <div class="footer-app">
@@ -123,3 +124,9 @@
     </div>
     <div class="footer-text">{% trans "© 2019 广东英荔国际教育科技有限公司&nbsp; 版权所有" %} <a href="{{ settings.home.EliteVariableSettings.elite_filing_website }}" target="_blank">{{ settings.home.EliteVariableSettings.elite_case_number }}</a></div>
 </div>
+<script type="text/javascript" src="{% static 'js/pangu.min.js' %}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    pangu.autoSpacingPage();
+  });
+</script>
