@@ -1,8 +1,20 @@
 {% load i18n %} 
 {% load static %}
-<div class="my-footer">
+<style>
+  #logo-show {
+    display: none;
+  }
+  @media screen and (max-width: 768px) {
+    #logo-show {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  }
+</style>
+
+<div class="my-footer" style="padding-bottom: 22px;">
     <div class="footer-content clearfix">
-        <div class="footer-app">
+        <div class="footer-app" style="height: 180px;">
             <img class="logo" src="https://www.elitemba.cn/static/normal-theme/images/logo.5cef1c16cb0a.png">
             <p class="slogan">{% trans "学则变 · 变则进" %}</p>
             <div class="footer-btn">
@@ -75,10 +87,17 @@
                     </svg>
                 </div>
             </div>
+            <img class="logo" src="{% static 'images/powered_by_Open_edX_logo.png' %}" style="width: 140px; height: 35px; margin: 15px 0;"/>
         </div>
 
         <div class="footer-line"></div>
         <div class="footer-links">
+
+            <div class="footer-list" id="logo-show" style="width: 100%;">
+              <img class="logo" style="margin-right: 100px;" src="${static.url('images/logo.png')}" />
+              <img class="logo" src="${static.url('images/powered_by_Open_edX_logo.png')}" style="width: 140px; height: 35px; margin: 15px 0;"/>
+            </div>
+
             <div class="footer-list">
                 <h3>{% trans "英荔商学院" %}</h3>
                 <ul>
@@ -117,7 +136,7 @@
             </div>
         </div>
 
-        <div class="footer-wechat">
+        <div class="footer-wechat" style="height: 180px;">
             <h3>{% trans "英荔商学院" %}</h3>
             <img src="https://www.elitemba.cn/static/normal-theme/images/qrcode.24b97c1319db.png" class="footer-qrcode">
             <div>{% trans "微信扫一扫" %}<br>{% trans "关注名师开课动态" %}</div>
