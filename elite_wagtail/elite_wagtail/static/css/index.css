@@ -499,7 +499,7 @@
       text-align: center; } }
 .my-footer {
   width: 100%;
-  color: #656d78;
+  color: #666666;
   font-size: 14px;
   line-height: 1.8;
   box-sizing: border-box;
@@ -537,10 +537,11 @@
   .my-footer li {
     line-height: 2; }
     .my-footer li a {
+      color: #666666 !important;
       cursor: pointer; }
   .my-footer a,
   .my-footer a:not(.btn) {
-    color: #656d78;
+    color: #666666;
     text-decoration: none; }
   .my-footer a:hover,
   .my-footer a:not(.btn):hover {

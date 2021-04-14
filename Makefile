@@ -7,3 +7,5 @@ help: ## display help message
 static: ## compile static
 	@cd ./elite_wagtail/elite_wagtail/static && sass --update sass:css
 
+run:
+	source env/bin/activate && cd elite_wagtail && python manage.py runserver
