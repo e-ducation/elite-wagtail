@@ -2,7 +2,7 @@
 $border-footer: #f8f6f6;
 .my-footer {
   width: 100%;
-  color: $font;
+  color: #666666;
   font-size: 14px;
   // box-shadow: 0 2px 2px 2px $border-footer;
   line-height: 1.8;
@@ -56,12 +56,13 @@ $border-footer: #f8f6f6;
   li {
     line-height: 2;
     a {
+      color: #666666 !important;
       cursor: pointer;
     }
   }
   a,
   a:not(.btn) {
-    color: $font;
+    color: #666666;
     text-decoration: none;
   }
   a:hover,
