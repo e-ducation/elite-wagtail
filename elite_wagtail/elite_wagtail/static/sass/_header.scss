@@ -120,8 +120,6 @@
     margin: 4px 0 0 5px;
     a {
       display: inline-block;
-      margin-top: 25px;
-      height: 40px;
       text-decoration: none;
     }
   }
@@ -342,7 +340,7 @@
 
 @media screen and (min-width: 992px) {
   .window-wrap .global-header .nav-links .secondary {
-    margin: 0;
+    margin: 16px 0 0 0;
 
     .user-image-frame {
       border: none;
@@ -404,7 +402,7 @@
 @media screen and (min-width: 768px) {
   .global-header .nav-links .secondary .dropdown-user-menu {
     right: 8px;
-    top: 49px;
+    top: 59px;
   }
 }
 
