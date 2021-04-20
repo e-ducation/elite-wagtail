@@ -154,7 +154,7 @@
     color: #666666; }
 
   .global-header .nav-links .main .nav-tab a {
-    color: #313131;
+    color: #666666;
     padding: 7px 25px 19px;
     font-weight: 400;
     display: inline-block;
@@ -306,7 +306,7 @@
   position: relative; }
   .window-wrap .global-header .nav-links .secondary a.sign-in-btn,
   .window-wrap .global-header .nav-links .secondary .nav-item a.shopping-cart {
-    margin-top: 24px;
+    margin-top: 8px;
     width: 65px !important;
     height: 32px !important;
     line-height: 32px !important;
@@ -314,7 +314,7 @@
   .window-wrap .global-header .nav-links .secondary a.register-btn {
     width: 65px !important;
     height: 32px !important;
-    margin-top: 24px;
+    margin-top: 8px;
     line-height: 32px !important;
     padding: 0 17px !important; }
   .window-wrap .global-header .nav-links .secondary .username {
@@ -358,7 +358,7 @@
         color: #fff !important; } }
 @media screen and (min-width: 992px) {
   .window-wrap .global-header .nav-links .secondary {
-    margin: 21px 0 0 0; }
+    margin: 16px 0 0 0; }
     .window-wrap .global-header .nav-links .secondary .user-image-frame {
       border: none; }
     .window-wrap .global-header .nav-links .secondary .nav-item {
@@ -403,7 +403,7 @@
 @media screen and (min-width: 768px) {
   .global-header .nav-links .secondary .dropdown-user-menu {
     right: 8px;
-    top: 69px; } }
+    top: 59px; } }
 .home > header .title .course-search .search-button {
   box-sizing: border-box; }
 
