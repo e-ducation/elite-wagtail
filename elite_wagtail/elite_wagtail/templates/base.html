@@ -49,6 +49,7 @@
         {% endblock %}
 
         {# Baidu Bridge #}
+        {% if settings.home.BaiduBridgeSettings.enabled %}
         <script>
             var _hmt = _hmt || [];
             (function() {
@@ -80,6 +81,7 @@
               document.getElementsByTagName('head')[0].appendChild(style);
             }
         </script>
+        {% endif %}
 
         <!-- Google Analytics -->
         <script>

@@ -86,6 +86,7 @@ class GoogleSettings(BaseSetting):
 class BaiduBridgeSettings(BaseSetting):
     url = models.URLField(
         help_text='Your Baidu Bridge URL')
+    enabled = models.BooleanField(help_text='Enable Baidu Bridge', default=False)
 
 
 @register_setting
