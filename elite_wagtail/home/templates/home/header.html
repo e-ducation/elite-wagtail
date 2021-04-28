@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load static  %}
+
 <header class="global-header">
   <div class="main-header">
     <h1 class="header-logo">
@@ -7,7 +9,7 @@
       <a href="{% url 'wagtail_serve' '' %}">
         <img
           class="logo"
-          src="http://www.eliteu.xyz/static/elitemba-theme/images/logo1.1acfd09e139d.png"
+          src="{% static 'elitemba-theme/images/logo1.png' %}"
           alt="英荔AI教育学院 主页"
         />
       </a>
