@@ -340,6 +340,7 @@
 
 @media screen and (min-width: 992px) {
   .window-wrap .global-header .nav-links .secondary {
+    font-size: 0;
     margin: 16px 0 0 0;
 
     .user-image-frame {
@@ -347,7 +348,7 @@
     }
     .nav-item {
       padding: 5px 0 0 0;
-      margin: 4px 0 0 2px;
+      margin: 4px 0 0 10px;
     }
   }
 
