@@ -75,7 +75,7 @@
 
 .global-header .header-logo a {
   float: left;
-  margin: 18px 0 0 40px;
+  margin: 21px 0 0 40px;
   display: block; }
 
 .global-header .nav-links .secondary .dropdown-user-menu {
@@ -289,7 +289,6 @@
   .window-wrap .global-header .header-logo a {
     margin-left: 0px; }
   .window-wrap .global-header .header-logo a .logo {
-    height: 60px;
     width: 254px; }
   .window-wrap .global-header .header-logo .course-header {
     margin: 14px 0 0 20px; }
@@ -404,7 +403,7 @@
 @media screen and (min-width: 768px) {
   .global-header .nav-links .secondary .dropdown-user-menu {
     right: 8px;
-    top: 59px; } }
+    top: 79px; } }
 .home > header .title .course-search .search-button {
   box-sizing: border-box; }
 
@@ -563,8 +562,7 @@
     left: 20%;
     top: 58px; }
   .my-footer .logo {
-    width: 254px;
-    height: 60px; }
+    width: 254px; }
   .my-footer .slogan {
     margin: 6px 0 25px 34px; }
   .my-footer .footer-btn {
