@@ -309,13 +309,15 @@
     width: 65px !important;
     height: 32px !important;
     line-height: 32px !important;
-    padding: 0 17px !important; }
+    padding: 0 !important;
+    text-align: center; }
   .window-wrap .global-header .nav-links .secondary a.register-btn {
     width: 65px !important;
     height: 32px !important;
     margin-top: 8px;
     line-height: 32px !important;
-    padding: 0 17px !important; }
+    padding: 0 !important;
+    text-align: center; }
   .window-wrap .global-header .nav-links .secondary .username {
     max-width: 200px;
     display: inline-block;
